@@ -12,18 +12,25 @@
                     <a href="{{ route('frontend.index') }}" class="navigation-bar__logo">
                         <img src="{{ $settings->logo_image_url }}"  alt="brand-logo" class="logo-dark">
                     </a>
+                    <a href="#" class="header-ads" title="All Ads">All Ads</a>
                 </div>
+
                 <!-- Search Field -->
                 <form action="{{ route('frontend.adlist.search') }}" method="GET">
                     <div class="navigation-bar__search-field">
+
                         <input type="text" placeholder="{{ __('ads_title_keyword') }}..." name="keyword"/>
-                        <button type="submit" class="navigation-bar__search-icon">
+                        <!-- <button type="submit" class="navigation-bar__search-icon">
                             <x-svg.search-icon />
-                        </button>
+                        </button> -->
+                        <button type="submit" class="custom-search-icon"> <i class="fa-solid fa-magnifying-glass"></i></button> 
                     </div>
                 </form>
+
                 <!-- Action Buttons -->
                 <div class="navigation-bar__buttons">
+                  <a href="#" class="chat-text"><i class="fa-solid fa-message"></i>
+                  {{__('Chat')}}</a>
                     @if (auth('customer')->check())
                         <a href="{{ route('frontend.dashboard') }}" class="user">
                             <div class="user__img-wrapper">
@@ -37,7 +44,7 @@
                             {{ __('post_ads') }}
                         </a>
                     @else
-                        <a href="{{ route('customer.login') }}" class="btn btn--bg">{{ __('sign_in') }}</a>
+                        <a href="{{ route('customer.login') }}" class="custom-sign-in"><i class="fa-solid fa-user-large"></i> {{ __('sign_in') }}</a>
                         <a href="{{ route('customer.login') }}" class="btn login_required">
                             <span class="icon--left">
                                 <x-svg.image-select-icon />

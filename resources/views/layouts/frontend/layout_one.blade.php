@@ -42,6 +42,7 @@
     {!! $settings->header_css !!}
     {!! $settings->header_script !!}
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/main.css">
+    <script src="https://kit.fontawesome.com/525e9b929f.js" crossorigin="anonymous"></script>
 
 </head>
 

@@ -92,7 +92,7 @@
             </h2>
             <div class="row">
                 @forelse ($topCategories as $category)
-                    <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mb-4">
                         <div class="categorylist-card">
                             <div class="categorylist-card__top">
                                 <div class="categorylist-card__top-left">
@@ -101,11 +101,11 @@
                                 </div>
                                 <div class="categorylist-card__top-right">
                                     <div class="categorylist-card__icon">
-                                        <i class="{{ $category->icon }}" style="font-size: 55px"></i>
+                                        <i class="{{ $category->icon }}" style="font-size: 42px"></i>
                                     </div>
                                 </div>
                             </div>
-                            <div class="categorylist-card__bottom">
+                       <!--      <div class="categorylist-card__bottom">
                                 <ul class="categorylist-card__list">
 
                                     {{-- Filter Form 1 --}}
@@ -127,7 +127,7 @@
                                     </div>
                                     @endforelse
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 @empty

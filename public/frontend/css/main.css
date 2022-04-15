@@ -1340,7 +1340,7 @@ a.chat-text{
     }
 }
 .text--heading-1 {
-    font-size: 40px;
+    font-size: 25px;
     text-transform: capitalize;
 }
 
@@ -2118,7 +2118,7 @@ a {
 }
 .section {
     position: relative;
-    padding: 100px 0px;
+    padding: 60px 0px;
 }
 @media (max-width: 767px) {
     @media -sass-debug-info {
@@ -2143,7 +2143,7 @@ a {
 }
 .section__title {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 @media (max-width: 767px) {
     @media -sass-debug-info {
@@ -2705,7 +2705,7 @@ a {
     }
 }
 .header--two .navigation-bar__top {
-    padding: 26px 0px;
+    padding: 12px 0px;
     -webkit-box-shadow: 0px -1px 0px 0px #ebeef7 inset;
     box-shadow: 0px -1px 0px 0px #ebeef7 inset;
 }
@@ -15221,8 +15221,6 @@ a {
 .membership-card,
 .dashboard-card {
     position: relative;
-    border-radius: 12px;
-    background-color: #fff;
 }
 
 @media -sass-debug-info {
@@ -15309,12 +15307,25 @@ a {
     }
 }
 .categorylist-card {
-    padding: 24px;
     height: 100%;
-    border: 1px solid #ebeef7;
-    -webkit-transition: all 0.3s ease-in-out;
+}
+.categorylist-card {
+    border: 1px solid #EEE;
+    padding: 4px 12px;
+    border-radius: 3px;
+}
+
+.categorylist-card__icon i{
     transition: all 0.3s ease-in-out;
 }
+
+.categorylist-card:hover .categorylist-card__icon i {
+    transform: scale(1.2);
+}
+
+
+
+
 @media (max-width: 767px) {
     @media -sass-debug-info {
         filename {
@@ -15336,12 +15347,6 @@ a {
         font-family: \00003388;
     }
 }
-.categorylist-card:hover {
-    -webkit-box-shadow: 0px 12px 80px 0px #001a661a;
-    box-shadow: 0px 12px 80px 0px #001a661a;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -15349,14 +15354,6 @@ a {
     line {
         font-family: \00003391;
     }
-}
-.categorylist-card:hover .categorylist-card__icon {
-    color: #fff;
-    background-color: #D32323;
-    -webkit-box-shadow: 0px 8px 32px 0px #D3232366;
-    box-shadow: 0px 8px 32px 0px #D3232366;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
 }
 @media -sass-debug-info {
     filename {
@@ -15376,10 +15373,7 @@ a {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    padding: 24px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    background: rgba(232, 247, 255, 0.6);
+    border: none;
 }
 @media -sass-debug-info {
     filename {
@@ -15392,7 +15386,6 @@ a {
 .categorylist-card__title {
     color: #191f33;
     text-transform: capitalize;
-    margin-bottom: 8px;
 }
 @media -sass-debug-info {
     filename {
@@ -15415,7 +15408,6 @@ a {
 }
 .categorylist-card__icon {
     display: inline-block;
-    padding: 22px;
     border-radius: 6px;
     background-color: #fff;
     color: #D32323;

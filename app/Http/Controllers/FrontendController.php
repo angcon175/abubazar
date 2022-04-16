@@ -37,7 +37,7 @@ class FrontendController extends Controller
         $data = [];
         $topCategories = CategoryResource::collection(Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
-        })->withCount('ads as ad_count')->latest('ad_count')->take(8)->get());
+        })->withCount('ads as ad_count')->latest('ad_count')->take(12)->get());
         $home_page = Theme::first()->home_page;
         $topCities = City::withCount('ads as ad_count')->latest('ad_count')->take(6)->get();
 
@@ -83,6 +83,8 @@ class FrontendController extends Controller
         $data['pro_members_count'] = Customer::whereHas('userPlan', function ($q) {
             $q->where('badge', true);
         })->count();
+        $data['towns'] = Town::orderBy('name')->get();
+        $data['total_ads'] = Ad::activeCategory()->active()->count();
 
         return view('frontend.index', $data);
     }

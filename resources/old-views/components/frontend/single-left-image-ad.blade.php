@@ -62,15 +62,15 @@
                     <input type="hidden" name="customer_id" value="{{ auth('customer')->user()->id }}">
                     <button type="submit" class="btn-icon">
                         @if (isWishlisted($ad->id))
-                            <x-svg.heart-icon fill="#00AAFF" stroke="#00AAFF" stroke-width="0.5" />
+                            <x-svg.heart-icon fill="#D32323" stroke="#D32323" stroke-width="0.5" />
                         @else
-                            <x-svg.heart-icon fill="none" stroke="#00AAFF" stroke-width="1.6" />
+                            <x-svg.heart-icon fill="none" stroke="#D32323" stroke-width="1.6" />
                         @endif
                     </button>
                     @else
                     <a href="{{ route('customer.login') }}">
                         <button type="submit" class="btn-icon login_required">
-                            <x-svg.heart-icon fill="none" stroke="#00AAFF" stroke-width="1.6" />
+                            <x-svg.heart-icon fill="none" stroke="#D32323" stroke-width="1.6" />
                         </button>
                     </a>
                     @endif

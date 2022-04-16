@@ -542,7 +542,7 @@ if (galleryVeno) {
 if (youtubeVeno) {
     $('.yplayer').venobox({
         spinner: 'wave',
-        spinColor: '#00aaff',
+        spinColor: '#D32323',
     });
 }
 

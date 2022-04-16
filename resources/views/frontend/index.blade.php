@@ -5,26 +5,87 @@
 
 @section('frontend_style')
     @livewireStyles
+    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/select2/css/select2.min.css">
 @endsection
 
 
 @section('content')
+   <!--  style="background: url('{{ $cms->index1_main_banner_path }}') center center/cover no-repeat;" -->
     <!-- banner section start  -->
-    <div class="banner banner--two" style="background: url('{{ $cms->index1_main_banner_path }}') center center/cover no-repeat;">
+    <div class="banner banner--two">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
+            <div class="row text-center">
+                <div class="col-12">
                     <h2 class="text--display-3 banner__title animate__animated animate__bounceInDown">
                         {{ $cms->index1_title }}
                     </h2>
                     <p class="text--body-3 banner__brief">
                         {{ $cms->index1_description }}
                     </p>
+                     <!-- Search Box -->
+                    <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="false" :total-ads="$total_ads" />
                 </div>
             </div>
         </div>
     </div>
     <!-- banner section end   -->
+
+
+     <!-- top-category section start  -->
+    <section class="section top-category bgcolor--gray-10">
+        <div class="container">
+            <h2 class="text--heading-1 section__title">
+                {{ __('top_category') }}
+            </h2>
+            <div class="row">
+                @forelse ($topCategories as $category)
+                    <div class="col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mb-4">
+                        <div class="categorylist-card">
+                            <div class="categorylist-card__top">
+                                <div class="categorylist-card__top-left">
+                                    <h2 class="categorylist-card__title text--body-2-600"> {{ $category->name }} </h2>
+                                    <span class="categorylist-card__item-available">({{ $category->ad_count ?? 0 }})</span>
+                                </div>
+                                <div class="categorylist-card__top-right">
+                                    <div class="categorylist-card__icon">
+                                        <i class="{{ $category->icon }}" style="font-size: 27px"></i>
+                                    </div>
+                                </div>
+                            </div>
+                       <!--      <div class="categorylist-card__bottom">
+                                <ul class="categorylist-card__list">
+
+                                    {{-- Filter Form 1 --}}
+                                    <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm" class="d-none">
+                                        <input type="hidden" name="subcategory[]" value="" id="adFilterInput">
+                                    </form>
+                                    @forelse ($category->subcategories as $subcategory)
+                                        <li class="categorylist-card__list-item">
+                                            <a href="javascript:void(0)" onclick="adFilterFunction('{{ $subcategory->slug }}')" class="categorylist-card__list-link text--body-3">
+                                                <span class="icon">
+                                                    <x-svg.right-regular-icon />
+                                                </span>
+                                                {{ $subcategory->name }}
+                                            </a>
+                                        </li>
+                                    @empty
+                                    <div class="text-center">
+                                        {{ __('no_subcategory_found') }}
+                                    </div>
+                                    @endforelse
+                                </ul>
+                            </div> -->
+                        </div>
+                    </div>
+                @empty
+                <x-no-data-found/>
+                @endforelse
+            </div>
+        </div>
+    </section>
+    <!-- top-category section end  -->
+
+
 
     <!-- recent-post section start  -->
     @if ($settings->featured_ads_homepage)
@@ -84,60 +145,6 @@
     @endif
     <!-- recent-post section end -->
 
-    <!-- top-category section start  -->
-    <section class="section top-category bgcolor--gray-10">
-        <div class="container">
-            <h2 class="text--heading-1 section__title">
-                {{ __('top_category') }}
-            </h2>
-            <div class="row">
-                @forelse ($topCategories as $category)
-                    <div class="col-sm-6 col-lg-4 col-xl-3 col-xxl-2 mb-4">
-                        <div class="categorylist-card">
-                            <div class="categorylist-card__top">
-                                <div class="categorylist-card__top-left">
-                                    <h2 class="categorylist-card__title text--body-2-600"> {{ $category->name }} </h2>
-                                    <span class="categorylist-card__item-available">({{ $category->ad_count ?? 0 }})</span>
-                                </div>
-                                <div class="categorylist-card__top-right">
-                                    <div class="categorylist-card__icon">
-                                        <i class="{{ $category->icon }}" style="font-size: 42px"></i>
-                                    </div>
-                                </div>
-                            </div>
-                       <!--      <div class="categorylist-card__bottom">
-                                <ul class="categorylist-card__list">
-
-                                    {{-- Filter Form 1 --}}
-                                    <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm" class="d-none">
-                                        <input type="hidden" name="subcategory[]" value="" id="adFilterInput">
-                                    </form>
-                                    @forelse ($category->subcategories as $subcategory)
-                                        <li class="categorylist-card__list-item">
-                                            <a href="javascript:void(0)" onclick="adFilterFunction('{{ $subcategory->slug }}')" class="categorylist-card__list-link text--body-3">
-                                                <span class="icon">
-                                                    <x-svg.right-regular-icon />
-                                                </span>
-                                                {{ $subcategory->name }}
-                                            </a>
-                                        </li>
-                                    @empty
-                                    <div class="text-center">
-                                        {{ __('no_subcategory_found') }}
-                                    </div>
-                                    @endforelse
-                                </ul>
-                            </div> -->
-                        </div>
-                    </div>
-                @empty
-                <x-no-data-found/>
-                @endforelse
-            </div>
-        </div>
-    </section>
-    <!-- top-category section end  -->
-
     <!-- popular-loc section start  -->
     <section class="section popular-location">
         <div class="container">
@@ -157,10 +164,10 @@
     </section>
     <!-- popular-loc section end -->
 
-   <x-frontend.counter :totalAds="$totalAds" :verifiedUser="$verified_users" :proMember="$pro_members_count" :cityLocation="$city_count"></x-frontend.counter>
+       {{--<x-frontend.counter :totalAds="$totalAds" :verifiedUser="$verified_users" :proMember="$pro_members_count" :cityLocation="$city_count"></x-frontend.counter>--}}
 
     <!-- download section start  -->
-    @if ($settings->android || $settings->ios)
+    <!-- @if ($settings->android || $settings->ios)
     <section class="download section pb-lg-0">
         <div class="container">
             <div class="row align-items-center">
@@ -207,16 +214,34 @@
     @else
     <section class="mb-5">
     </section>
-    @endif
+    @endif -->
     <!-- download section end  -->
 
-    @if ($newsletter_enable)
+   {{--  @if ($newsletter_enable)
         @include('layouts.frontend.partials.newsletter')
     @endif
+    --}}
+
 @endsection
 
 @section('frontend_script')
 <script type="module" src="{{ asset('frontend') }}/js/plugins/purecounter.js"></script>
+<script type="module" src="https://adlisting.templatecookie.com/frontend/js/plugins/select2.min.js"></script>
+<script src="https://adminlte.io/themes/v3/plugins/select2/js/select2.full.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // ===== Select2 ===== \\
+        $('#town').select2({
+            theme: 'bootstrap-5',
+            width: $(this).data('width') ?
+                $(this).data('width') : $(this).hasClass('w-100') ?
+                '100%' : 'style',
+            placeholder: 'Select town',
+            allowClear: Boolean($(this).data('allow-clear')),
+            closeOnSelect: !$(this).attr('multiple'),
+        });
+    });
+</script>
 @stack('newslater_script')
 <script>
     // for filter form-1

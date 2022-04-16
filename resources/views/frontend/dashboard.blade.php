@@ -211,7 +211,7 @@
                     datasets: [{
                         label: '',
                         data: {{ json_encode($bar_chart_datas) }},
-                        backgroundColor: '#00aaff',
+                        backgroundColor: '#D32323',
                         borderWidth: 0,
                         barThickness: 28,
                         borderRadius: 100,

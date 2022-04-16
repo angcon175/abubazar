@@ -1,4 +1,4 @@
-<div class="col-lg-6 order-1 order-lg-0">
+<div class="col-md-8 col-lg-6 col-xl-5">
     <div class="registration-form">
         <h2 class="text-center text--heading-1 registration-form__title">{{ __('sign_up') }}</h2>
        {{-- Social Login --}}

@@ -34,7 +34,7 @@
                             <ul>
                                 <li class="dashboard__benefits-item">
                                     <span class="icon">
-                                        <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                        <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                     </span>
                                     <p class="text--body-4">{{ __('post') }} {{ $plan->ad_limit }}
                                         {{ __('ads') }}</p>
@@ -42,7 +42,7 @@
                                 @if ($plan->featured_limit)
                                 <li class="dashboard__benefits-item">
                                     <span class="icon">
-                                        <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                        <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                     </span>
                                     <p class="text--body-4">{{ __('featured_on_homepage') }}
                                         {{ $plan->featured_limit }} {{ __('ads') }}</p>
@@ -51,7 +51,7 @@
                                 @if ($plan->badge)
                                 <li class="dashboard__benefits-item">
                                     <span class="icon">
-                                        <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                        <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                     </span>
                                     <p class="text--body-4">{{ __('special_membership_badge') }}</p>
                                 </li>
@@ -62,14 +62,14 @@
                             <ul>
                                 <li class="dashboard__benefits-item">
                                     <span class="icon">
-                                        <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                        <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                     </span>
                                     <p class="text--body-4">{{ __('ad_multiple_images') }}</p>
                                 </li>
                                 @if ($plan->customer_support)
                                 <li class="dashboard__benefits-item">
                                     <span class="icon">
-                                        <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                        <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                     </span>
                                     <p class="text--body-4">{{ __('standard_customer_support') }}</p>
                                 </li>

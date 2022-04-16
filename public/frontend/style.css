@@ -14693,10 +14693,10 @@ fieldset:disabled .btn {
     color: #1f9b00;
 }
 .bgcolor--success-4 {
-    background-color: #27c200 !important;
+    background-color: #D32323 !important;
 }
 .textColor--success-4 {
-    color: #27c200;
+    color: #D32323;
 }
 .bgcolor--success-5 {
     background-color: #52ce33 !important;
@@ -16026,7 +16026,7 @@ a {
     margin-bottom: 28px;
     border-radius: 5px;
     display: inline-block;
-    background-color: #27c200;
+    background-color: #D32323;
 }
 .banner--three .banner__title {
     color: #fff;
@@ -18014,7 +18014,7 @@ a {
 }
 .dashboard-post__link .icon--success {
     display: none;
-    background-color: #27c200 !important;
+    background-color: #D32323 !important;
 }
 .dashboard-post__link .step-info {
     text-align: left;
@@ -18361,7 +18361,7 @@ a {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #27c200;
+    background-color: #D32323;
     margin-right: 6px;
 }
 .dashboard__message-user .message-header .action-btn {
@@ -19586,7 +19586,7 @@ a {
     align-items: center;
 }
 .cards--one .cards__info-status .tag-status--active {
-    color: #27c200;
+    color: #D32323;
 }
 .cards--one .cards__info-status .tag-status--expire {
     color: #ff4f4f;
@@ -20487,7 +20487,7 @@ a {
     margin-bottom: 0;
 }
 .dashboard-card--recent__activity-item.success .icon {
-    color: #27c200;
+    color: #D32323;
     background-color: #e4f9e0;
 }
 .dashboard-card--recent__activity-item.primary .icon {
@@ -20809,7 +20809,7 @@ a {
     align-items: center;
 }
 .card-edit__item.product-status .tag-status--active {
-    color: #27c200;
+    color: #D32323;
 }
 .card-edit__item.product-status .tag-status--expire {
     color: #ff4f4f;
@@ -20926,7 +20926,7 @@ a {
     margin-bottom: 16px;
 }
 .input-field.success input {
-    border-color: #27c200;
+    border-color: #D32323;
 }
 .input-field.success .icon--alart,
 .input-field.success .icon--eye {

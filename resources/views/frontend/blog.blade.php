@@ -41,10 +41,11 @@
                                     <div class="category">
                                         @foreach ($topCategories as $category)
                                             <div class="category-item">
-                                                <a href="{{ route('frontend.blog',['category'=>$category->slug]) }}">
-                                                    <img style="width: 162px;" src="{{ $category->image_url }}" alt="category-img" />
-                                                    <h2 class="text--body-3">{{ $category->name }}</h2>
-                                                </a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="{{route('frontend.blog',['category'=>$category->slug]) }}">{{ $category->name }}</a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         @endforeach
                                     </div>

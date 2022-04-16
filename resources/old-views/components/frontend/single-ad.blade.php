@@ -22,7 +22,7 @@
             <div class="cards__info-bottom">
                 <h6 class="cards__location text--body-4">
                     <span class="icon">
-                        <x-svg.location-icon width="20" height="20" stroke="#27C200" />
+                        <x-svg.location-icon width="20" height="20" stroke="#D32323" />
                     </span>
                     {{ $ad->city->name }}
                 </h6>

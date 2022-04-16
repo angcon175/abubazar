@@ -52416,3 +52416,16 @@ a.text-muted:hover {
   color: #3f474e;
 }
 /*# sourceMappingURL=adminlte.css.map */
+
+
+
+
+
+[class*=sidebar-dark-] .sidebar a {
+    color: #222 !important;
+}
+
+.sidebar-dark-primary .nav-sidebar.nav-legacy>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar.nav-legacy>.nav-item>.nav-link.active {
+    border-color: #d32323;
+    background: #d32323;
+}

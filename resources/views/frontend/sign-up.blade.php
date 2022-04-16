@@ -17,9 +17,9 @@
     <!-- registration section start   -->
     <section class="section registration">
         <div class="container">
-            <div class="row">
+            <div class="row d-flex justify-content-center">
                 {{-- Signup Content  --}}
-                <x-auth.content :verifiedusers="$verified_users"/>
+               <!--  <x-auth.content :verifiedusers="$verified_users"/> -->
 
                 {{-- Signup Form --}}
                 <x-auth.signup-form/>

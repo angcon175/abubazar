@@ -3,6 +3,6 @@
 $(document).ready(function () {
     $('.yplayer').venobox({
         spinner: 'wave',
-        spinColor: '#00aaff',
+        spinColor: '#D32323',
     });
 });

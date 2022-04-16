@@ -22,10 +22,15 @@
 .textColor--primary {
     color: #002233;
 }
+.select2-results__options {
+    height: 250px;
+    overflow: hidden;
+    overflow-y: auto;
+}
 .header-ads{
     font-size: 20px;
     font-weight: 700;
-    padding-left: 10px;
+    padding-left: 45px;
     margin-top: 5px;
     color: #d32323;
     font-family: sans-serif;
@@ -37,13 +42,18 @@
 a.chat-text{
   color: #d32323;
 }
-.custom-search-icon{
+.custom-search-icon {
     position: absolute;
-    top: 12%;
-    font-size: 28px;
+    top: 9%;
+    right: 7px;
+    font-size: 16px;
     margin-left: -40px;
-    color: #d32323;
-    }
+    background: #d32323;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/abstracts\/_functions\.scss;
@@ -725,7 +735,7 @@ a.chat-text{
     }
 }
 .bgcolor--success-4 {
-    background-color: #27c200 !important;
+    background-color: #D32323 !important;
 }
 
 @media -sass-debug-info {
@@ -737,7 +747,7 @@ a.chat-text{
     }
 }
 .textColor--success-4 {
-    color: #27c200;
+    color: #D32323;
 }
 
 @media -sass-debug-info {
@@ -1327,7 +1337,7 @@ a.chat-text{
     }
 }
 .text--display-3 {
-    font-size: 56px;
+    font-size: 35px;
     text-transform: capitalize;
 }
 
@@ -1353,7 +1363,7 @@ a.chat-text{
     }
 }
 .text--heading-2 {
-    font-size: 32px;
+    font-size: 23px;
     text-transform: capitalize;
 }
 
@@ -1431,7 +1441,7 @@ a.chat-text{
     }
 }
 .text--body-3 {
-    font-size: 16px;
+    font-size: 15px;
     text-transform: capitalize;
 }
 
@@ -1531,7 +1541,7 @@ a.chat-text{
     }
 }
 .text--body-2-600 {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 @media -sass-debug-info {
@@ -2208,7 +2218,7 @@ a {
     z-index: 99;
     top: 0;
     left: 0;
-    background-color: #fff;
+    background-color: #f5f5f5;
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
     -webkit-box-shadow: 0px -1px 0px 0px #ebeef7 inset;
@@ -2393,9 +2403,6 @@ a {
         font-family: \0000369;
     }
 }
-.header .navigation-bar__buttons .btn {
-    margin-right: 24px;
-}
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/layout\/_header\.scss;
@@ -2403,9 +2410,6 @@ a {
     line {
         font-family: \0000372;
     }
-}
-.header .navigation-bar__buttons .btn:nth-child(1) {
-    margin-right: 24px;
 }
 @media (max-width: 1199px) {
     @media -sass-debug-info {
@@ -3557,11 +3561,14 @@ a {
     }
 }
 .navigation-bar__search-field input {
-    /* width: 536px; */
+    /*width: 536px;*/
     width: 430px;
     height: 52px;
     border-radius: 5px;
     padding-left: 55px;
+    background: #f5f5f5;
+    border: 1px solid #DDD;
+    border-radius: 50px;
 }
 @media (max-width: 1199px) {
     @media -sass-debug-info {
@@ -3720,7 +3727,7 @@ a {
 }
 .categories__link {
     white-space: nowrap;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 24px;
     font-weight: 400;
     color: #636a80;
@@ -4998,7 +5005,10 @@ a {
     }
 }
 .banner--two {
-    padding: 358px 0 120px;
+    padding: 200px 0 104px;
+    background: background: #CB356B;
+    background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);
+    background: linear-gradient(to right, #d32323c2, #d32323db);
 }
 @media (max-width: 991px) {
     @media -sass-debug-info {
@@ -5028,6 +5038,7 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
+    display: none;
     z-index: -1;
     background-color: rgba(0, 0, 0, 0.164);
 }
@@ -5053,9 +5064,9 @@ a {
     }
 }
 .banner--two .banner__title {
-    color: #191f33;
+    color: #fff;
     text-transform: capitalize;
-    margin-bottom: 24px;
+    margin-bottom: 15px;
 }
 @media (max-width: 767px) {
     @media -sass-debug-info {
@@ -5080,7 +5091,7 @@ a {
     }
 }
 .banner--two .banner__brief {
-    color: #464d61;
+    color: #fff;
 }
 @media (max-width: 767px) {
     @media -sass-debug-info {
@@ -5147,7 +5158,7 @@ a {
     border-radius: 5px;
     margin-top: 58px;
     display: inline-block;
-    background-color: #27c200;
+    background-color: #D32323;
 }
 @media -sass-debug-info {
     filename {
@@ -5992,7 +6003,7 @@ a {
 .subscribe {
     position: relative;
     overflow: hidden;
-    padding: 50px 0px;
+    padding: 10px 0px;
     -webkit-box-shadow: 0px -1px 0px 0px #2e3447 inset;
     box-shadow: 0px -1px 0px 0px #2e3447 inset;
 }
@@ -7701,13 +7712,10 @@ a {
         font-family: \000031;
     }
 }
-.breedcrumb {
-    position: relative;
-    padding: 208px 0 60px;
-    overflow: hidden;
-    z-index: 1;
-    text-align: center;
+section.breedcrumb {
+    background: #fff !important;
 }
+
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/layout\/_breadcrumb\.scss;
@@ -7715,16 +7723,6 @@ a {
     line {
         font-family: \000037;
     }
-}
-.breedcrumb::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(25, 31, 51, 0.8);
-    z-index: -1;
 }
 @media -sass-debug-info {
     filename {
@@ -7735,9 +7733,8 @@ a {
     }
 }
 .breedcrumb__title {
-    color: #fff;
+    color: #222;
     text-transform: capitalize;
-    margin-bottom: 16px;
 }
 @media -sass-debug-info {
     filename {
@@ -7748,17 +7745,7 @@ a {
     }
 }
 .breedcrumb__page {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+display: flex;
 }
 @media -sass-debug-info {
     filename {
@@ -7838,7 +7825,7 @@ a {
 }
 .breedcrumb__page-link {
     text-transform: capitalize;
-    color: #fff;
+    color: #666;
     opacity: 0.6;
 }
 @media -sass-debug-info {
@@ -7850,8 +7837,12 @@ a {
     }
 }
 .breedcrumb__page-link:hover {
-    color: #fff;
+    color: #d32323;
     opacity: 0.6;
+}
+
+.section.popular-location {
+    padding-top: 0;
 }
 
 @media (max-width: 767px) {
@@ -10721,7 +10712,7 @@ a {
 }
 .dashboard-post__link .icon--success {
     display: none;
-    background-color: #27c200 !important;
+    background-color: #D32323 !important;
 }
 @media -sass-debug-info {
     filename {
@@ -11701,7 +11692,7 @@ a {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #27c200;
+    background-color: #D32323;
     margin-right: 6px;
 }
 @media -sass-debug-info {
@@ -12351,7 +12342,6 @@ a {
     }
 }
 .blog__sidebar-item {
-    padding: 32px;
     border-radius: 5px;
     background-color: #f5f7fa;
     margin-bottom: 24px;
@@ -12455,7 +12445,6 @@ a {
     }
 }
 .blog__sidebar-category .category {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
 }
@@ -12469,11 +12458,15 @@ a {
 }
 .blog__sidebar-category .category-item {
     width: 100%;
-    height: 65px;
     border-radius: 5px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
+}
+.post-item {
+    border: 1px solid #EEE;
+    padding: 7px;
+    border-radius: 10px;
 }
 @media -sass-debug-info {
     filename {
@@ -12494,7 +12487,7 @@ a {
         font-family: \00003117;
     }
 }
-.blog__sidebar-category .category-item::after {
+/*.blog__sidebar-category .category-item::after {
     content: "";
     position: absolute;
     top: 0;
@@ -12502,7 +12495,7 @@ a {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/layout\/_blog-sidebar\.scss;
@@ -12927,7 +12920,7 @@ a {
 }
 .footer--dark .footer__top {
     /* background-color: #191f33; */
-    background-color: #000000;
+    background-color: #f5f5f5;
 }
 @media -sass-debug-info {
     filename {
@@ -12950,7 +12943,7 @@ a {
     }
 }
 .footer--dark .footer__title {
-    color: #fff;
+    color: #191f33;
 }
 @media -sass-debug-info {
     filename {
@@ -12961,7 +12954,7 @@ a {
     }
 }
 .footer--dark .footer-menu__link:hover {
-    color: #fff;
+    color: #D32323;
 }
 @media -sass-debug-info {
     filename {
@@ -13075,7 +13068,7 @@ a {
     }
 }
 .footer__top {
-    padding: 100px 0px;
+    padding: 50px 0px 20px 0px;
 }
 @media (max-width: 1199px) {
     @media -sass-debug-info {
@@ -13637,7 +13630,7 @@ a {
 }
 .btn:hover {
     color: #fff;
-    background-color: #0088cc;
+    background-color: #d32323d6;
 }
 @media -sass-debug-info {
     filename {
@@ -13699,7 +13692,7 @@ a {
 }
 .btn--bg {
     color: #D32323;
-    background-color: #e8f7ff;
+    background-color: #d3232312;
 }
 @media -sass-debug-info {
     filename {
@@ -13710,8 +13703,8 @@ a {
     }
 }
 .btn--bg:hover {
-    color: #0088cc;
-    background-color: #cceeff;
+    color: #d32323;
+    background-color: #f8dddd;
 }
 @media -sass-debug-info {
     filename {
@@ -13755,6 +13748,20 @@ a {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+section.section.registration {
+    padding-top: 0;
+}
+
+
+.blog__sidebar-wrapper {
+    border: 1px solid #EEE;
+    padding: 20px;
+}
+
+
+
+
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_buttons\.scss;
@@ -14116,8 +14123,8 @@ a {
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    border: 6px solid #191f33;
-    background: #2e3447;
+    border: 6px solid #d32323;
+    background: #d32323;
     overflow: hidden;
     z-index: 99;
     opacity: 0;
@@ -14461,15 +14468,8 @@ a {
     }
 }
 .cards--highlight .cards__info {
-    border-left: 2px solid #ffd966;
-    background: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        from(#fff8e0),
-        to(rgba(255, 248, 224, 0))
-    );
-    background: linear-gradient(90deg, #fff8e0 0%, rgba(255, 248, 224, 0) 100%);
+    border-left: 2px solid #d3232382;
+    background: linear-gradient(90deg, #d3232357 0%, rgb(211 35 35 / 30%) 100%);
 }
 @media -sass-debug-info {
     filename {
@@ -14552,7 +14552,7 @@ a {
     }
 }
 .cards__info-top {
-    border-bottom: 1px solid #ebeef7;
+    border-bottom: 1px solid #d323231f;
 }
 @media -sass-debug-info {
     filename {
@@ -14619,7 +14619,7 @@ a {
 }
 .cards--one.cards--highlight .cards__info-top,
 .cards--one.cards--highlight .cards__info-bottom {
-    border-right: 1px solid #ffd966;
+    border-right:1px solid #d323231f;
 }
 @media -sass-debug-info {
     filename {
@@ -14630,7 +14630,7 @@ a {
     }
 }
 .cards--one.cards--highlight .cards__info-bottom {
-    border-bottom: 1px solid #ffd966;
+    border-bottom:1px solid #d323231f;
 }
 @media -sass-debug-info {
     filename {
@@ -14689,7 +14689,7 @@ a {
     }
 }
 .cards--one .cards__info-status .tag-status--active {
-    color: #27c200;
+    color: #D32323;
 }
 @media -sass-debug-info {
     filename {
@@ -14735,7 +14735,7 @@ a {
 }
 .cards--one .cards__category-title {
     margin-bottom: 8px;
-    color: #767e94;
+    color: #222;
 }
 @media -sass-debug-info {
     filename {
@@ -14763,7 +14763,7 @@ a {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: center;
-    color: #767e94;
+    color: #222;
     margin: 0;
 }
 @media -sass-debug-info {
@@ -14775,7 +14775,7 @@ a {
     }
 }
 .cards--one .cards__price-title {
-    color: #ff4f4f;
+    color: #222;
 }
 @media -sass-debug-info {
     filename {
@@ -15310,8 +15310,8 @@ a {
     height: 100%;
 }
 .categorylist-card {
-    border: 1px solid #EEE;
-    padding: 4px 12px;
+    border: 1px solid #efefef;
+    padding: 9px 12px;
     border-radius: 3px;
 }
 
@@ -15541,6 +15541,7 @@ a {
 .location-card {
     position: relative;
     text-align: center;
+    margin-bottom: 12px;
 }
 @media -sass-debug-info {
     filename {
@@ -15550,7 +15551,7 @@ a {
         font-family: \00003472;
     }
 }
-.location-card__img-wrapper {
+/*.location-card__img-wrapper {
     width: 264px;
     height: 224px;
     border-radius: 8px;
@@ -15566,6 +15567,12 @@ a {
     -ms-flex-pack: center;
     justify-content: center;
     margin-bottom: -132px;
+}*/
+.location-card__img-wrapper {
+    width: 100%;
+    height: 120px;
+    border-radius: 2px;
+    overflow: hidden;
 }
 @media -sass-debug-info {
     filename {
@@ -15589,7 +15596,7 @@ a {
         font-family: \00003488;
     }
 }
-.location-card__info {
+/*.location-card__info {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -15609,6 +15616,44 @@ a {
     border: 1px solid #ebeef7;
     background-color: #fff;
     padding-bottom: 24px;
+}*/
+.location-card:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    border-radius: 2px;
+    z-index: 1;
+    background: #CB356B;
+    background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);
+    background: linear-gradient(to right, #d32323b5, #d3232399);
+}
+.location-card__info {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.location-card:hover a{
+    color: #222;
+}
+.location-card__info a {
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.product-item__gallery .swiper {
+    text-align: center;
+    border: 1px solid #EEE;
+}
+.product-item__gallery .mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+    border: 2px solid #d32323;
+    border-radius: 4px;
 }
 @media -sass-debug-info {
     filename {
@@ -15619,7 +15664,7 @@ a {
     }
 }
 .location-card__loc-title {
-    color: #191f33;
+    color: #fff;
     text-transform: capitalize;
     padding-bottom: 8px;
 }
@@ -15692,7 +15737,7 @@ a {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: #636a80;
+    color: #fff;
 }
 @media -sass-debug-info {
     filename {
@@ -15744,12 +15789,6 @@ a {
         font-family: \00003549;
     }
 }
-.location-card:hover .location-card__view .first {
-    -webkit-transform: translateY(-25px);
-    transform: translateY(-25px);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -15758,13 +15797,6 @@ a {
         font-family: \00003553;
     }
 }
-.location-card:hover .location-card__view .second {
-    -webkit-transform: translateY(-25px);
-    transform: translateY(-25px);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -16002,7 +16034,7 @@ a {
     }
 }
 .plan-card--active .plan-card__top {
-    background-color: #0088cc;
+    background-color: #d32323;
     border: 0px;
     border-radius: 0px;
 }
@@ -16434,7 +16466,6 @@ a {
     }
 }
 .blog-card {
-    padding: 16px;
     border: 1px solid #ebeef7;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -16553,6 +16584,14 @@ a {
         margin-bottom: 20px;
     }
 }
+
+.blog-card__right {
+    margin: 0;
+    padding-left: 28px;
+    padding-right: 10px;
+    padding-top: 14px;
+    padding-bottom: 15px;
+}
 @media (max-width: 767px) {
     @media -sass-debug-info {
         filename {
@@ -16577,9 +16616,25 @@ a {
 .blog-card__img-wrapper {
     position: relative;
     width: 100%;
-    height: 208px;
-    border-radius: 12px;
+    height: 224px;
     overflow: hidden;
+}
+.category-item ul li a {display: block;padding: 5px 0px;font-size: 15px;color: #777;}
+
+.category-item ul li {
+    position: relative;
+    padding-left: 14px;
+}
+.category-item ul li:before {position: absolute;content: "";top: 12px;left: 0;width: 6px;height: 6px;background: #c9c8c4;border-radius: 50px; transition: all 0.3s ease;}
+
+.category-item ul li:hover:before {
+    background-color: #d32323 !important;
+}
+
+.category-item ul li a:hover {color: #d32323;}
+.blog__sidebar-post.blog__sidebar-item .post {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 8px;
 }
 @media (max-width: 767px) {
     @media -sass-debug-info {
@@ -17281,7 +17336,7 @@ a {
     }
 }
 .dashboard-card--recent__activity-item.success .icon {
-    color: #27c200;
+    color: #D32323;
     background-color: #e4f9e0;
 }
 @media -sass-debug-info {
@@ -18162,7 +18217,7 @@ a {
     }
 }
 .card-edit__item.product-status .tag-status--active {
-    color: #27c200;
+    color: #D32323;
 }
 @media -sass-debug-info {
     filename {
@@ -18511,7 +18566,7 @@ a {
     }
 }
 .input-field.success input {
-    border-color: #27c200;
+    border-color: #D32323;
 }
 @media -sass-debug-info {
     filename {
@@ -20633,10 +20688,6 @@ a {
         font-family: \0000323;
     }
 }
-.popular-location .location-card {
-    margin-bottom: 24px;
-}
-
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/pages\/_home\.scss;
@@ -24279,3 +24330,9 @@ a {
   .invoice-table table tbody tr:first-child td {
     padding-top: 24px;
   }
+
+
+
+
+
+

@@ -16,7 +16,7 @@
                 </div>
 
                 <!-- Search Field -->
-                <form action="{{ route('frontend.adlist.search') }}" method="GET">
+               {{--   <form action="{{ route('frontend.adlist.search') }}" method="GET">
                     <div class="navigation-bar__search-field">
 
                         <input type="text" placeholder="{{ __('ads_title_keyword') }}..." name="keyword"/>
@@ -26,6 +26,7 @@
                         <button type="submit" class="custom-search-icon"> <i class="fa-solid fa-magnifying-glass"></i></button> 
                     </div>
                 </form>
+                --}}
 
                 <!-- Action Buttons -->
                 <div class="navigation-bar__buttons">

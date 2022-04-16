@@ -1,5 +1,5 @@
 <aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4"
-    style="background-color: {{ $settings->dark_mode ? '' : $settings->sidebar_color }}">
+    style="background-color: #f5f5f5;">
     <!-- Brand Logo -->
     <a href="{{ route('home') }}" class="brand_logo">
         <img src="{{ $settings->logo2_image_url }}" alt="Logo" class="">

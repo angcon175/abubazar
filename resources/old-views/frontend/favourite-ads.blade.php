@@ -78,7 +78,7 @@
                                         @endif
                                         <button type="submit" class="btn btn--bg btn--fav">
                                             <span class="icon">
-                                                <x-svg.heart-icon fill="#00AAFF" strokeWidth="0.5" />
+                                                <x-svg.heart-icon fill="#D32323" strokeWidth="0.5" />
                                             </span>
                                         </button>
                                     </form>
@@ -93,7 +93,7 @@
                                         @endif
                                         <button type="submit" class="btn btn--bg btn--fav">
                                             <span class="icon">
-                                                <x-svg.heart-icon fill="#00AAFF" strokeWidth="0.5" />
+                                                <x-svg.heart-icon fill="#D32323" strokeWidth="0.5" />
                                             </span>
                                         </button>
                                     </form>

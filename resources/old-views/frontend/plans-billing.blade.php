@@ -39,7 +39,7 @@
                                         <ul>
                                             <li class="dashboard__benefits-item">
                                                 <span class="icon">
-                                                    <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                                    <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                                 </span>
                                                 <p class="text--body-4">{{ __('ads_remaining') }}
                                                     <span class="{{ $plan_info->ad_limit <= 5 ? 'text-danger':'text-success'  }}">{{ $plan_info->ad_limit }}</span>
@@ -48,14 +48,14 @@
 
                                             <li class="dashboard__benefits-item">
                                                 <span class="icon">
-                                                    <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                                    <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                                 </span>
                                                 <p class="text--body-4">{{ __('multiple_images') }}</p>
                                             </li>
                                             @if ($plan_info->customer_support)
                                                 <li class="dashboard__benefits-item">
                                                     <span class="icon">
-                                                        <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                                        <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                                     </span>
                                                     <p class="text--body-4">{{ __('customer_support') }}</p>
                                                 </li>
@@ -66,7 +66,7 @@
                                         <ul>
                                             <li class="dashboard__benefits-item">
                                                 <span class="icon">
-                                                    <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                                    <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                                 </span>
                                                 <p class="text--body-4">{{ __('featured_ads_remaining') }}
                                                     <span class="{{ $plan_info->featured_limit <= 2 ? 'text-danger':'text-success'  }}">{{ $plan_info->featured_limit }}</span>
@@ -75,7 +75,7 @@
                                             @if ($plan_info->badge)
                                                 <li class="dashboard__benefits-item">
                                                     <span class="icon">
-                                                        <x-svg.check-icon width="12" height="12" stroke="#00AAFF" />
+                                                        <x-svg.check-icon width="12" height="12" stroke="#D32323" />
                                                     </span>
                                                     <p class="text--body-4">{{ __('special_membership_badge') }}</p>
                                                 </li>

@@ -15,6 +15,7 @@
 
     <title>@yield('title') - {{ config('app.name') }}</title>
 
+
     <!-- Styles goes here -->
     @include('layouts.frontend.partials.links')
 

@@ -108,3 +108,54 @@ a.navigation-bar__logo,
 .testimonial-card {
     direction: ltr;
 }
+
+[class*=sidebar-dark] .nav-legacy.nav-sidebar>.nav-item>.nav-link.active {
+    color: #d32323;
+    background: #f3aaaa70;
+}
+
+.sidebar-dark-primary .nav-sidebar.nav-legacy>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar.nav-legacy>.nav-item>.nav-link.active {
+    border-color: #d32323;
+}
+[class*=sidebar-dark-] .sidebar a {
+    color: #222;
+}
+
+.nav-pills .nav-link:not(.active):hover {
+    color: #d32323 !important;
+    background: #f3aaaa70 !important;
+     border-color: #d32323;
+}
+
+[class*=sidebar-dark-] .nav-sidebar>.nav-item.menu-open>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item:hover>.nav-link, [class*=sidebar-dark-] .nav-sidebar>.nav-item>.nav-link:focus {
+    color: #d32323 !important;
+    background: #f3aaaa70 !important;
+    border-color: #d32323 !important;
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link {
+    color: #666;
+}
+
+[class*=sidebar-dark-] .nav-flat .nav-item .nav-treeview>.nav-item>.nav-link, [class*=sidebar-dark-] .nav-flat .nav-item .nav-treeview>.nav-item>.nav-link.active {
+    border-color: #d32323 !important;
+}
+
+
+
+
+[class*=sidebar-dark] .nav-legacy .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark] .nav-legacy .nav-treeview>.nav-item>.nav-link:focus, [class*=sidebar-dark] .nav-legacy .nav-treeview>.nav-item>.nav-link:hover {
+    color: #d32323;
+}
+
+
+.nav-pills .nav-link:not(.active):hover {
+    color: #d32323 !important;
+    border-color: #d32323;
+    background: transparent !important;
+}
+
+
+
+
+
+

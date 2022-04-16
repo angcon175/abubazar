@@ -272,7 +272,7 @@
                         @slot('title')
                             {{ __('settings') }}
                         @endslot
-                        @if ($appearance_enable)
+                      {{--   @if ($appearance_enable)
                             <ul class="nav nav-treeview">
                                 <x-sidebar-list :linkActive="Route::is('module.themes.index') ? true : false"
                                     route="module.themes.index" icon="fas fa-circle">
@@ -280,6 +280,7 @@
                                 </x-sidebar-list>
                             </ul>
                         @endif
+                        --}}
                         <ul class="nav nav-treeview">
                             <x-sidebar-list :linkActive="Route::is('module.currency.*') ? true : false"
                                 route="module.currency.index" icon="fas fa-circle">

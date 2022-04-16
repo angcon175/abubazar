@@ -25,12 +25,12 @@
                         href="{{ route('setting.index', 'website') }}">{{ __('website') }}</a>
                     <a class="nav-link {{ request()->page == 'system' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'system') }}">{{ __('system') }}</a>
-                    <a class="nav-link {{ request()->page == 'layout' ? 'active' : '' }}"
+                    <!-- <a class="nav-link {{ request()->page == 'layout' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'layout') }}">{{ __('layout') }}</a>
                     <a class="nav-link {{ request()->page == 'color' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'color') }}">{{ __('color_picker') }}</a>
                     <a class="nav-link {{ request()->page == 'custom' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'custom') }}">{{ __('custom_css_js') }}</a>
+                        href="{{ route('setting.index', 'custom') }}">{{ __('custom_css_js') }}</a> -->
                     <a class="nav-link {{ request()->page == 'mail' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'mail') }}">{{ __('mail') }}</a>
                     {{-- <a class="nav-link {{ request()->page == 'email_template' ? 'active' : '' }}"

@@ -15311,8 +15311,8 @@ section.section.registration {
 }
 .categorylist-card {
     border: 1px solid #efefef;
-    padding: 9px 12px;
-    border-radius: 3px;
+    padding: 14px 10px;
+    border-radius: 10px;
 }
 
 .categorylist-card__icon i{
@@ -24331,7 +24331,9 @@ section.section.registration {
     padding-top: 24px;
   }
 
-
+.categorylist-card__title a {
+    color: #191f33;
+}
 
 
 

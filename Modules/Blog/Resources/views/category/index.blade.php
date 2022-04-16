@@ -13,7 +13,6 @@
                             <thead>
                                 <tr>
                                     <th width="5%">{{ __('sl') }}</th>
-                                    <th>{{ __('image') }}</th>
                                     <th>{{ __('name') }}</th>
                                     @if (userCan('postcategory.update') || userCan('postcategory.delete'))
                                     <th width="10%">{{ __('actions') }}</th>
@@ -24,9 +23,6 @@
                                 @forelse ($categories as $key => $category)
                                     <tr id="item_id{{ $category->id }}">
                                         <td>{{ $key+1 }}</td>
-                                        <td>
-                                            <img width="50px" height="50px" src="{{ $category->image_url }}" alt="category image">
-                                        </td>
                                         <td>{{ $category->name }}</td>
                                         @if (userCan('postcategory.update') || userCan('postcategory.delete'))
                                         <td>
@@ -97,7 +93,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                               {{-- <div class="form-group row">
                                     <x-forms.label name="change_image" required="true" class="col-sm-3" />
                                     <div class="col-sm-9">
                                         <input value="{{ old('name') }}" name="image" type="file"
@@ -108,7 +104,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div>   --}}
                                 <div class="form-group row">
                                     <div class="offset-sm-3 col-sm-12">
                                         <button type="submit" class="btn btn-success"><i class="fas fa-sync"></i>&nbsp; {{ __('update') }}</button>
@@ -132,7 +128,8 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                 
+                               {{--  <div class="form-group row">
                                     <x-forms.label name="image" required="true" class="col-sm-3" />
                                     <div class="col-sm-9">
                                         <input value="{{ old('name') }}" name="image" type="file"
@@ -143,7 +140,8 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div>--}}
+
                                 <div class="form-group row">
                                     <div class="offset-sm-3 col-sm-4">
                                         <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i>&nbsp; {{ __('create') }}</button>

@@ -154,8 +154,21 @@ a.navigation-bar__logo,
     background: transparent !important;
 }
 
+div#v-pills-tab {
+    border: 1px solid #e6dbdb;
+    padding: 5px;
+    background: #fff;
+    border-radius: 5px;
+}
 
+[class*=sidebar-dark-] .nav-flat .nav-item .nav-treeview>.nav-item>.nav-link, [class*=sidebar-dark-] .nav-flat .nav-item .nav-treeview>.nav-item>.nav-link.active {
+    border-color: transparent !important;
+}
 
-
-
-
+.nav-sidebar>.nav-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid #ebe8e8;
+}
+[class*=sidebar-dark-] .sidebar a {
+    color: #383434;
+}

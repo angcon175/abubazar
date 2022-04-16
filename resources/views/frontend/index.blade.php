@@ -43,12 +43,20 @@
                         <div class="categorylist-card">
                             <div class="categorylist-card__top">
                                 <div class="categorylist-card__top-left">
-                                    <h2 class="categorylist-card__title text--body-2-600"> {{ $category->name }} </h2>
+                                    <a href="javascript:void(0)" onclick="adFilterFunction('{{ $category->slug }}')">
+                                        <h2 class="categorylist-card__title text--body-2-600"> 
+                                            {{ $category->name }} 
+                                        </h2>
+                                    </a>
                                     <span class="categorylist-card__item-available">({{ $category->ad_count ?? 0 }})</span>
+                                    <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm"
+                                    class="d-none">
+                                    <input type="hidden" name="category" value="" id="adFilterInput">
+                                </form>
                                 </div>
                                 <div class="categorylist-card__top-right">
                                     <div class="categorylist-card__icon">
-                                        <i class="{{ $category->icon }}" style="font-size: 27px"></i>
+                                        <i class="{{ $category->icon }}" style="font-size: 23px"></i>
                                     </div>
                                 </div>
                             </div>

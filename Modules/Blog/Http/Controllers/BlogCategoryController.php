@@ -43,8 +43,7 @@ class BlogCategoryController extends Controller
         }
 
         $request->validate([
-            'name' => 'required|unique:post_categories,name|max:255',
-            'image' => 'required',
+            'name' => 'required|unique:post_categories,name|max:255'
         ]);
 
         $category = PostCategory::create($request->except(['image']));

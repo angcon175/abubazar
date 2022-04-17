@@ -81,7 +81,7 @@
 
                                 <li class="category-menu__dropdown__item">
                                     <a href="javascript:void(0)" onclick="adFilterFunctionTwo('{{ $category->slug }}')" class="category-menu__dropdown__link">
-                                        <i class="category-icon {{ $category->icon }}" style="color: #66CCFF"></i>
+                                        <i class="category-icon {{ $category->icon }}" style="color: #D32323"></i>
                                         {{ $category->name }}
                                         @if ($category->subcategories->count() > 0)
                                         <span class="drop-icon">

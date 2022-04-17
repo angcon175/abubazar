@@ -241,7 +241,7 @@
         height: 24px;
         border-radius: 50%;
         margin-right: 12px;
-        color: #66ccff;
+        color: #D32323;
     }
 </style>
 @endsection

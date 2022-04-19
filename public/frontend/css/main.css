@@ -24365,9 +24365,15 @@ section.section.registration {
 }li.post-details__item svg {
     width: 19px;
 }
+.search {
+    padding: 0px 0px;
+    border-radius: 10px;
+    background-color: #fff;
+}
 
-
-
+.search__content-item button {
+    border-radius: 0px 3px 3px 0px !important;
+}
 
 
 

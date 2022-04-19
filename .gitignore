@@ -3,7 +3,6 @@
 /public/storage
 /storage/*.key
 /vendor
-/public/uploads
 /resources/lang/*.json
 !/resources/lang/en.json
 !/resources/lang/bn.json

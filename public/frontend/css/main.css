@@ -543,7 +543,7 @@ a.chat-text{
     }
 }
 .bgcolor--primary-6 {
-    background-color: #66ccff !important;
+    background-color: #D32323 !important;
 }
 
 @media -sass-debug-info {
@@ -555,7 +555,7 @@ a.chat-text{
     }
 }
 .textColor--primary-6 {
-    color: #66ccff;
+    color: #D32323;
 }
 
 @media -sass-debug-info {
@@ -5005,7 +5005,7 @@ a {
     }
 }
 .banner--two {
-    padding: 200px 0 104px;
+    padding: 200px 0 65px;
     background: background: #CB356B;
     background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);
     background: linear-gradient(to right, #d32323c2, #d32323db);
@@ -12343,7 +12343,6 @@ display: flex;
 }
 .blog__sidebar-item {
     border-radius: 5px;
-    background-color: #f5f7fa;
     margin-bottom: 24px;
 }
 @media (max-width: 991px) {
@@ -16256,7 +16255,7 @@ section.section.registration {
     height: 24px;
     border-radius: 50%;
     margin-right: 12px;
-    color: #66ccff;
+    color: #D32323;
 }
 @media -sass-debug-info {
     filename {
@@ -19269,7 +19268,7 @@ section.section.registration {
     }
 }
 .search {
-    padding: 13px 12px;
+    padding: 6px;
     border-radius: 10px;
     background-color: #fff;
 }
@@ -24335,6 +24334,11 @@ section.section.registration {
     color: #191f33;
 }
 
-
+@media screen and (max-width: 1199px){
+    .input-field .icon--left {
+        left: 42px !important;
+        top: 21px;
+    }
+}
 
 

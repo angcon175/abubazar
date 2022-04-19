@@ -1,4 +1,4 @@
-<div class="col-xl-3">
+<div class="col-xl-4 col-12">
     <div class="footer__brand-logo">
         @if ($logotype === 'dark')
         <img style="

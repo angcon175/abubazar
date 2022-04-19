@@ -72,7 +72,7 @@
                         </div>
                     </div>
 
-                    <div class="row dashboard__ads-activity">
+                    <!-- <div class="row dashboard__ads-activity">
                         <div class="col-lg-6">
                             <div class="dashboard-card">
                                 <div class="dashboard__section-info">
@@ -105,9 +105,9 @@
                         <div class="col-lg-6">
                             <x-dashboard.activity-log :activities="$activities"/>
                         </div>
-                    </div>
+                    </div> -->
                     @if ($recent_ads->count() > 0)
-                        <div class="dashboard__posted-ads">
+                        <div class="dashboard__posted-ads mt-4">
                             <div class="dashboard__section-info">
                                 <h2 class="dashboard-card__title">{{ __('recently_posted_ads') }}</h2>
 

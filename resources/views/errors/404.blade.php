@@ -6,7 +6,7 @@
     <!-- breedcrumb section start  -->
     <section class="breedcrumb" style="background: url('{{ asset('frontend/images/bg/bg-04.jpg') }}') center center/cover no-repeat;">
         <div class="container">
-            <h2 class="breedcrumb__title text--heading-2">{{ __('404_error_page') }}</h2>
+  <!--           <h2 class="breedcrumb__title text--heading-2">{{ __('404_error_page') }}</h2> -->
             <ul class="breedcrumb__page">
                 <li class="breedcrumb__page-item">
                     <a href="/" class="breedcrumb__page-link text--body-3">{{ __('home') }}</a>

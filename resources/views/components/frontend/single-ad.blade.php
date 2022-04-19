@@ -1,5 +1,8 @@
 <div class="{{ $className }}">
     <div class="cards cards--one {{ $ad->featured ? 'cards--highlight' : '' }}">
+        <div class="featured_tag">
+            <span>Featured</span>
+        </div>
         <a href="{{ route('frontend.addetails', $ad->slug) }}" class="cards__img-wrapper">
             @if ($ad->thumbnail)
                 <img src="{{ asset($ad->thumbnail) }}" alt="card-img" class="img-fluid" />

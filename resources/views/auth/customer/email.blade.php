@@ -5,7 +5,6 @@
 @section('content')
     <!-- breedcrumb section start  -->
     <x-frontend.breedcrumb-component :background="$cms->default_background_path">
-        {{ __('forget_password') }}
         <x-slot name="items">
             <li class="breedcrumb__page-item">
                 <a class="breedcrumb__page-link text--body-3">{{ __('forget_password') }}</a>

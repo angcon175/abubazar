@@ -21984,7 +21984,7 @@ section.section.registration {
     }
 }
 .ad-list__search-box .search {
-    border: 1px solid #ebeef7;
+    border: 0px solid #ebeef7;
 }
 @media -sass-debug-info {
     filename {

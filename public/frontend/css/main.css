@@ -16266,7 +16266,7 @@ section.section.registration {
     }
 }
 .plan-card__package-list h5 {
-    color: #aeb3c2;
+    color: #676a71;
     text-transform: capitalize;
 }
 
@@ -24376,6 +24376,11 @@ section.section.registration {
 }
 
 
-
-
+.faq__nav .faq__nav-item:hover i {
+    color: #d32323 !important;
+    transition: .15s;
+}
+.about-us__img-wrapper img {
+    height: 536px !important;
+}
 

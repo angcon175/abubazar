@@ -28,10 +28,10 @@
     overflow-y: auto;
 }
 .header-ads{
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     padding-left: 45px;
-    margin-top: 5px;
+    margin-top: 11px;
     color: #d32323;
     font-family: sans-serif;
 }
@@ -5005,7 +5005,7 @@ a {
     }
 }
 .banner--two {
-    padding: 200px 0 65px;
+    padding: 143px 0 65px;
     background: background: #CB356B;
     background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);
     background: linear-gradient(to right, #d32323c2, #d32323db);
@@ -9763,7 +9763,7 @@ display: flex;
 .dashboard__nav-link:hover,
 .dashboard__nav-link.active {
     color: #D32323;
-    background-color: #e8f7ff;
+    background-color:  #d323231a;
     border-left: 2px solid #D32323;
     -webkit-box-shadow: 2px 0px 0px 0px #D32323 inset;
     box-shadow: 2px 0px 0px 0px #D32323 inset;
@@ -13816,7 +13816,7 @@ section.section.registration {
     width: 50px;
     height: 50px;
     border-radius: 4px;
-    background-color: #e8f7ff !important;
+    background-color: #d3232321 !important;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -16266,7 +16266,7 @@ section.section.registration {
     }
 }
 .plan-card__package-list h5 {
-    color: #aeb3c2;
+    color: #676a71;
     text-transform: capitalize;
 }
 
@@ -17336,7 +17336,7 @@ section.section.registration {
 }
 .dashboard-card--recent__activity-item.success .icon {
     color: #D32323;
-    background-color: #e4f9e0;
+    background-color: #d323231f;
 }
 @media -sass-debug-info {
     filename {
@@ -20709,6 +20709,19 @@ section.section.registration {
 }
 .recent-post .cards {
     margin-bottom: 24px;
+    position: relative;
+}
+.featured_tag {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    z-index: 1;
+    background: #4caf50;
+    padding: 3px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 2px;
 }
 @media -sass-debug-info {
     filename {
@@ -21971,7 +21984,7 @@ section.section.registration {
     }
 }
 .ad-list__search-box .search {
-    border: 1px solid #ebeef7;
+    border: 0px solid #ebeef7;
 }
 @media -sass-debug-info {
     filename {
@@ -22543,7 +22556,6 @@ section.section.registration {
 .product-item__ads-info .title {
     color: #191f33;
     text-transform: capitalize;
-    margin-bottom: 20px;
 }
 @media -sass-debug-info {
     filename {
@@ -23253,7 +23265,7 @@ section.section.registration {
     }
 }
 .product-item__sidebar-top .product-item__sidebar-item {
-    padding: 32px;
+    padding: 17px 31px;
     border-bottom: 1px solid #ebeef7;
 }
 @media (max-width: 480px) {
@@ -23266,7 +23278,7 @@ section.section.registration {
         }
     }
     .product-item__sidebar-top .product-item__sidebar-item {
-        padding: 32px 16px;
+        padding: 17px 16px;
     }
 }
 @media -sass-debug-info {
@@ -23770,7 +23782,7 @@ section.section.registration {
     }
 }
 .card-number:hover {
-    background-color: #e8f7ff;
+    background-color: #d3232312;
 }
 @media -sass-debug-info {
     filename {
@@ -24341,4 +24353,34 @@ section.section.registration {
     }
 }
 
+
+.input-group.subscribe__input.mb-3 input#email {
+    padding-left: 6px;
+}
+.plan-card.plan-card--active a.plan-card__select-pack.btn.btn--bg.w-100 {
+    color: #fff !important;
+    background: #b10d0d;
+}li.post-details__item p {
+    font-size: 12px;
+}li.post-details__item svg {
+    width: 19px;
+}
+.search {
+    padding: 0px 0px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.search__content-item button {
+    border-radius: 0px 3px 3px 0px !important;
+}
+
+
+.faq__nav .faq__nav-item:hover i {
+    color: #d32323 !important;
+    transition: .15s;
+}
+.about-us__img-wrapper img {
+    height: 536px !important;
+}
 

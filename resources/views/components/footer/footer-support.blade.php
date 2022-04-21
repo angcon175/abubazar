@@ -1,4 +1,4 @@
-<div class="col-xl-2 col-lg-2 col-sm-4 col-6">
+<div class="col-xl-2 col-sm-6">
     <h2 class="footer__title text--body-2-600">{{ __('supports') }}</h2>
 
     <ul class="footer-menu">

@@ -1,6 +1,6 @@
-<div class="col-xl-4 col-lg-6">
+<div class="col-xl-4 col-12">
     @if ($settings->android || $settings->ios)
-    <h2 class="footer__title text--body-2-600">{{ __('Socia Media') }}</h2>
+    <h2 class="footer__title text--body-2-600">{{ __('Newsletter') }}</h2>
     @endif
 <!--     <div class="footer__mobile-app">
 
@@ -28,5 +28,28 @@
         </a>
         @endif
     </div> -->
+    <div class="subscribe__right">
+        <form id="mailForm" action="" method="POST">
+            @csrf
+            <!-- <div class="subscribe__input @error('email') is-invalid border-danger @enderror">
+                <span class="icon">
+                    <x-svg.envelope-icon />
+                </span>
+                <input type="email" placeholder="{{ __('email_address') }}" name="email" id="email" />
+                <button class="btn" type="submit">{{ __('subscribe') }}</button>
+            </div> -->
+
+            <div class="input-group subscribe__input mb-3">
+                <span class="input-group-text"><x-svg.envelope-icon /></span>
+                <input type="email" placeholder="{{ __('email_address') }}" name="email" id="email" />
+                <button class="btn" type="submit">{{ __('subscribe') }}</button>
+            </div>
+
+            <span class="error" style="color:red"></span>
+        </form>
+        <div class="mt-4 mb-4">
+            <img src="{{asset('frontend/images/payment.png')}}" class="img-fluid" alt="image">
+        </div>
+    </div>
     <x-footer.footer-social/>
 </div>

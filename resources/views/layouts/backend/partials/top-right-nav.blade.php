@@ -31,20 +31,22 @@ $user = auth()->user();
                         <span class="w-100 d-block text-muted">{{ __('add_category') }}</span>
                     </a>
                 </div>
-                @if ($appearance_enable)
-                    <div class="col-6 p-0 border-bottom border-right">
-                        <a href="{{ route('module.themes.index') }}" class="d-block text-center py-3 bg-hover-light">
-                            <i class="fas fa-adjust"></i>
-                            <span class="w-100 d-block text-muted">{{ __('change_skin') }}</span>
-                        </a>
-                    </div>
-                @endif
-                <div class="col-12 p-0 border-bottom border-right">
+                <div class="col-6 p-0 border-bottom border-right">
                     <a href="{{ route('setting', 'website') }}" class="d-block text-center py-3 bg-hover-light"> <i
                             class="fas fa-cog"></i>
                         <span class="w-100 d-block text-muted">{{ __('settings') }}</span>
                     </a>
                 </div>
+                {{-- 
+                    @if ($appearance_enable)
+                        <div class="col-6 p-0 border-bottom border-right">
+                            <a href="{{ route('module.themes.index') }}" class="d-block text-center py-3 bg-hover-light">
+                                <i class="fas fa-adjust"></i>
+                                <span class="w-100 d-block text-muted">{{ __('change_skin') }}</span>
+                            </a>
+                        </div>
+                    @endif
+                --}}
             </div>
             <div class="dropdown-divider"></div>
         </div>
@@ -81,7 +83,8 @@ $user = auth()->user();
         </a>
     </li>
 
-    @if ($appearance_enable)
+ {{--    
+  @if ($appearance_enable)
         <li class="nav-item">
             <form action="{{ route('setting', 'dark_mode') }}" method="post" id="mode_form">
                 @csrf
@@ -101,6 +104,7 @@ $user = auth()->user();
             </a>
         </li>
     @endif
+    --}} 
 @endif
 
 <li class="nav-item dropdown user-menu">

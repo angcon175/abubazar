@@ -40,7 +40,7 @@ enctype="multipart/form-data">
             @enderror
         </div>
     </div>
-    <div class="col-6">
+    <!-- <div class="col-6">
         <div class="form-group">
             <x-forms.label name="android_app_link" />
             <input type="url" class="form-control @error('android') is-invalid @enderror" name="android"
@@ -56,7 +56,7 @@ enctype="multipart/form-data">
                 placeholder="{{ __('ios') }}" value="{{ $setting->ios }}">
             @error('ios') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
         </div>
-    </div>
+    </div> -->
 </div>
 
 @if (userCan('setting.update'))

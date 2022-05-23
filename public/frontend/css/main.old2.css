@@ -305,11 +305,11 @@
 }
 
 .bgcolor--warning-4 {
-    background-color: #ffbf00 !important;
+    background-color: #d32323 !important;
 }
 
 .textColor--warning-4 {
-    color: #ffbf00;
+    color: #d32323;
 }
 
 .bgcolor--warning-5 {
@@ -8171,7 +8171,7 @@ a {
 }
 
 .dashboard-card--recent__activity-item.warning .icon {
-    color: #ffbf00;
+    color: #d32323;
     background-color: #fff8e0;
 }
 

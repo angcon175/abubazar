@@ -55,7 +55,7 @@
 
 
     {{-- Linkedin Login Credential Setting --}}
-    <div class="col-sm-6">
+   <!--  <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" style="line-height: 36px;">{{ __('linkedin_login_credential') }}</h3>
@@ -102,7 +102,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     {{-- Facebook Login Credential Setting --}}
     <div class="col-sm-6">
@@ -155,7 +155,7 @@
     </div>
 
     {{-- Twitter Login Credential Setting --}}
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" style="line-height: 36px;">{{ __('twitter_login_credential') }}</h3>
@@ -202,10 +202,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     {{-- Github Login Credential Setting --}}
-    <div class="col-sm-6">
+   <!--  <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" style="line-height: 36px;">{{ __('github_login_credential') }}</h3>
@@ -252,10 +252,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     {{-- Gitlab Login Credential Setting --}}
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" style="line-height: 36px;">{{ __('gitlab_login_credential') }}</h3>
@@ -302,10 +302,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
     {{-- Bitbucket Login Credential Setting --}}
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" style="line-height: 36px;">{{ __('bitbucket_login_credential') }}</h3>
@@ -352,7 +352,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 @endsection
 

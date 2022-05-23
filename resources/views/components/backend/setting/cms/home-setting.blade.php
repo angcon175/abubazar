@@ -2,7 +2,7 @@
     enctype="multipart/form-data">
     @method('PUT')
     @csrf
-    <div class="row justify-content-between">
+   <!--  <div class="row justify-content-between">
         <div class="col-md-3">
             <div class="form-group">
                 <x-forms.label name="index1_main_banner" />
@@ -33,8 +33,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row justify-content-between">
+    </div> -->
+    <!-- <div class="row justify-content-between">
         <div class="col-md-3">
             <div class="form-group">
                 <x-forms.label name="index2_search_filter_background" />
@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
@@ -87,7 +87,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="form-group">
                 <x-forms.label name="index3_title" />
                 <textarea class="form-control" name="index3_title" rows="4">{{ $cms->index3_title }}</textarea>
@@ -95,8 +95,8 @@
                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                 @enderror
             </div>
-        </div>
-        <div class="col-md-6">
+        </div> -->
+        <!-- <div class="col-md-6">
             <div class="form-group">
                 <x-forms.label name="download_app_content" />
                 <textarea class="form-control" name="download_app" rows="4">{{ $cms->download_app }}</textarea>
@@ -104,8 +104,8 @@
                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                 @enderror
             </div>
-        </div>
-        <div class="col-md-6">
+        </div> -->
+        <!-- <div class="col-md-6">
             <div class="form-group">
                 <x-forms.label name="newsletter_content" />
                 <textarea class="form-control" name="newsletter_content" rows="4">{{ $cms->newsletter_content }}</textarea>
@@ -113,7 +113,7 @@
                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                 @enderror
             </div>
-        </div>
+        </div> -->
         <div class="col-md-6">
             <div class="form-group">
                 <x-forms.label name="membership_content" />
@@ -123,7 +123,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="form-group">
                 <x-forms.label name="create_account_content" />
                 <textarea class="form-control" name="create_account" rows="4">{{ $cms->create_account }}</textarea>
@@ -131,7 +131,7 @@
                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                 @enderror
             </div>
-        </div>
+        </div> -->
         <div class="col-md-6">
             <div class="form-group">
                 <x-forms.label name="post_ads_content" />
@@ -141,7 +141,7 @@
                 @enderror
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="form-group">
                 <x-forms.label name="start_earning_content" />
                 <textarea class="form-control" name="start_earning" rows="4">{{ $cms->start_earning }}</textarea>
@@ -149,7 +149,7 @@
                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                 @enderror
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="row mt-3">

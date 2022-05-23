@@ -30,7 +30,7 @@
                         aria-controls="posting" aria-selected="false">{{ __('posting_rules') }}
                     </a>
                 </li>
-                <li class="nav-item" role="presentation">
+               <!--  <li class="nav-item" role="presentation">
                     <a class="nav-link " id="membership-tab" data-toggle="pill" href="#cms-membership" role="tab"
                         aria-controls="membership" aria-selected="false">{{ __('membership') }}</a>
                 </li>
@@ -50,7 +50,7 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link " id="contact-tab" data-toggle="pill" href="#cms-contact" role="tab"
                         aria-controls="contact" aria-selected="false">{{ __('contact') }}</a>
-                </li>
+                </li> -->
 
 
                 <li class="nav-item" role="presentation">
@@ -58,14 +58,14 @@
                         aria-selected="false">{{ __('faqs') }}</a>
                 </li>
 
-                <li class="nav-item" role="presentation">
+               <!--  <li class="nav-item" role="presentation">
                     <a class="nav-link " id="dashboard-tab" data-toggle="pill" href="#cms-dashboards" role="tab"
                         aria-controls="dashboard" aria-selected="false">{{ __('dashboards') }}</a>
-                </li>
-                <li class="nav-item" role="presentation">
+                </li> -->
+                <!-- <li class="nav-item" role="presentation">
                     <a class="nav-link " id="auth-tab" data-toggle="pill" href="#cms-auth" role="tab"
                         aria-controls="auth" aria-selected="false">{{ __('login_or_register') }}</a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <div class="card-body">

@@ -8,7 +8,7 @@
                     <!-- search by keyword/title -->
                     <div class="search__content-item">
                         <div class="input-field {{ $dark ? 'input-field--transparent' : '' }}">
-                            <input type="text" placeholder="{{ __('search_by_ads_title_keywords') }}..."
+                            <input type="text" placeholder="{{ __('Search By Keywords') }}..."
                                 name="keyword" value="{{ request('keyword', '') }}" />
                             <span class="icon icon--left">
                                 <x-svg.search-icon />

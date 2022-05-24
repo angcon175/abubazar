@@ -54,7 +54,7 @@
                     <span class="icon">
                         <x-svg.message-icon width="24" height="24" stroke="currentColor" />
                     </span>
-                    {{ __('message') }}
+                    {{ __('Chat') }}
                 </a>
             </li>
             <li class="dashboard__nav-item">
@@ -62,7 +62,7 @@
                     <span class="icon">
                         <x-svg.invoice-icon width="24" height="24" stroke="currentColor" />
                     </span>
-                    {{ __('plans_billing') }}
+                    {{ __('Plans') }}
                 </a>
             </li>
             <li class="dashboard__nav-item">
@@ -70,7 +70,7 @@
                     <span class="icon">
                         <x-svg.setting-icon />
                     </span>
-                    {{ __('account_settings') }}
+                    {{ __('Profile') }}
                 </a>
             </li>
             <li class="dashboard__nav-item">

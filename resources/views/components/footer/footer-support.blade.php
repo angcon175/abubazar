@@ -7,11 +7,12 @@
             <a href="{{ route('frontend.contact') }}" class="footer-menu__link text--body-3">{{ __('contact') }}</a>
         </li>
         @endif
-        @if ($faq_enable)
+       {{--   @if ($faq_enable)
             <li class="footer-menu__item">
                 <a href="{{ route('frontend.faq') }}" class="footer-menu__link text--body-3">{{ __('faqs') }}</a>
             </li>
         @endif
+        --}}
         <li class="footer-menu__item">
             <a href="{{ route('frontend.terms') }}" class="footer-menu__link text--body-3">{{ __('terms_condition') }}</a>
         </li>

@@ -172,6 +172,24 @@
     </section>
     <!-- popular-loc section end -->
 
+    <section class="section footer_top_sec">
+        <div class="container">
+              <h2 class="text--heading-1 section__title">
+                {{ __('do you have something to sell') }}
+             </h2>
+             <div class="text-center">
+                <a href="" class="btn">Post Here</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
        {{--<x-frontend.counter :totalAds="$totalAds" :verifiedUser="$verified_users" :proMember="$pro_members_count" :cityLocation="$city_count"></x-frontend.counter>--}}
 
     <!-- download section start  -->

@@ -15,7 +15,7 @@ class PendingIcon extends Component
      *
      * @return void
      */
-    public function __construct($width = '24', $height = '24', $stroke = '#ffbf00')
+    public function __construct($width = '24', $height = '24', $stroke = '#d32323')
     {
         $this->width = $width;
         $this->height = $height;

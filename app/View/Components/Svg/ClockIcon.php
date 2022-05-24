@@ -15,7 +15,7 @@ class ClockIcon extends Component
      *
      * @return void
      */
-    public function __construct($width = '21', $height = '20', $stroke = '#FFBF00')
+    public function __construct($width = '21', $height = '20', $stroke = '#d32323')
     {
         $this->width = $width;
         $this->height = $height;

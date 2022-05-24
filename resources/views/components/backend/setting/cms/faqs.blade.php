@@ -2,7 +2,7 @@
     enctype="multipart/form-data">
     @method('PUT')
     @csrf
-    <div class="row ">
+   <!--  <div class="row ">
         <div class="col-md-3">
             <div class="form-group">
                 <x-forms.label name="faq_background" />
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">

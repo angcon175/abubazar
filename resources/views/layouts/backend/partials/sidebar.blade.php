@@ -189,6 +189,8 @@
                     @endif
                 @endif
 
+                
+
                 {{-- Testimonial, contact, faqcategory and faq --}}
                 @if (userCan('testimonial.view') || userCan('contact.view') || userCan('faqcategory.view') || userCan('faq.view'))
                     @if ($testimonial_enable || $contact_enable || $faq_enable)
@@ -281,12 +283,12 @@
                             </ul>
                         @endif
                         --}}
-                        <ul class="nav nav-treeview">
+                       {{-- <ul class="nav nav-treeview">
                             <x-sidebar-list :linkActive="Route::is('module.currency.*') ? true : false"
                                 route="module.currency.index" icon="fas fa-circle">
                                 {{ __('currency') }}
                             </x-sidebar-list>
-                        </ul>
+                        </ul> 
                         @if ($language_enable)
                             <ul class="nav nav-treeview">
                                 <x-sidebar-list :linkActive="Route::is('language.*') ? true : false"
@@ -294,7 +296,7 @@
                                     {{ __('language') }}
                                 </x-sidebar-list>
                             </ul>
-                        @endif
+                        @endif  --}}
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <a href="{{ route('setting', 'website') }}"

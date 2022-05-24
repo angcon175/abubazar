@@ -190,7 +190,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <!-- <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
                             {{ __('default_language_currency') }}
@@ -225,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row mt-3">
                     <div class="col-6 offset-3 text-center">

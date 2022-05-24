@@ -149,7 +149,7 @@
                             </form>
                         </div>
                         <!-- Delete Account -->
-                        <div class="dashboard-setting__box delete-account">
+                       <!--  <div class="dashboard-setting__box delete-account">
                             <h2 class="text--body-2-600">{{ __('delete_account') }}</h2>
                             <p class="delete-account__details text--body-3">
                                 {{ __('delete_account_alert') }}
@@ -165,7 +165,7 @@
                                     {{ __('delete_account') }}
                                 </button>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

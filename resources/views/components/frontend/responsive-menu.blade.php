@@ -32,21 +32,43 @@
                     <a href="{{ route('frontend.index') }}" class="menu--sm__link">{{ __('home') }}</a>
                 </li>
                 <li class="menu--sm__item">
-                    <a href="#" class="menu--sm__link">
+                  {{--    <a href="#" class="menu--sm__link">
                         {{ __('all_category') }}
                         <span class="icon">
                             <x-svg.category-arrow-icon />
                         </span>
-                    </a>
-                    <ul class="menu--sm-dropdown">
-                        @foreach ($footer_categories as $category)
-                            <li class="menu--sm-dropdown__item">
-                                <a href="javascript:void(0)" onclick="adFilterFunctionTwo('{{ $category->slug }}')" class="menu--sm-dropdown__link">
-                                    {{ $category->name }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
+                        </a>
+                        <ul class="menu--sm-dropdown">
+                            @foreach ($footer_categories as $category)
+                                <li class="menu--sm-dropdown__item">
+                                    <a href="javascript:void(0)" onclick="adFilterFunctionTwo('{{ $category->slug }}')" class="menu--sm-dropdown__link">
+                                        {{ $category->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul> 
+                    --}}
+                    
+                    <div class="accordion sidebar_category" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> {{ __('all_category') }}</button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                   <ul>
+                                        @foreach ($footer_categories as $category)
+                                            <li class="menu--sm-dropdown__item">
+                                                <a href="javascript:void(0)" onclick="adFilterFunctionTwo('{{$category->slug}}')" class="menu--sm-dropdown__link">
+                                                    {{ $category->name }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                 </li>
                 <li class="menu--sm__item">
                     <a href="{{ route('frontend.adlist') }}" class="menu--sm__link">{{ __('ads') }}</a>

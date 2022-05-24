@@ -104,6 +104,7 @@ a.navigation-bar__logo,
 }
 .cards__info {
     direction: ltr;
+    border-top: 1px solid #EEE;
 }
 .testimonial-card {
     direction: ltr;

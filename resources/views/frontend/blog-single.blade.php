@@ -138,10 +138,11 @@
                             <div class="category">
                                 @forelse ($categories as $category)
                                     <div class="category-item">
-                                        <a href="{{ route('frontend.blog',['category'=>$category->slug]) }}">
-                                            <img style="width: 168px;" src="{{ $category->image_url }}" alt="category-img">
-                                            <h2 class="text--body-3">{{ $category->name }}</h2>
-                                        </a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{route('frontend.blog',['category'=>$category->slug]) }}">{{ $category->name }}</a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 @empty
                                     <x-no-data-found/>
@@ -156,7 +157,7 @@
                                 @foreach ($recentPost as $post)
                                 <div class="post-item">
                                     <a href="{{ route('frontend.single.blog', $post->slug) }}" class="post-img">
-                                        <img src="{{ $post->image }}" alt="post-img">
+                                        <img src="{{ $post->image_url }}" alt="post-img" />
                                     </a>
                                     <div class="post-info">
                                         <a href="{{ route('frontend.single.blog', $post->slug) }}" class="text--body-3"> {{ $post->title }} </a>

@@ -951,7 +951,7 @@ a.chat-text{
     }
 }
 .bgcolor--warning-4 {
-    background-color: #ffbf00 !important;
+    background-color: #d32323 !important;
 }
 
 @media -sass-debug-info {
@@ -963,7 +963,7 @@ a.chat-text{
     }
 }
 .textColor--warning-4 {
-    color: #ffbf00;
+    color: #d32323;
 }
 
 @media -sass-debug-info {
@@ -14240,9 +14240,10 @@ section.section.registration {
         font-family: \0000312;
     }
 }
+
 .badge--warning {
-    color: #664c00;
-    background-color: #fff2cc;
+    color: #ffffff;
+    background-color: #d32323;
 }
 @media -sass-debug-info {
     filename {
@@ -14466,10 +14467,10 @@ section.section.registration {
         font-family: \0000321;
     }
 }
-.cards--highlight .cards__info {
+/*.cards--highlight .cards__info {
     border-left: 2px solid #d3232382;
     background: linear-gradient(90deg, #d3232357 0%, rgb(211 35 35 / 30%) 100%);
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -14537,11 +14538,11 @@ section.section.registration {
         font-family: \0000354;
     }
 }
-.cards__info {
+/*.cards__info {
     border: 1px solid #ebeef7;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -14550,9 +14551,9 @@ section.section.registration {
         font-family: \0000360;
     }
 }
-.cards__info-top {
+/*.cards__info-top {
     border-bottom: 1px solid #d323231f;
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -14616,10 +14617,10 @@ section.section.registration {
         font-family: \0000388;
     }
 }
-.cards--one.cards--highlight .cards__info-top,
+/*.cards--one.cards--highlight .cards__info-top,
 .cards--one.cards--highlight .cards__info-bottom {
     border-right:1px solid #d323231f;
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -14628,9 +14629,9 @@ section.section.registration {
         font-family: \0000392;
     }
 }
-.cards--one.cards--highlight .cards__info-bottom {
+/*.cards--one.cards--highlight .cards__info-bottom {
     border-bottom:1px solid #d323231f;
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -14641,7 +14642,7 @@ section.section.registration {
 }
 .cards--one .cards__info-top,
 .cards--one .cards__info-bottom {
-    padding: 16px 20px;
+    padding: 10px 20px;
 }
 @media -sass-debug-info {
     filename {
@@ -14811,12 +14812,12 @@ section.section.registration {
         font-family: \00003162;
     }
 }
-.cards--two.cards--highlight .cards__info {
+/*.cards--two.cards--highlight .cards__info {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
-}
+}*/
 @media (max-width: 767px) {
     @media -sass-debug-info {
         filename {
@@ -14826,9 +14827,9 @@ section.section.registration {
             font-family: \00003162;
         }
     }
-    .cards--two.cards--highlight .cards__info {
+    /*.cards--two.cards--highlight .cards__info {
         border-top-right-radius: 0px;
-    }
+    }*/
 }
 @media -sass-debug-info {
     filename {
@@ -15095,11 +15096,11 @@ section.section.registration {
         font-family: \00003286;
     }
 }
-.cards--three.cards--highlight .cards__info {
+/*.cards--three.cards--highlight .cards__info {
     border-top: 1px solid #ffd966;
     border-bottom: 1px solid #ffd966;
     border-right: 1px solid #ffd966;
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -15627,7 +15628,7 @@ section.section.registration {
     z-index: 1;
     background: #CB356B;
     background: -webkit-linear-gradient(to right, #BD3F32, #CB356B);
-    background: linear-gradient(to right, #d32323b5, #d3232399);
+    background: linear-gradient(to right, #000000b5, #00000099)
 }
 .location-card__info {
     position: absolute;
@@ -15638,7 +15639,7 @@ section.section.registration {
 }
 
 .location-card:hover a{
-    color: #222;
+    color: #fff;
 }
 .location-card__info a {
     color: #fff;
@@ -16590,6 +16591,7 @@ section.section.registration {
     padding-right: 10px;
     padding-top: 14px;
     padding-bottom: 15px;
+    width:100%;
 }
 @media (max-width: 767px) {
     @media -sass-debug-info {
@@ -17359,7 +17361,7 @@ section.section.registration {
     }
 }
 .dashboard-card--recent__activity-item.warning .icon {
-    color: #ffbf00;
+    color: #d32323;
     background-color: #fff8e0;
 }
 @media -sass-debug-info {
@@ -19321,7 +19323,35 @@ section.section.registration {
         padding: 8px 0px;
         border-bottom: 1px solid #ebeef7;
     }
+    .search__content-item {
+        width: 100% !important;
+        padding: 0px 0px;
+        border-bottom: 1px solid #ebeef7;
+    }
+    .search__content-item button {
+        border-radius: 2px !important;
+    }
+    .mobile-search-filed .input-field input {
+        border: none;
+        padding: 8px 70px 8px 36px;
+        width: calc(100% - 56px);
+        background-color: #F5F7FA;
+        position: relative;
+    }
+    .search__content-item button {
+        height: 48px;
+        padding: 0px 22px;
+        line-height: 0px;
+        font-size: 14px;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
 }
+
+
+
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_search\.scss;
@@ -20710,14 +20740,15 @@ section.section.registration {
 .recent-post .cards {
     margin-bottom: 24px;
     position: relative;
+    border: 1px solid #EEE;
 }
 .featured_tag {
     position: absolute;
-    top: 2px;
-    right: 10px;
+    top: 5px;
+    right: 11px;
     z-index: 1;
-    background: #4caf50;
-    padding: 3px 12px;
+    background: #d32323;
+    padding: 1px 9px;
     font-size: 14px;
     font-weight: 500;
     color: #fff;
@@ -21983,9 +22014,9 @@ section.section.registration {
         font-family: \000036;
     }
 }
-.ad-list__search-box .search {
-    border: 0px solid #ebeef7;
-}
+/*.ad-list__search-box .search {
+    border: 1px solid #ebeef7;
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/pages\/_ad-list\.scss;
@@ -24372,15 +24403,40 @@ section.section.registration {
 }
 
 .search__content-item button {
-    border-radius: 0px 3px 3px 0px !important;
+    border-radius: 0px 9px 9px 0px !important;
 }
-
 
 .faq__nav .faq__nav-item:hover i {
     color: #d32323 !important;
     transition: .15s;
 }
+
 .about-us__img-wrapper img {
     height: 536px !important;
 }
 
+.sidebar_category .accordion-button {
+    border: none;
+    padding: 0;
+}
+
+.sidebar_category .accordion-item {
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.sidebar_category .accordion-button:not(.collapsed) {
+    background: #fff !important;
+    box-shadow: none !important;
+    color: #222 !important;
+}
+.sidebar_category .accordion-button:focus {
+    border-color: #fff !important;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.sidebar_category .accordion-body {
+    padding: 10px 0px;
+}

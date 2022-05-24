@@ -132,7 +132,8 @@
     </div>
 
     {{-- Razorpay Setting  --}}
-    <div class="col-sm-6">
+
+    {{--<div class="col-sm-6">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" style="line-height: 36px;">{{ __('razorpay_settings') }}</h3>
@@ -178,10 +179,11 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>--}}
 
     {{-- SSL Commerz Setting  --}}
-    <div class="col-sm-6">
+
+    {{-- <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" style="line-height: 36px;">{{ __('sslcommerz_settings') }}</h3>
@@ -228,10 +230,11 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>--}}
 
     {{-- Paystack Setting  --}}
-    <div class="col-sm-6">
+    
+    {{-- <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title" style="line-height: 36px;">{{ __('paystack_settings') }}</h3>
@@ -288,7 +291,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>--}}
 </div>
 @endsection
 

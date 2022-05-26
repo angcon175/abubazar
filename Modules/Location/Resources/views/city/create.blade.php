@@ -33,18 +33,20 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <x-forms.label name="select_image" required="true" class="col-sm-3" />
-                                    <div class="col-sm-9">
-                                        <input name="image" type="file"
-                                            class="form-control dropify @error('image') is-invalid @enderror"
-                                            style="border:none;padding-left:0;" accept="image/png,image/jpg,image/jpeg"
-                                            data-allowed-file-extensions='["jpg", "jpeg","png"]' data-max-file-size="3M">
+                               {{-- 
+                                    <div class="form-group row">
+                                        <x-forms.label name="select_image" required="true" class="col-sm-3" />
+                                        <div class="col-sm-9">
+                                            <input name="image" type="file"
+                                                class="form-control dropify @error('image') is-invalid @enderror"
+                                                style="border:none;padding-left:0;" accept="image/png,image/jpg,image/jpeg"
+                                                data-allowed-file-extensions='["jpg", "jpeg","png"]' data-max-file-size="3M">
+                                        </div>
+                                        @error('image')
+                                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                        @enderror
                                     </div>
-                                    @error('image')
-                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                    @enderror
-                                </div>
+                                --}}
                                 <div class="form-group row">
                                     <div class="offset-sm-3 col-sm-4">
                                         <button type="submit" class="btn btn-success">

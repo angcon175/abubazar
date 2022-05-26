@@ -22,7 +22,6 @@
                         <thead>
                             <tr>
                                 <th width="5%">{{ __('sl') }}</th>
-                                <th width="5%">{{ __('image') }}</th>
                                 <th>{{ __('city_name') }}</th>
                                 <th>{{ __('created_date') }}</th>
                                 <th>{{ __('last_updated') }}</th>
@@ -35,10 +34,6 @@
                             @forelse ($cities as $city)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>
-                                    <img style="width: 50px"
-                                        src="{{ $city->image_url }}">
-                                </td>
                                 <td>{{ $city->name }}</td>
                                 <td>{{ $city->created_at->diffForHumans() }}</td>
                                 <td>{{ $city->updated_at->diffForHumans() }}</td>

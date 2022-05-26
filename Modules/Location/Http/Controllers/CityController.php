@@ -50,10 +50,10 @@ class CityController extends Controller
 
         $city = City::create($request->except('image'));
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $url = $request->image->move('uploads/city', $request->image->hashName());
-            $city->update(['image' => $url]);
-        }
+        // if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        //     $url = $request->image->move('uploads/city', $request->image->hashName());
+        //     $city->update(['image' => $url]);
+        // }
 
         $city ? flashSuccess('City created successfully') : flashError();
         return back();

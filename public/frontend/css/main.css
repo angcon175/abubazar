@@ -24589,6 +24589,9 @@ a.btn.post_ads:hover {color: #fff;background: #D32325;}
     border-radius: 4px 4px 0px 0px;
 }
 
+.input-group.subscribe__input .btn {
+    padding: 0px 14px !important;
+}
 
 
 

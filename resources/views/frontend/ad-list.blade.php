@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
 
-                                <div class="accordion-item list-sidebar__accordion-item price">
+                                <!-- <div class="accordion-item list-sidebar__accordion-item price">
                                     <h2 class="accordion-header list-sidebar__accordion-header" id="priceTag">
                                         <button class="accordion-button list-sidebar__accordion-button collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#priceCollapse"
@@ -162,7 +162,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </form>
                     </div>
@@ -170,7 +170,7 @@
                 <div class="col-xl-9">
                     <div class="ad-list__content row">
                         @forelse ($adlistings as $ad)
-                            <x-frontend.single-ad :ad="$ad" className="col-lg-4 col-md-6"></x-frontend.single-ad>
+                            <x-frontend.ads-list-single-ad :ad="$ad" className="col-lg-4 col-md-6"></x-frontend.ads-list-single-ad>
                         @empty
                             <x-not-found2 message="No ads found" />
                         @endforelse

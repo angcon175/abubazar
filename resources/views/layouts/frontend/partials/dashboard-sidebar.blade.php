@@ -3,8 +3,8 @@
         $user = auth('customer')->user();
     @endphp
     <div class="dashboard__navigation-top">
-        <div class="dashboard__user-proifle">
-            <div class="dashboard__user-img">
+        <div class="text-center">
+            <div class="dashboard__user-img text-center">
                 <img src="{{ $user->image_url }}" alt="user-photo" />
             </div>
             <div class="dashboard__user-info">

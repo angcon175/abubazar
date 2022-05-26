@@ -53,6 +53,8 @@ $keywords = sprintf('%s, %s', $settings->seo_meta_keywords, join(', ', $ad->adFe
                     {{-- ad info --}}
                     <x-ad-details.ad-info :ad="$ad" />
 
+                    
+
                     {{-- ad gallery --}}
                     <x-ad-details.ad-gallery :galleries="$ad->galleries" :thumbnail="$ad->image_url" :slug="$ad->slug" />
 
@@ -65,15 +67,14 @@ $keywords = sprintf('%s, %s', $settings->seo_meta_keywords, join(', ', $ad->adFe
                             <x-svg.toggle-icon />
                         </span>
                         <div class="product-item__sidebar-top">
-                            {{-- ad wishlist --}}
-                            <x-ad-details.ad-wishlist :id="$ad->id" :price="$ad->price" />
-
-                            {{-- ad contact --}}
-                            <x-ad-details.ad-contact :phone="$ad->phone" :name="$ad->customer->username" />
-
                             {{-- ad customer info --}}
                             <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city"
                                 :link="$ad->website_link" />
+                                
+                            {{-- ad contact --}}
+                            <x-ad-details.ad-contact :phone="$ad->phone" :name="$ad->customer->username" />
+
+                            
                         </div>
                         <div class="product-item__sidebar-bottom">
                             <div class="product-item__sidebar-item overview">

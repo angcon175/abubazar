@@ -51,10 +51,11 @@ $user = auth()->user();
             <div class="dropdown-divider"></div>
         </div>
     </li>
+  {{--  
     @if ($language_enable)
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                {{-- @if (!session('lang') || session('lang') == 'default')
+                 @if (!session('lang') || session('lang') == 'default')
                     <i class="flag-icon flag-icon-gb"></i>
                 @else
                     @foreach ($languages as $lang)
@@ -62,7 +63,7 @@ $user = auth()->user();
                             <i class="flag-icon {{ $lang->icon }}"></i>
                         @endif
                     @endforeach
-                @endif --}}
+                @endif 
                 <i class="flag-icon {{ currentLanguage()->icon }}"></i>
                 <span class="text-uppercase">{{ currentLanguage()->code }}</span>
             </a>
@@ -77,6 +78,8 @@ $user = auth()->user();
             </div>
         </li>
     @endif
+    --}}
+    
     <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>

@@ -18,27 +18,27 @@
 <section class="section about-us">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-xl-6 order-xl-0 order-2">
+            <div class="col-12 text-center order-xl-0 order-2">
                 <h2 class="about-us__title text--heading-1" >{{ __('know_more_about_adlisting') }}</h2>
-                <p class="text--body-3 about-us__brief">
+                <p class="text--body-3">
                     {!! $cms->about_body ?? 'No About Us found.' !!}
                 </p>
             </div>
-            <div class="col-xl-6 order-xl-0 order-1">
+            <!-- <div class="col-xl-6 order-xl-0 order-1">
                 <div class="about-us__img-wrapper">
                     <img src="{{ $cms->about_background_path }}" alt="about" class="img-fluid" />
                     <a href="https://youtu.be/vPhg6sc1Mk4" class="icon yplayer" data-autoplay="true" data-vbtype="video">
                         <x-svg.play-icon />
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
 <!-- about-us section end  -->
 
 <!--  work section start  -->
-<x-others.how-it-work/>
+{{-- <x-others.how-it-work/> --}}
 <!--  work section end  -->
 
 @if ($testimonial_enable)
@@ -91,7 +91,7 @@
 @endif
 
 <!-- suppor-brand section start  -->
-<section class="section support-brand pt-0">
+{{-- <section class="section support-brand pt-0">
     <div class="container">
         <h2 class="section__title text--body-2-600">{{ __('supported_by') }}</h2>
 
@@ -125,7 +125,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- suppor-brand section end  -->
 @endsection
 

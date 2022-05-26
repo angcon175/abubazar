@@ -7368,7 +7368,7 @@ a {
 }
 .about-us__title {
     color: #191f33;
-    margin-bottom: 24px;
+    margin-bottom: 7px;
     text-transform: capitalize;
 }
 @media (max-width: 767px) {
@@ -9522,7 +9522,7 @@ display: flex;
 }
 .dashboard__navigation {
     position: relative;
-    padding: 32px 0px;
+    padding: 0px 0px 32px 0px;
     border-radius: 12px;
     border: 1px solid #ebeef7;
     background-color: #fff;
@@ -9703,7 +9703,8 @@ display: flex;
     height: 64px;
     border-radius: 50%;
     overflow: hidden;
-    margin-right: 14px;
+    margin: 0 auto;
+    margin-bottom: 5px;
 }
 @media -sass-debug-info {
     filename {
@@ -10552,7 +10553,7 @@ display: flex;
     justify-content: space-between;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    padding: 0px 32px;
+    padding: 0px 32px 20px 32px;
     margin-right: 0px;
     margin-bottom: 32px !important;
     border-bottom: 1px solid #ebeef7;
@@ -10613,10 +10614,10 @@ display: flex;
     align-items: center;
     cursor: pointer;
     padding: 0px;
-    padding-bottom: 32px;
+    padding-bottom: 0px;
     border-radius: 0px !important;
     margin: 0px !important;
-    border-bottom: 2px solid transparent !important;
+    border-bottom: 0px solid transparent !important;
 }
 @media (max-width: 767px) {
     @media -sass-debug-info {
@@ -10651,8 +10652,16 @@ display: flex;
     }
 }
 .dashboard-post__link.active {
-    background-color: transparent !important;
-    border-bottom: 2px solid #D32323 !important;
+    background-color: #d32323;
+    color: #fff !important;
+    padding: 7px 30px;
+    border-radius: 5px !important;
+}
+.dashboard-post__link.active .step-info h2 {color: #fff !important;}
+
+.dashboard-post__link.active .step-info p {color: #fff;}
+.dashboard-post__link.active .icon{
+    padding:0;
 }
 @media -sass-debug-info {
     filename {
@@ -12931,7 +12940,7 @@ display: flex;
 }
 .footer--dark .footer__bottom {
     /* background-color: #2e3447; */
-    background-color: #121314;
+    background-color: #d6d6d6;
 }
 @media -sass-debug-info {
     filename {
@@ -13011,7 +13020,7 @@ display: flex;
     }
 }
 .footer--dark .footer__copyright p a {
-    color: #fff;
+    color: #000;
 }
 @media -sass-debug-info {
     filename {
@@ -13067,7 +13076,7 @@ display: flex;
     }
 }
 .footer__top {
-    padding: 50px 0px 20px 0px;
+    padding: 50px 0px 40px 0px;
 }
 @media (max-width: 1199px) {
     @media -sass-debug-info {
@@ -13145,7 +13154,7 @@ display: flex;
     }
 }
 .footer__bottom {
-    padding: 24px 0px;
+    padding: 18px 0px;
     background-color: #f5f7fa;
 }
 @media -sass-debug-info {
@@ -13282,7 +13291,8 @@ display: flex;
     }
 }
 .footer-menu__item {
-    margin-bottom: 16px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #EEE;
 }
 @media (max-width: 767px) {
     @media -sass-debug-info {
@@ -13308,6 +13318,7 @@ display: flex;
 .footer-menu__link {
     position: relative;
     color: #767e94;
+    display: block;
 }
 @media -sass-debug-info {
     filename {
@@ -13471,7 +13482,7 @@ display: flex;
     }
 }
 .footer__copyright p {
-    color: #767e94;
+    color: #000;
 }
 @media -sass-debug-info {
     filename {
@@ -13494,7 +13505,7 @@ display: flex;
     }
 }
 .footer__policy-condition a {
-    color: #767e94;
+    color: #000;
     margin: 0px 4px;
     -webkit-transition: all 0.3s linear;
     transition: all 0.3s linear;
@@ -13508,7 +13519,7 @@ display: flex;
     }
 }
 .footer__policy-condition a:hover {
-    color: #191f33;
+    color: #000;
     -webkit-transition: all 0.3s linear;
     transition: all 0.3s linear;
 }
@@ -13836,7 +13847,7 @@ section.section.registration {
     }
 }
 .btn--fav:hover {
-    background-color: #e8f7ff !important;
+    background-color: #d3232317 !important;
 }
 
 @media -sass-debug-info {
@@ -14107,8 +14118,8 @@ section.section.registration {
 }
 .scrollTop {
     position: fixed;
-    bottom: 45px;
-    right: 100px;
+    bottom: 100px;
+    right: 45px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -14119,9 +14130,9 @@ section.section.registration {
     -ms-flex-pack: center;
     justify-content: center;
     color: #fff;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
     border: 6px solid #d32323;
     background: #d32323;
     overflow: hidden;
@@ -14296,9 +14307,10 @@ section.section.registration {
 }
 .social-icon__link {
     color: #767e94;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    background: #d6d6d6;
+    width: 38px;
+    height: 38px;
+    border-radius: 2px;
     margin-right: 6px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -16021,9 +16033,9 @@ section.section.registration {
         font-family: \00003652;
     }
 }
-.plan-card--active.plan-card {
+/*.plan-card--active.plan-card {
     border: 2px solid #D32323;
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/components\/_cards\.scss;
@@ -16036,6 +16048,9 @@ section.section.registration {
     background-color: #d32323;
     border: 0px;
     border-radius: 0px;
+}
+.plan-card.plan-card--active h2 {
+    color: #fff;
 }
 @media -sass-debug-info {
     filename {
@@ -16059,7 +16074,7 @@ section.section.registration {
 .plan-card--active .plan-card__title,
 .plan-card--active .plan-card__description,
 .plan-card--active .plan-card__price h5 {
-    color: #fff;
+    color: #d32323;
 }
 @media -sass-debug-info {
     filename {
@@ -16092,9 +16107,16 @@ section.section.registration {
         font-family: \00003685;
     }
 }
-.plan-card__top,
+.plan-card__top {
+    padding: 13px 0px;
+    border: 1px solid #ebeef7;
+    background: #0000000f;
+}
+.plan-card__package {
+    margin-bottom: 38px;
+}
 .plan-card__bottom {
-    padding: 32px;
+    padding: 10px 30px 26px 30px;
     border: 1px solid #ebeef7;
 }
 @media -sass-debug-info {
@@ -16130,8 +16152,8 @@ section.section.registration {
     }
 }
 .plan-card__title {
-    color: #191f33;
-    margin-bottom: 12px;
+    color: #222;
+    margin-bottom: 0px;
     font-weight: 600;
     text-transform: capitalize;
 }
@@ -16166,6 +16188,7 @@ section.section.registration {
     -ms-flex-pack: center;
     justify-content: center;
     margin-bottom: 32px;
+    border-bottom: 1px solid #EEE;
 }
 @media -sass-debug-info {
     filename {
@@ -16176,7 +16199,7 @@ section.section.registration {
     }
 }
 .plan-card__price h5 {
-    color: #D32323;
+    color: #222;
 }
 @media -sass-debug-info {
     filename {
@@ -22703,7 +22726,7 @@ section.section.registration {
     }
 }
 .product-item__gallery {
-    margin: 35px 0px;
+    margin: 15px 0px;
 }
 @media -sass-debug-info {
     filename {
@@ -23295,8 +23318,9 @@ section.section.registration {
     }
 }
 .product-item__sidebar-top .product-item__sidebar-item {
-    padding: 17px 31px;
-    border-bottom: 1px solid #ebeef7;
+    padding: 9px 31px;
+    border-bottom: 1px solid #d3232333;
+    background: #d323230f;
 }
 @media (max-width: 480px) {
     @media -sass-debug-info {
@@ -23794,14 +23818,14 @@ section.section.registration {
     }
 }
 .card-number {
-    position: relative;
-    padding: 20px;
+position: relative;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #f5f7fa;
+    background-color: #fdf2f2;
     margin-bottom: 16px;
-    height: 100%;
-    min-height: 104px;
+}
+.product-item__sidebar-item.overview {
+    background: #d323230f;
 }
 @media -sass-debug-info {
     filename {
@@ -23811,9 +23835,9 @@ section.section.registration {
         font-family: \00003694;
     }
 }
-.card-number:hover {
+/*.card-number:hover {
     background-color: #d3232312;
-}
+}*/
 @media -sass-debug-info {
     filename {
         font-family: file\:\/\/\/Users\/devzakir\/Dev\/Zakirsoft\/Projects\/Adlisting\/html\/src\/scss\/pages\/_ad-list\.scss;
@@ -24456,7 +24480,7 @@ section.section.registration {
     left:0;
     width:100%;
     height: 100%;
-    background: linear-gradient(to right, rgb(211 35 35 / 63%) 0%,rgb(211 35 35 / 75%) 24%,rgb(211 35 35 / 76%) 77%,rgb(211 35 35 / 77%) 100%);
+    background: linear-gradient(to right, rgb(211 35 35 / 88%) 0%,rgb(211 35 35 / 86%) 24%,rgb(211 35 35 / 91%) 77%,rgb(211 35 35 / 90%) 100%);
     padding: 35px 0px;
     z-index: -1;
 }
@@ -24467,6 +24491,110 @@ section.section.registration {
     position: relative;
     z-index: 1;
 }
+
+.section.footer_top_sec .btn {
+    color: #000;
+    background-color: #ffffff;
+}
+
+
+.section.footer_top_sec .btn:hover{
+    color: #fff;
+    background-color: #D32323;
+}
+
+.ads_list_single .cards__info {
+    direction: ltr;
+    border-top: 1px solid #EEE;
+    background: #f2f2f2;
+}
+
+.ads_list_single .cards__info-top {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.ads_list_single .cards--one .cards__img-wrapper {
+    border: 1px solid #dddada;
+    border-bottom: none;
+        border-radius: 12px 12px 0px 0px;
+}
+.ads_list_single .cards--one .cards__img-wrapper{
+    border-radius: 12px 12px 0px 0px;
+}
+.product-item__sidebar-bottom .product-item__sidebar-item h2 {
+    color: #191f33;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding: 13px 32px 8px;
+    border-bottom: 1px solid #e8dada;
+}
+
+
+.product-item__sidebar-item.product-price {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.product-item__ads-info {
+    border: 1px solid #f2f2f2;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+section.testimonial.section {
+    padding-top: 9px;
+}
+
+.header .navigation-bar__buttons .post_btn {
+    border-radius: 50px;
+    padding: 0px 23px;
+    display: inline-block;
+    border: 1px solid #D32325;
+    color: #D32325;
+    background: transparent;
+}
+.header .navigation-bar__buttons .post_btn:hover {color: #fff;background: #D32325;}
+
+a.btn.post_ads {
+    border-radius: 50px;
+    padding: 0px 23px;
+    display: inline-block;
+    border: 1px solid #D32325;
+    color: #D32325;
+    background: transparent;
+}
+
+a.btn.post_ads:hover {color: #fff;background: #D32325;}
+
+/*.dashboard-post__nav {
+    border: 1px solid #EEE;
+    margin: 0px 16px;
+    border-radius: 4px;
+    padding: 11px 24px;
+}*/
+
+.dashboard__navigation-top {
+    padding: 12px 0px 10px 0px !important;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #ebeef7;
+    background: #d323231a;
+    border-radius: 4px 4px 0px 0px;
+}
+
+
+
+
+
+
+
 
 
 

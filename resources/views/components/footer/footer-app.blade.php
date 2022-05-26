@@ -47,9 +47,8 @@
 
             <span class="error" style="color:red"></span>
         </form>
-        <div class="mt-4 mb-4">
-            <img src="{{asset('frontend/images/payment.png')}}" class="img-fluid" alt="image">
-        </div>
     </div>
-    <x-footer.footer-social/>
+    <div class="mt-4">
+        <x-footer.footer-social/>
+    </div>
 </div>

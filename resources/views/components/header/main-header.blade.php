@@ -38,7 +38,7 @@
                         <img src="{{ auth('customer')->user()->image_url }}" style="width: 40px; height: 40px; border-radius: 50%" alt="User Image">
                     </div>
                 </a>
-                <a href="{{ route('frontend.post') }}" class="btn">
+                <a href="{{ route('frontend.post') }}" class="btn post_btn">
                     <span class="icon--left">
                         <x-svg.image-select-icon />
                     </span>
@@ -46,7 +46,7 @@
                 </a>
             @else
                 <a href="{{ route('customer.login') }}" class="btn btn--bg">{{ __('sign_in') }}</a>
-                <a href="{{ route('customer.login') }}" class="btn login_required">
+                <a href="{{ route('customer.login') }}" class="btn post_btn login_required">
                     <span class="icon--left">
                         <x-svg.image-select-icon />
                     </span>
@@ -54,7 +54,7 @@
                 </a>
             @endif
 
-            <x-frontend.language-switcher/>
+          {{--  <x-frontend.language-switcher/>--}}
         </div>
         <!-- Responsive Navigation Menu  -->
         <x-frontend.responsive-menu/>

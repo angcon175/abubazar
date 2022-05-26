@@ -1,5 +1,7 @@
 <div class="product-item__ads-info">
     <h2 class="text--heading-2 title">{{ $ad->title }}</h2>
+        {{-- ad wishlist --}}
+        <x-ad-details.ad-wishlist :id="$ad->id" :price="$ad->price" />
 
     <ul class="post-details">
         <li class="post-details__item">

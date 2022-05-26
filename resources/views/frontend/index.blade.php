@@ -178,7 +178,7 @@
                 {{ __('do you have something to sell') }}
              </h2>
              <div class="text-center">
-                <a href="" class="btn">Post Here</a>
+                <a href="{{ route('customer.login') }}" class="btn">Post Here</a>
             </div>
         </div>
     </section>

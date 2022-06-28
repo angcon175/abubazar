@@ -11,5 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+// mix.js('resources/js/app.js', 'public/js')
+//     .sass('resources/sass/app.scss', 'public/css')
+//     .sass('public/frontend/scss/components/_product-slider.scss', 'public/frontend/css/productslider.css');
+mix.sass('public/frontend/scss/components/_product-slider.scss', 'public/frontend/css/productslider.css');

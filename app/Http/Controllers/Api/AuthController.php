@@ -2,45 +2,141 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\Api\Auth\AuthInterface;
+use App\Models\User;
+use App\Models\Customer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Http\Response;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Controller;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
-    protected $auth;
-
-    function __construct(AuthInterface $auth) {
-        $this->auth = $auth;
-        date_default_timezone_set('Asia/Dhaka');
+    public $authApiGuard;
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->authApiGuard = auth('api');
     }
 
-    public function postLogin(Request $request)
+    /**
+     * Get a JWT via given credentials.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function login(Request $request)
     {
-        $response = $this->auth->postLogin($request);
+        $this->validate($request, [
+            'password' => 'required|string',
+            'username' => 'sometimes|string',
+        ]);
 
-        return response()->json($response, $response->code);
+        try {
+            $login_type = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+            $credentials = [$login_type => $request->username, 'password' => $request->password];
+
+            if (!$token = $this->authApiGuard->attempt($credentials)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Invalid Crendentials',
+                ], Response::HTTP_UNAUTHORIZED);
+            }
+
+            return $this->createNewToken($token);
+        } catch (JWTException $e) {
+            return response()->json("failed", "An error occured, please contact support.", 500);
+        }
     }
 
-    /*public function postVerifyMobile(Request $request)
+    /**
+     * Register a User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
     {
-        $response = $this->auth->postVerifyMobileNo($request);
+        $this->validate($request, [
+            'name' => 'required|string|between:2,100',
+            'email' => "required|string|max:100|email|unique:customers,email",
+            'password' => "required|min:8|max:50",
+        ]);
 
-        return response()->json($response, $response->code);
+        $usernameExists = Customer::where('username', Str::slug($request->name))->count();
+
+        if ($usernameExists) {
+            $username = Str::slug($request->name) . '_' . Str::random(5);
+        } else {
+            $username = Str::slug($request->name);
+        }
+
+        // Create user
+        $user = Customer::create([
+            'name' => $request->name,
+            'username' => $username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return response()->json([
+            'message' => 'User registered',
+            'user' => $user
+        ], 201);
     }
 
-    public function postVerifyCode(Request $request)
-    {
-        $response = $this->auth->postVerifyCode($request);
 
-        return response()->json($response, $response->code);
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        $this->authApiGuard->logout();
+
+        return response()->json(['message' => 'User logged out']);
     }
 
-    public function postUpdateProfileData(Request $request)
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
     {
-        $response = $this->auth->postUpdateProfileData($request);
+        return $this->createNewToken($this->authApiGuard->refresh());
+    }
 
-        return response()->json($response, $response->code);
-    }*/
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function authUser()
+    {
+        return response()->json($this->authApiGuard->user());
+    }
+
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function createNewToken($token)
+    {
+        return response()->json([
+            'token' => $token,
+            'user' => $this->authApiGuard->user(),
+            // 'token_type' => 'bearer'
+            'expires_in' => $this->authApiGuard->factory()->getTTL() * 60 * 24 * 30
+        ]);
+    }
 }

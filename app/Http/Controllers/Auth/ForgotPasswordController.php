@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
@@ -19,4 +21,19 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    public function customerResetPasswordForm()
+    {
+        return view('auth.customer.email');
+    }
+
+    public function broker()
+    {
+        return Password::broker('customers');
+    }
+
+    protected function validateEmail(Request $request)
+    {
+        $request->validate(['email' => 'required|email|exists:customers,email']);
+    }
 }

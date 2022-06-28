@@ -1,87 +1,55 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ __('log_in') }} - {{ env('APP_NAME') }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@push('custom_css')
+<link rel="stylesheet" type="text/css" href="{{asset('/assets/css/forms/validation/form-validation.css')}}">
+@endpush
 
-    <link rel="stylesheet" href="{{ asset('backend') }}/plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="{{ asset('backend') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('backend') }}/dist/css/adminlte.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <style>
-        .login-box {
-                background: #fff;
-                border-radius: 4px;
-                padding-top: 20px;
-                box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
-            }
-    </style>    
-</head>
-
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="{{ route('admin.login') }}"><img height="50px" style="width: 220px" src="{{ $settings->logo_image_url }}" alt="" class="img-fluid"></a>
-        </div>
-        <div class="card">
-            <div class="card-body login-card-body">
-                <p class="login-box-msg">{{ __('sign_in_to_start_your_session') }}</p>
-
-                <form method="POST" action="{{ route('login') }}">
+@section('content')
+<section id="main" class="clearfix user-page">
+    <div class="container">
+        <div class="row text-center">
+            <!-- user-login -->         
+            <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+                <div class="user-account">
+                    <h2>User Login</h2>
+                    <!-- form -->
+                    {!! Form::open([ 'route' => 'login', 'method' => 'post', 'class' => 'form-horizontal', 'files' => true , 'novalidate']) !!}
                     @csrf
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email') }}" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                        @error('email') <span class="invalid-feedback"
-                            role="alert"><strong>{{ $message }}</strong></span> @enderror
+                    <input type="hidden" name="referer" value="{{ request()->get('referer') ?? '' }}">
+                    <div class="form-group">
+                       {!! Form::text('email', null, [ 'class' => 'form-control', 'data-validation-required-message' => 'This field is required', 'placeholder' => 'email', 'tabindex' => 1]) !!}
+                       {!! $errors->first('email', '<label class="help-block text-danger">:message</label>') !!}
+                   </div>
+                   <div class="form-group">
+                    {!! Form::password('password', [ 'class' => 'form-control mb-1', 'minlength' => '6', 'data-validation-required-message' => 'This field is required', 'data-validation-minlength-message' => 'Minimum 6 characters', 'placeholder' => 'Enter password', 'tabindex' => 2, 'autocomplete' => 'off']) !!}
+                    {!! $errors->first('password', '<label class="help-block text-danger">:message</label>') !!}
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Login</button> 
+                 <p class="mt-2 loginor">Or</p>
+                <a href="login/facebook" class="btn" style="background: #3b5999;width: 100%;"><i class="fa fa-facebook"></i> Continue with Facebook</a>   
+                <a href="login/google" class="btn" style="background: #750000;width: 100%;"><i class="fa fa-google"></i> Continue with Google</a>  
+                {!! Form::close() !!}
+
+
+                <!-- forgot-password -->
+                <!-- <div class="user-option">
+                       <div class="checkbox pull-left">
+                        <label for="logged"><input type="checkbox" name="logged" id="logged"> Keep me logged in </label>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                            name="password" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                        @error('password') <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong></span> @enderror
+                     <div class="forgot-password">
+                        <a href="javascript:void(0)">Forgot password ?</a>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <x-forms.label name="remember_me" for="remember" />
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">{{ __('sign_in') }} <i
-                                    class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="registration-form__forget-pass text--body-4">
-                                <a href="{{ route('admin.forgot.password') }}">{{ __('forgot_password') }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div> -->
             </div>
-        </div>
-    </div>
+            <a href="{{route('register')}}" class="btn-primary">Create a New Account</a>
+        </div><!-- user-login -->           
+    </div><!-- row -->  
+</div><!-- container -->
+</section><!-- signin-page -->
+@endsection
 
-    <script src="{{ asset('backend') }}/plugins/jquery/jquery.min.js"></script>
-    <script src="{{ asset('backend') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('backend') }}/dist/js/adminlte.min.js"></script>
-</body>
 
-</html>
+@push('custom_js')
+<script src="{{asset('/assets/js/forms/validation/jqBootstrapValidation.js')}}"></script>
+<script src="{{asset('/assets/js/forms/validation/form-validation.js')}}"></script>
+@endpush

@@ -31,7 +31,8 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+   // 'lifetime' => env('SESSION_LIFETIME', 120),
+    'lifetime' => 1 * (60 * 24 * 365),
 
     'expire_on_close' => false,
 
@@ -92,11 +93,9 @@ return [
     | Session Cache Store
     |--------------------------------------------------------------------------
     |
-    | While using one of the framework's cache driven session backends you may
+    | When using the "apc", "memcached", or "dynamodb" session drivers you may
     | list a cache store that should be used for these sessions. This value
     | must match with one of the application's configured cache "stores".
-    |
-    | Affects: "apc", "dynamodb", "memcached", "redis"
     |
     */
 
@@ -127,8 +126,9 @@ return [
     */
 
     'cookie' => env(
-        'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
+        // 'SESSION_COOKIE',
+        'dalal_bazar_session',
+        Str::slug(env('APP_NAME', 'dalal_bazar'), '_').'_session'
     ),
 
     /*
@@ -168,7 +168,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => env('SESSION_SECURE_COOKIE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -190,13 +190,12 @@ return [
     |
     | This option determines how your cookies behave when cross-site requests
     | take place, and can be used to mitigate CSRF attacks. By default, we
-    | will set this value to "lax" since this is a secure default value.
+    | do not enable this as other CSRF protection services are in place.
     |
-    | Supported: "lax", "strict", "none", null
+    | Supported: "lax", "strict", "none"
     |
     */
 
-    // 'same_site' => 'lax',
-    'same_site' => null
+    'same_site' => null,
 
 ];

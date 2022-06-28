@@ -1,176 +1,98 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\Models\Customer;
-use App\Models\SuperAdmin;
-use App\Models\Transaction;
-use Modules\Ad\Entities\Ad;
+use App\Http\Requests\updateProfileRequest;
+use App\Http\Requests\updatePasswordRequest;
 use Illuminate\Http\Request;
-use Modules\Blog\Entities\Post;
-use App\Actions\User\CreateUser;
-use App\Actions\User\UpdateUser;
-use Illuminate\Routing\Controller;
-use Spatie\Permission\Models\Role;
-use Modules\Location\Entities\City;
-use Modules\Location\Entities\Town;
-use App\Http\Requests\UserFormRequest;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Modules\Plan\Entities\Plan;
+use App\City;
+use App\User;
+use Toastr;
+use App\Product;
+use Auth;
 
 class UserController extends Controller
 {
-    use ValidatesRequests;
+    protected $city;
+    protected $user;
+    protected $prodModel;
 
-    public function dashboard(Request $request)
+    public function __construct(City $city, User $user, Product $prodModel)
     {
-        $customers = Customer::all();
-        $ads = Ad::all();
-
-        $data['total_earning'] = Transaction::sum('amount');
-        $data['customer'] = $customers->count();
-        $data['verified_customers'] = $customers->whereNotNull('email_verified_at')->count();
-        $data['adcount'] = $ads->count();
-        $data['adcountActive'] = $ads->where('status', 'active')->count();
-        $data['adcountPending'] = $ads->where('status', 'pending')->count();
-        $data['adcountExpired'] = $ads->where('status', 'expired')->count();
-        $data['adcountFeatured'] = $ads->where('featured', 1)->count();
-        $data['cityCount'] = City::count();
-        $data['townCount'] = Town::count();
-        $data['blogpostCount'] = Post::count();
-        $data['total_plan'] = Plan::count();
-
-        $transactions = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-        for ($i = 0; $i < 12; $i++) {
-            $transactions[$i] = (int)Transaction::select('amount')
-                ->whereYear('created_at', date('Y'))
-                ->whereMonth('created_at', $i + 1)
-                ->sum('amount');
-        }
-        $data['transactionData'] = $transactions;
-
-        $data['latestAds'] = Ad::select(['id', 'slug', 'price', 'status', 'title'])->orderBy('id', 'DESC')->limit(10)->get();
-        $data['latestusers'] = Customer::select(['id', 'name', 'email', 'created_at','username'])->orderBy('id', 'DESC')->limit(10)->get();
-        $data['latestTransactionUsers'] = Transaction::with(['customer:id,name,email,username', 'plan:id,label,price'])->limit(10)->get();
-        $data['topLocation'] = City::select(['id', 'name',])->withCount('ads')->orderBy('ads_count', 'DESC')->limit(10)->get();
-
-        return view('backend.index', $data);
+        $this->middleware('auth');
+        $this->city         = $city;
+        $this->userModel    = $user;
+        $this->prodModel    = $prodModel;
+          
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+   
+   
+    
+    public function getMyDashboard(Request $request)
     {
-        if (!userCan('admin.view')) {
-            return abort(403);
-        }
-        $users = SuperAdmin::where('id', '!=', 1)->SimplePaginate(10);
-        return view('backend.users.index', compact('users'));
+        $data = array();
+        $data['city_combo'] = $this->city->getCityCombo();
+        
+        return view('users.my_dashboard',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function postMyProfileUpdate(updateProfileRequest $request)
     {
-        if (!userCan('admin.create')) {
-            return abort(403);
-        }
-        $roles = Role::all();
-        return view('backend.users.create', compact('roles'));
+        $this->resp     = $this->userModel->postMyProfileUpdate($request);
+        $msg            = $this->resp->msg;
+        $msg_title      = $this->resp->msg_title;
+        Toastr::success($msg, $msg_title, ["positionClass" => "toast-top-right"]);
+        
+        return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\UserFormRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UserFormRequest $request)
+    public function postMyPasswordUpdate(updatePasswordRequest $request)
     {
-        if (!userCan('admin.create')) {
-            return abort(403);
-        }
 
-        try {
-            CreateUser::create($request);
-
-            flashSuccess('User Created Successfully');
-            return back();
-        } catch (\Throwable $th) {
-            flashError($th->getMessage());
-            return back();
-        }
+        $this->resp     = $this->userModel->postMyPasswordUpdate($request);
+        $msg            = $this->resp->msg;
+        $msg_title      = $this->resp->msg_title;
+        
+        Toastr::info($msg, $msg_title, ["positionClass" => "toast-top-right"]);
+        return redirect()->route($this->resp->redirect_to)->with($this->resp->redirect_class, $this->resp->msg);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SuperAdmin $user)
+    public function postFavoriteAd(Request $request)
     {
-        if (!userCan('admin.update')) {
-            return abort(403);
-        }
+        $data               = array();
+        $this->resp         = $this->userModel->postFavoriteAd($request);
+        $data['status']     = $this->resp->status;
+        $data['msg']        = $this->resp->msg;
+        $data['msg_title']  = $this->resp->msg_title;
+        return response()->json($data);
+        
 
-        $roles = Role::all();
-        return view('backend.users.edit', compact('roles', 'user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UserFormRequest $request, SuperAdmin $user)
+    public function getFavoriteAds(Request $request)
+    {   
+        $data = array();
+        $data['rows'] = $this->prodModel->getFavoriteAds();
+        // dd($data);
+        return view('users.my_favorite_ads', compact('data'));
+    }
+  
+
+    public function getMyMembership(Request $request)
     {
-        if (!userCan('admin.update')) {
-            return abort(403);
-        }
-
-        try {
-            UpdateUser::update($request, $user);
-
-            flashSuccess('User Updated Successfully');
-            return back();
-        } catch (\Throwable $th) {
-            flashError($th->getMessage());
-            return back();
-        }
+        return view('users.my_membership');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SuperAdmin $user)
+    public function getpromotedAds(Request $request)
     {
-        if (!userCan('admin.delete')) {
-            return abort(403);
-        }
-
-        try {
-            if (!is_null($user)) {
-                $user->delete();
-            }
-
-            flashSuccess('User Deleted Successfully');
-            return back();
-        } catch (\Throwable $th) {
-            flashError($th->getMessage());
-            return back();
-        }
+        return view('users.promoted_ads');
+    }
+    public function getAdsPromotion(Request $request)
+    {
+        return view('users.ads_promotion');
+    }
+    public function getPendingAds(Request $request)
+    {
+        return view('users.pending_ads');
     }
 }

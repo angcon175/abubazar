@@ -25,7 +25,8 @@ use Modules\Blog\Entities\PostCategory;
 use Modules\Testimonial\Entities\Testimonial;
 use Modules\Category\Transformers\CategoryResource;
 
-class FrontendController extends Controller
+class 
+FrontendController extends Controller
 {
     /**
      * View Home page
@@ -441,4 +442,16 @@ class FrontendController extends Controller
         $ad->load('galleries');
         return view('frontend.single-ad-gallery', compact('ad'));
     }
+
+
+
+
+    public function AllJobs()
+    {
+         return view('frontend.all_jobs');
+    }
+
+
+
+
 }

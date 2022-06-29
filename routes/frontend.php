@@ -10,6 +10,12 @@ use App\Http\Controllers\Frontend\DashboardController;
 
 // show website pages
 Route::group(['as' => 'frontend.'], function () {
+
+    Route::get('/jobs', [FrontendController::class, 'AllJobs'])->name('all.jobs');
+
+
+
+
     Route::get('/', [FrontendController::class, 'index'])->name('index');
     Route::get('about', [FrontendController::class, 'about'])->name('about');
     Route::get('faq', [FrontendController::class, 'faq'])->name('faq');

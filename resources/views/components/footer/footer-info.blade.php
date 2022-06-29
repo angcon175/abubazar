@@ -21,4 +21,7 @@
             {{ __('mail') }}: {{ $settings->email }}
         </p>
     </div>
+     <div class="mt-4">
+        <x-footer.footer-social/>
+    </div>
 </div>

@@ -1,9 +1,13 @@
 @extends('layouts.frontend.layout_one')
+
 @section('title', __('home'))
+
 @section('frontend_style')
+
 @livewireStyles
-<link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/select2/css/select2.min.css">
 @endsection
+
 @section('content')
 <!--  style="background: url('{{ $cms->index1_main_banner_path }}') center center/cover no-repeat;" -->
 <!-- banner section start  -->
@@ -12,17 +16,27 @@
         <div class="row text-center">
             <div class="col-12">
                 <h2 class="text--display-3 banner__title animate__animated animate__bounceInDown">
-                {{ $cms->index1_title }}
+                    {{ $cms->index1_title }}
                 </h2>
                 <p class="text--body-3 banner__brief">
                     {{ $cms->index1_description }}
                 </p>
                 <!-- Search Box -->
-                <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="false" :total-ads="$total_ads" />
+                {{--
+                    <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="false" :total-ads="$total_ads" />
+                --}}
             </div>
         </div>
     </div>
 </div>
+@if($admin_ads_slider)
+    <!-- Ads Banner -->
+    <div class="ads_banner mt-3">
+        <div class="container">
+            <img src="{{ asset($admin_ads_slider->ads_img) }}" width="img-fluid" alt="{{$admin_ads_slider->ads_name}}">
+        </div>
+    </div>
+@endif
 <!-- banner section end   -->
 <!-- top-category section start  -->
 <section class="section top-category bgcolor--gray-10">
@@ -83,13 +97,15 @@
         </div>
     </div>
 </section>
-<!-- top-category section end  -->
-<!-- Ads Banner -->
-<div class="ads_banner">
-    <div class="container">
-        <img src="{{ asset('frontend/images/adsBanner.jpg') }}" width="img-fluid" alt="ads">
+    <!-- top-category section end  -->
+@if($admin_ads_category)
+    <!-- Ads Banner -->
+    <div class="ads_banner">
+        <div class="container">
+            <img src="{{ asset($admin_ads_category->ads_img) }}" width="img-fluid" alt="{{$admin_ads_category->ads_name}}">
+        </div>
     </div>
-</div>
+@endif
 <!-- recent-post section start  -->
 @if ($settings->featured_ads_homepage)
 <section class="section recent-post">
@@ -264,40 +280,41 @@
 @endif
 --}}
 @endsection
+
 @section('frontend_script')
-<script type="module" src="{{ asset('frontend') }}/js/plugins/purecounter.js"></script>
-<script type="module" src="https://adlisting.templatecookie.com/frontend/js/plugins/select2.min.js"></script>
-<script src="https://adminlte.io/themes/v3/plugins/select2/js/select2.full.min.js"></script>
-<script>
-$(document).ready(function() {
-// ===== Select2 ===== \\
-$('#town').select2({
-theme: 'bootstrap-5',
-width: $(this).data('width') ?
-$(this).data('width') : $(this).hasClass('w-100') ?
-'100%' : 'style',
-placeholder: 'Select town',
-allowClear: Boolean($(this).data('allow-clear')),
-closeOnSelect: !$(this).attr('multiple'),
-});
-});
-</script>
-@stack('newslater_script')
-<script>
-// for filter form-1
-function adFilterFunction(slug) {
-$('#adFilterInput').val(slug);
-$('#adFilterForm').submit();
-}
-// for filter form-2
-function adFilterFunctionTwo(slug) {
-$('#adFilterInput2').val(slug);
-$('#adFilterForm2').submit();
-}
-// for filter form-3
-function adFilterFunctionThree(slug) {
-$('#adFilterInput3').val(slug);
-$('#adFilterForm3').submit();
-}
-</script>
+    <script type="module" src="{{ asset('frontend') }}/js/plugins/purecounter.js"></script>
+    <script type="module" src="https://adlisting.templatecookie.com/frontend/js/plugins/select2.min.js"></script>
+    <script src="https://adminlte.io/themes/v3/plugins/select2/js/select2.full.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // ===== Select2 ===== \\
+            $('#town').select2({
+            theme: 'bootstrap-5',
+            width: $(this).data('width') ?
+            $(this).data('width') : $(this).hasClass('w-100') ?
+            '100%' : 'style',
+            placeholder: 'Select town',
+            allowClear: Boolean($(this).data('allow-clear')),
+            closeOnSelect: !$(this).attr('multiple'),
+            });
+        });
+    </script>
+    @stack('newslater_script')
+    <script>
+        // for filter form-1
+        function adFilterFunction(slug) {
+            $('#adFilterInput').val(slug);
+            $('#adFilterForm').submit();
+        }
+        // for filter form-2
+        function adFilterFunctionTwo(slug) {
+            $('#adFilterInput2').val(slug);
+            $('#adFilterForm2').submit();
+        }
+        // for filter form-3
+        function adFilterFunctionThree(slug) {
+            $('#adFilterInput3').val(slug);
+            $('#adFilterForm3').submit();
+        }
+        </script>
 @endsection

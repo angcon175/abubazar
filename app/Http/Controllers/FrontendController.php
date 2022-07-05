@@ -24,9 +24,9 @@ use App\Notifications\LogoutNotification;
 use Modules\Blog\Entities\PostCategory;
 use Modules\Testimonial\Entities\Testimonial;
 use Modules\Category\Transformers\CategoryResource;
+use DB;
 
-class 
-FrontendController extends Controller
+class FrontendController extends Controller
 {
     /**
      * View Home page
@@ -86,7 +86,8 @@ FrontendController extends Controller
         })->count();
         $data['towns'] = Town::orderBy('name')->get();
         $data['total_ads'] = Ad::activeCategory()->active()->count();
-
+        $data['admin_ads_category'] = DB::table('admin_ads')->where('image_position', 0)->where('status', 1)->inRandomOrder()->first();
+        $data['admin_ads_slider'] = DB::table('admin_ads')->where('image_position', 1)->where('status', 1)->inRandomOrder()->first();
         return view('frontend.index', $data);
     }
 
@@ -112,6 +113,8 @@ FrontendController extends Controller
         $data['recentads'] = $recentads;
         $data['towns'] = Town::orderBy('name')->get();
         $data['total_ads'] = Ad::activeCategory()->active()->count();
+        $data['admin_ads_category'] = DB::table('admin_ads')->where('image_position', 0)->where('status', 1)->inRandomOrder()->first();
+        $data['admin_ads_slider'] = DB::table('admin_ads')->where('image_position', 1)->where('status', 1)->inRandomOrder()->first();
 
         return view('frontend.index_02', $data);
     }
@@ -136,7 +139,8 @@ FrontendController extends Controller
         $data['towns']  = Town::orderBy('name')->get();
         $data['plans']  = $plans;
         $data['total_ads'] = Ad::activeCategory()->active()->count();
-
+        $data['admin_ads_category'] = DB::table('admin_ads')->where('image_position', 0)->where('status', 1)->inRandomOrder()->first();
+        $data['admin_ads_slider'] = DB::table('admin_ads')->where('image_position', 1)->where('status', 1)->inRandomOrder()->first();
         currentCurrency();
 
         return view('frontend.index_03', $data);

@@ -47,6 +47,9 @@
                         href="{{ route('setting.index', 'cms') }}">{{ __('cms') }}</a>
                     <!-- <a class="nav-link {{ request()->page == 'social_login' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'social_login') }}">{{ __('social_login') }}</a> -->
+                    <a class="nav-link {{ Route::is('admin.ads.show') ? 'active' : '' }}" href="{{ route('admin.ads.show') }}">
+                        {{ __('Admin Ads') }}
+                    </a>
                 </div>
             </div>
             <div class="col-10">
@@ -88,6 +91,10 @@
                     <div class="tab-pane fade {{ request()->page == 'seo' ? 'show active' : '' }}" id="seo"
                         role="tabpanel" aria-labelledby="homee">
                         @yield('seo-setting')
+                    </div>
+                    <div class="tab-pane fade {{ Route::is('admin.ads.show') ? 'show active' : '' }}" id="admin-ads"
+                        role="tabpanel" aria-labelledby="homee">
+                        @yield('admin-ads-setting')
                     </div>
                     <div class="tab-pane fade {{ request()->page == 'cms' ? 'show active' : '' }}" id="cms"
                         role="tabpanel" aria-labelledby="cms">

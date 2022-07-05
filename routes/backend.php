@@ -73,6 +73,14 @@ Route::prefix('admin')->middleware(['auth:super_admin', 'setlang'])->group(funct
     Route::put('/ads', [CmsSettingController::class, 'updateAds'])->name('admin.ads.update');
     Route::put('/contact', [CmsSettingController::class, 'updateContact'])->name('admin.contact.update');
     Route::put('/auth-content', [CmsSettingController::class, 'updateAuthContent'])->name('admin.authcontent.update');
+    
+    // admin ads
+    Route::get('details-page-ads', [SettingsController::class, 'showAdminAds'])->name('admin.ads.show');
+    Route::post('details-page-ads', [SettingsController::class, 'storAdminAds'])->name('admin.ads.store');
+    Route::post('details-page-ads-update/{id}', [SettingsController::class, 'updateAdminAds'])->name('admin.ads.update');
+    Route::get('details-page-ads-delete/{id}', [SettingsController::class, 'deleteAdminAds'])->name('admin.ads.delete');
+    Route::get('details-page-ads-status', [SettingsController::class, 'statusAdminAds'])->name('admin.ads.status');
+
 });
 
 // Admin Reset Password

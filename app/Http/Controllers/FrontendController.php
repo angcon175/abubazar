@@ -69,13 +69,14 @@ class FrontendController extends Controller
         $ads = AdResource::collection($ad_data->get());
         $categories = CategoryResource::collection(Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
-        })->get());
+        })->oldest('order')->get());
         $recommendedAds = AdResource::collection($ad_data->where('featured', true)->take(12)->latest()->get());
         $latestAds = AdResource::collection(Ad::activeCategory()->with(['customer', 'city', 'category:id,name,icon'])->active()->where('featured', '!=', 1)->take(12)->latest()->get());
 
         $data['ads'] = collectionToResource($ads);
         $data['categories'] = collectionToResource($categories);
-        $data['recommendedAds'] = collectionToResource($recommendedAds);
+        // $data['recommendedAds'] = collectionToResource($recommendedAds);
+        $data['recommendedAds'] = Ad::where('featured', 1)->get();
         $data['latestAds'] = collectionToResource($latestAds);
 
         $data['verified_users'] = Customer::whereNotNull('email_verified_at')->count();
@@ -446,16 +447,33 @@ class FrontendController extends Controller
         $ad->load('galleries');
         return view('frontend.single-ad-gallery', compact('ad'));
     }
-
-
-
-
+    
     public function AllJobs()
     {
          return view('frontend.all_jobs');
     }
 
+    public function CountryToCity(Request $request, $id)
+    {
+         $town  = DB::table('towns')->where('city_id', $id)->get();
+         $city  = DB::table('cities')->where('id', $id)->first();
+         $html = '';
+        if($town && count($town) > 0 ){
+            $html .= '<ul>';
+            foreach($town as $k => $val){
+                $route = route('frontend.adlist.search',['city' => $city->name, 'town' => $val->name ]);
+                $html .= '<li><a class="nav-link" href="'.$route.'">'.$val->name.'</a></li>';
+            }
+            $html .= '</ul>';
+        }else{
+            $html .= '<ul>';
+                $html .= '<li class="not_found"><a href="#">'.'Data not found'.'</a></li>';
+            $html .= '</ul>';
+        } 
+        $response['html'] = $html;     
+        $response['city'] = $city;     
 
-
-
+        return response()->json($response);
+    }
+    
 }

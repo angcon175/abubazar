@@ -146,45 +146,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    @php
+                        $countries = Modules\Location\Entities\City::orderBy('name')->get();
+                        $country_name = explode(',', request('country'));
+                    @endphp
                     <div class="city_list">
                         <ul>
-                            <li>
-                                <a class="nav-link" href="#">California <i class="fa fa-angle-right"></i></a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">Kansas <i class="fa fa-angle-right"></i></a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">Louisiana <i class="fa fa-angle-right"></i></a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">New Jersey <i class="fa fa-angle-right"></i></a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">New York <i class="fa fa-angle-right"></i></a>
-                            </li>
+                            @if(isset($countries) && count($countries) > 0)
+                                @foreach ($countries as $country)
+                                    <li>
+                                        <a class="nav-link country_name" id="selectCountry" data-id="{{$country->id}}" href="javascript:;">
+                                            {{ Str::ucfirst($country->name) }}
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
-                    <div class="area_list">
-                        <ul>
-                            <li>
-                                <a class="nav-link" href="#">Bogalusa</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">Monroe</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">New Orleans</a>
-                            </li>
-                        </ul>
+                    <div class="loadding_icon text-center" style="display: none;">
+                        <img src="{{ asset('loading.gif') }}" alt="">
+                    </div>
+                    <div class="area_list" id="city_show">
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
 <script src="{{ asset('frontend/') }}/js/plugins/jquery.min.js"></script>
  <script>

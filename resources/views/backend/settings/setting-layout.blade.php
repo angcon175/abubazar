@@ -45,8 +45,8 @@
                         href="{{ route('setting.index', 'seo') }}">{{ __('seo') }}</a>
                     <a class="nav-link {{ request()->page == 'cms' ? 'active' : '' }}"
                         href="{{ route('setting.index', 'cms') }}">{{ __('cms') }}</a>
-                    <!-- <a class="nav-link {{ request()->page == 'social_login' ? 'active' : '' }}"
-                        href="{{ route('setting.index', 'social_login') }}">{{ __('social_login') }}</a> -->
+                    <a class="nav-link {{ request()->page == 'social_login' ? 'active' : '' }}"
+                        href="{{ route('setting.index', 'social_login') }}">{{ __('social_login') }}</a>
                     <a class="nav-link {{ Route::is('admin.ads.show') ? 'active' : '' }}" href="{{ route('admin.ads.show') }}">
                         {{ __('Admin Ads') }}
                     </a>

@@ -145,9 +145,13 @@
                             <img src="{{ asset('frontend/images/money-bag.jpg') }}" class="w-100" class="flex-shrink-0 me-3" alt="">
                         </div>
                         <div class="banner_content">
-                             <h3>Start making money!</h3>
-                             <p>Do you have something to sell? Post your first ad and start making money!</p>
-                             <a href="#" class="btn btn-primary">Post your ad for free</a>
+                            <h3>Start making money!</h3>
+                            <p>Do you have something to sell? Post your first ad and start making money!</p>
+                            @if (auth('customer')->check())
+                                <a href="{{ route('frontend.post') }}" class="btn btn-primary">Post your ad for free</a>
+                            @else
+                                <a href="{{ route('customer.login') }}" class="btn btn-primary">Post your ad for free</a>
+                            @endif
                         </div>
                     </div>
                 </div>

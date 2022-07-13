@@ -161,7 +161,7 @@
                         <div class="banner_content">
                              <h3>AbuBazar Jobs</h3>
                              <p>Looking to hire or get hired in Bangladesh ? Get access to 800k+ CVs or browse through 800+ job vacancies!</p>
-                             <a href="{{ route('frontend.all.jobs') }}" target="_blank" class="btn btn-success">Explore More</a>
+                             <a href="{{ route('frontend.all.jobs') }}" target="_blank" class="btn btn-danger explore_more">Explore More</a>
                         </div>
                     </div>
                 </div>

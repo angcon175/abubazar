@@ -226,7 +226,11 @@
         {{ __('do you have something to sell') }}
         </h2>
         <div class="text-center">
-            <a href="{{ route('customer.login') }}" class="btn">Post Here</a>
+            @if (auth('customer')->check())
+                <a href="{{ route('frontend.post') }}" class="btn">Post Here</a>
+            @else
+                <a href="{{ route('customer.login') }}" class="btn">Post Here</a>
+            @endif
         </div>
     </div>
 </section>

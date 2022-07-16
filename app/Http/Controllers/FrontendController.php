@@ -76,7 +76,7 @@ class FrontendController extends Controller
         $data['ads'] = collectionToResource($ads);
         $data['categories'] = collectionToResource($categories);
         // $data['recommendedAds'] = collectionToResource($recommendedAds);
-        $data['recommendedAds'] = Ad::where('featured', 1)->get();
+        $data['recommendedAds'] = Ad::where('featured', 1)->orderBy('title')->get();
         $data['latestAds'] = collectionToResource($latestAds);
 
         $data['verified_users'] = Customer::whereNotNull('email_verified_at')->count();
@@ -302,6 +302,7 @@ class FrontendController extends Controller
             'username' => "required|unique:customers,username",
             'email' => "required|email|unique:customers,email",
             'password' => "required|confirmed|min:8|max:50",
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         $created = Customer::create([

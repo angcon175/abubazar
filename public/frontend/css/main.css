@@ -29652,6 +29652,10 @@ a.btn.post_ads:hover {
     box-shadow: none !important;
 }
 
+.banner_wrapper .explore_more{
+    color: #fff !important;
+}
+
 
 .banner_wrapper .btn.btn-primary {
     background: #232121;

@@ -10,12 +10,7 @@ use App\Http\Controllers\Frontend\DashboardController;
 
 // show website pages
 Route::group(['as' => 'frontend.'], function () {
-
     Route::get('/jobs', [FrontendController::class, 'AllJobs'])->name('all.jobs');
-
-
-
-
     Route::get('/', [FrontendController::class, 'index'])->name('index');
     Route::get('about', [FrontendController::class, 'about'])->name('about');
     Route::get('faq', [FrontendController::class, 'faq'])->name('faq');
@@ -33,11 +28,10 @@ Route::group(['as' => 'frontend.'], function () {
     Route::get('blog', [FrontendController::class, 'blog'])->name('blog');
     Route::get('blog/{blog:slug}', [FrontendController::class, 'singleBlog'])->name('single.blog');
     Route::get('blog/comments/count/{post_id}', [FrontendController::class, 'commentsCount']);
-
+    Route::get('country/to/city/{id}', [FrontendController::class, 'CountryToCity']);
     // customer dashboard
     Route::prefix('dashboard')->middleware(['auth:customer','verified'])->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
-
         // Ad Create
         Route::prefix('post')->middleware('checkplan')->group(function () {
             Route::get('/', [AdPostController::class, 'postStep1'])->name('post');
@@ -49,7 +43,6 @@ Route::group(['as' => 'frontend.'], function () {
             Route::get('/step2/back/{slug?}', [AdPostController::class, 'postStep2Back'])->name('post.step2.back');
             Route::get('/step1/back/{slug?}', [AdPostController::class, 'postStep1Back'])->name('post.step1.back');
         });
-
         // Ad Edit
         Route::prefix('post')->group(function () {
             Route::post('/gallery/images/{ad_gallery}', [AdPostController::class, 'adGalleryDelete'])->name('ad.gallery.delete');
@@ -61,11 +54,9 @@ Route::group(['as' => 'frontend.'], function () {
             Route::put('/step3/{ad:slug}/update', [AdPostController::class, 'updatePostStep3'])->name('post.step3.update');
             Route::get('/cancel/edit', [AdPostController::class, 'cancelAdPostEdit'])->name('post.cancel.edit');
         });
-
         // Messenger
         Route::get('message/{username?}', [MessangerController::class, 'index'])->name('message');
         Route::post('message/{username}', [MessangerController::class, 'sendMessage'])->name('message.store');
-
         Route::get('post-rules', [DashboardController::class, 'postRules'])->name('post.rules');
         Route::get('ad/{ad:slug}', [DashboardController::class, 'editAd'])->name('editad');
         Route::get('ads', [DashboardController::class, 'myAds'])->name('adds');
@@ -82,7 +73,6 @@ Route::group(['as' => 'frontend.'], function () {
         Route::delete('account-delete/{customer}', [DashboardController::class, 'deleteAccount'])->name('account.delete');
     });
 });
-
 // Verification Routes
 Route::middleware('auth:customer', 'setlang')->group(function() {
     Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');

@@ -268,8 +268,8 @@
                 {{-- Setting --}}
                 @if (userCan('setting.view'))
                     <x-sidebar-dropdown
-                        :linkActive="Route::is('language.*') || request()->is('admin/settings*') || Route::is('module.themes.index') || Route::is('module.currency.*') ? true : false"
-                        :subLinkActive="Route::is('language.*') || request()->is('admin/settings*') || Route::is('module.themes.index') || Route::is('module.currency.*') ? true : false"
+                        :linkActive="Route::is('language.*') || request()->is('admin/settings*') || Route::is('admin.ads.show') || Route::is('module.themes.index') || Route::is('module.currency.*') ? true : false"
+                        :subLinkActive="Route::is('language.*') || request()->is('admin/settings*') || Route::is('admin.ads.show') || Route::is('module.themes.index') || Route::is('module.currency.*') ? true : false"
                         icon="fas fa-cog">
                         @slot('title')
                             {{ __('settings') }}

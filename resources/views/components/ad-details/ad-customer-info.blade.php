@@ -14,30 +14,34 @@
         </div>
     </div>
     <ul class="contact">
-        <li class="contact-item">
-            <span class="icon">
-                <x-svg.envelope-icon />
-            </span>
-            <h6 class="text--body-3">{{ $customer->email }}</h6>
-        </li>
-        <li class="contact-item">
-            <span class="icon">
-                <x-svg.address-icon />
-            </span>
-            <h6 class="text--body-3">{{ $city->name }}, {{ $town->name }}</h6>
-        </li>
-        @if (!is_null($link))
-        <li class="contact-item">
-            <span class="icon">
-                <x-svg.globe-icon />
-            </span>
-            <a target="_blank" href="{{ $link }}" class="text--body-3">
-                {{ $link }}
+        <input type="checkbox" id="showCustomerInfo" class="from-control">
+        <label for="showCustomerInfo" class="mb-2 customerInfo" id="showLableInfo">Show Customer Info</label>
+        <div id="infoShow" style="display: none;">
+            <li class="contact-item">
                 <span class="icon">
-                   <x-svg.target-blank-icon />
+                    <x-svg.envelope-icon />
                 </span>
-            </a>
-        </li>
-        @endif
+                <h6 class="text--body-3">{{ $customer->email }}</h6>
+            </li>
+            <li class="contact-item">
+                <span class="icon">
+                    <x-svg.address-icon />
+                </span>
+                <h6 class="text--body-3">{{ $city->name }}, {{ $town->name }}</h6>
+            </li>
+            @if (!is_null($link))
+                <li class="contact-item">
+                    <span class="icon">
+                        <x-svg.globe-icon />
+                    </span>
+                    <a target="_blank" href="{{ $link }}" class="text--body-3">
+                        {{ $link }}
+                        <span class="icon">
+                        <x-svg.target-blank-icon />
+                        </span>
+                    </a>
+                </li>
+            @endif
+        </div>
     </ul>
 </div>

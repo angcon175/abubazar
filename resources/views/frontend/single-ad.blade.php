@@ -5,7 +5,7 @@
 @endsection
 
 @php
-$keywords = sprintf('%s, %s', $settings->seo_meta_keywords, join(', ', $ad->adFeatures->pluck('name')->all()));
+    $keywords = sprintf('%s, %s', $settings->seo_meta_keywords, join(', ', $ad->adFeatures->pluck('name')->all()));
 @endphp
 
 @section('meta')
@@ -112,4 +112,15 @@ $keywords = sprintf('%s, %s', $settings->seo_meta_keywords, join(', ', $ad->adFe
     <script src="{{ asset('frontend') }}/js/plugins/swiper-bundle.min.js"></script>
     <script src="{{ asset('frontend') }}/js/swiperslider.config.js"></script>
     @stack('ad_scripts')
+    <script>
+        $('#showCustomerInfo').click(function(){
+            if($(this).is(":checked")){
+                $(".customerInfo").text('Hide Customer Info');
+                $("#infoShow").show();
+            } else if($(this).is(":not(:checked)")){
+                $(".customerInfo").text('Show Customer Info');
+                $("#infoShow").hide();
+            }
+        });
+    </script>
 @endsection

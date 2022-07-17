@@ -12,7 +12,6 @@
             </span>
             {{ $phone }}
         </div>
-
         <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
     </div>
 

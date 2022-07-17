@@ -81,6 +81,12 @@ Route::prefix('admin')->middleware(['auth:super_admin', 'setlang'])->group(funct
     Route::get('details-page-ads-delete/{id}', [SettingsController::class, 'deleteAdminAds'])->name('admin.ads.delete');
     Route::get('details-page-ads-status', [SettingsController::class, 'statusAdminAds'])->name('admin.ads.status');
 
+    // Report
+    Route::get('/reports', [App\Http\Controllers\ReportAdsController::class, 'Index'])->name('admin.ads.report');
+    Route::get('/reports/view/{id}', [App\Http\Controllers\ReportAdsController::class, 'show'])->name('admin.reports.view');
+    Route::get('/reports/delete/{id}', [App\Http\Controllers\ReportAdsController::class, 'destroy'])->name('admin.reports.destroy');
+
+
 });
 
 // Admin Reset Password

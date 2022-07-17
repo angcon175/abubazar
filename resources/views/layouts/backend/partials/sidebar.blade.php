@@ -136,6 +136,17 @@
                     @endif
                 @endif
 
+                {{-- Ads Reports --}}
+                @if (Module::collections()->has('Customer') && userCan('customer.view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.ads.report') }}"
+                            class="nav-link {{ Route::is('admin.ads.report') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>{{ __('Ads Reports') }}</p>
+                        </a>
+                    </li>
+                @endif
+
                 {{-- Customer --}}
                 @if (Module::collections()->has('Customer') && userCan('customer.view'))
                     <li class="nav-item">

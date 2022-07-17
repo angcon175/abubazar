@@ -202,5 +202,4 @@
         $('.city_name').hide();
         $('.go_back').hide();
      });
-    
 </script>

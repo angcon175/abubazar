@@ -72,6 +72,9 @@ Route::group(['as' => 'frontend.'], function () {
         Route::post('wishlist', [DashboardController::class, 'addToWishlist'])->name('add.wishlist');
         Route::delete('account-delete/{customer}', [DashboardController::class, 'deleteAccount'])->name('account.delete');
     });
+
+    Route::post('/ads/report', [App\Http\Controllers\ReportAdsController::class, 'store'])->name('report.store');
+        
 });
 // Verification Routes
 Route::middleware('auth:customer', 'setlang')->group(function() {
@@ -79,3 +82,4 @@ Route::middleware('auth:customer', 'setlang')->group(function() {
     Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
     Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
+

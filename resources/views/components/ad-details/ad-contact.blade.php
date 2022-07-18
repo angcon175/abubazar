@@ -14,7 +14,6 @@
         </div>
         <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
     </div>
-
     @if (auth('customer')->check() && auth('customer')->user()->username !== $name )
         <form action="{{ route('frontend.message.store', $name) }}" method="POST"
             id="sendMessageForm">

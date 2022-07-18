@@ -1,4 +1,4 @@
-<header class="header header--home-three header--four">
+<header class="header header--home-three header--four  @yield('job')">
     <div class="container navigation-bar">
         <div class="d-flex align-items-center ">
             <button class="toggle-icon  ">

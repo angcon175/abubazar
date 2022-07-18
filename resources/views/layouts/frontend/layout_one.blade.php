@@ -89,9 +89,11 @@
                 dataType: "json",
                 beforeSend: function () {
                     $('.loadding_icon').show();
+                    $('.city_name').hide();
                 },
                 success: function(data) {
                     $('.loadding_icon').hide();
+                    $('.city_name').show();
                     $("#city_show").html(data.html);
                     $("#country_name").text(data.city.name);
                 }

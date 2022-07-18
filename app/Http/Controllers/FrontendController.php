@@ -466,8 +466,15 @@ class FrontendController extends Controller
         if($town && count($town) > 0 ){
             $html .= '<ul>';
             foreach($town as $k => $val){
+                $town_ads_count = DB::table('ads')->where('town_id', $val->id)->count();
                 $route = route('frontend.adlist.search',['city' => $city->name, 'town' => $val->name ]);
-                $html .= '<li><a class="nav-link" href="'.$route.'">'.$val->name.'</a></li>';
+                $html .= '
+                        <li>
+                            <a class="nav-link" href="'.$route.'">
+                            '.$val->name.'
+                              <span>('.$town_ads_count.')</span>
+                            </a>
+                        </li>';
             }
             $html .= '</ul>';
         }else{

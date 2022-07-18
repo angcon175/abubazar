@@ -135,7 +135,7 @@
                         Location
                         <span class="city_name">
                             <i class="fa fa-angle-right"></i>
-                            Louisiana
+                            <span id="country_name"></span>
                         </span>
                         <span class="go_back">
                             <i class="fa fa-angle-left"></i>
@@ -155,10 +155,14 @@
                         <ul>
                             @if(isset($countries) && count($countries) > 0)
                                 @foreach ($countries as $country)
+                                    @php
+                                       $country_ads = DB::table('ads')->where('city_id', $country->id)->count();
+                                    @endphp
                                     <li>
                                         <a class="nav-link country_name" id="selectCountry" data-id="{{$country->id}}" href="javascript:;">
                                             {{ Str::ucfirst($country->name) }}
                                             <i class="fa fa-angle-right"></i>
+                                            <span><strong>({{ $country_ads }})</strong></span>
                                         </a>
                                     </li>
                                 @endforeach
@@ -191,6 +195,8 @@
         $('.city_list').show();
         $('.area_list').hide();
         $('.city_name').hide();
+        $('.area_list').empty();
+        $('#country_name').empty();
         $('.go_back').hide();
      });
 </script>

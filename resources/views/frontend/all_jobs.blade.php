@@ -1,6 +1,7 @@
 @extends('layouts.frontend.layout_one')
 
 @section('title', __('blog_posts'))
+@section('job', 'job_menu')
 
 @section('content')
     <!-- breedcrumb section start  -->

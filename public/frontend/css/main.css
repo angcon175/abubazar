@@ -29773,3 +29773,34 @@ a.btn.post_ads:hover {
     padding: 0px 0px 0px 7px;
     }
 }
+
+.job_menu {
+    background: #85bc47;
+    color: #000 !important;
+}
+
+.job_menu .menu__link {
+    color: #ffffff;
+}
+
+.header.header--home-three.header--four.job_menu .navigation-bar__buttons a {
+    color: #fff !important;
+}
+
+.job_menu .menu__link {
+    color: #ffffff;
+}
+.job_menu .menu__link {
+    color: #ffffff;
+}
+
+.header.header--home-three.header--four.job_menu .menu__link:hover {
+    color: #D32325;
+}
+
+
+
+
+
+
+

@@ -92,11 +92,13 @@ class AdPostController extends Controller
             if (empty(session('ad'))) {
                 $ad = new Ad();
                 $ad['slug'] = Str::slug($request->title);
+                $ad['show_customer_info'] = $request->show_customer_info;
                 $ad->fill($validatedData);
                 $request->session()->put('ad', $ad);
             } else {
                 $ad = session('ad');
                 $ad['slug'] = Str::slug($request->title);
+                $ad['show_customer_info'] = $request->show_customer_info;
                 $ad->fill($validatedData);
                 $request->session()->put('ad', $ad);
             }
@@ -120,7 +122,7 @@ class AdPostController extends Controller
             'phone' => 'required',
             'phone_2' => 'sometimes',
             'city_id' => 'required',
-            'town_id' => 'required',
+            // 'town_id' => 'required',
         ]);
 
         try {

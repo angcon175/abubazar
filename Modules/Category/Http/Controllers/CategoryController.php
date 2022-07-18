@@ -35,7 +35,7 @@ class CategoryController extends Controller
         if (!userCan('category.view')) {
             return abort(403);
         }
-        $categories = Category::withCount('ads')->oldest('order')->paginate(10);
+        $categories = Category::withCount('ads')->oldest('order')->orderBy('name')->paginate(10);
         return view('category::category.index', compact('categories'));
     }
 

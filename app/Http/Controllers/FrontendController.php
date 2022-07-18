@@ -38,7 +38,7 @@ class FrontendController extends Controller
         $data = [];
         $topCategories = CategoryResource::collection(Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
-        })->withCount('ads as ad_count')->latest('ad_count')->take(12)->get());
+        })->withCount('ads as ad_count')->latest('ad_count')->take(12)->orderBy('name')->get());
         $home_page = Theme::first()->home_page;
         $topCities = City::withCount('ads as ad_count')->latest('ad_count')->take(6)->get();
 
@@ -69,7 +69,7 @@ class FrontendController extends Controller
         $ads = AdResource::collection($ad_data->get());
         $categories = CategoryResource::collection(Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
-        })->oldest('order')->get());
+        })->oldest('order')->orderBy('name')->get());
         $recommendedAds = AdResource::collection($ad_data->where('featured', true)->take(12)->latest()->get());
         $latestAds = AdResource::collection(Ad::activeCategory()->with(['customer', 'city', 'category:id,name,icon'])->active()->where('featured', '!=', 1)->take(12)->latest()->get());
 
@@ -102,7 +102,7 @@ class FrontendController extends Controller
      */
     public function homePage2($data)
     {
-        $categories = CategoryResource::collection(Category::active()->withCount('ads as ad_count')->latest()->get());
+        $categories = CategoryResource::collection(Category::active()->withCount('ads as ad_count')->latest()->orderBy('name')->get());
         $recentads = AdResource::collection(Ad::activeCategory()->with('category', 'customer', 'city')->active()->latest('id')->get()->take(4));
         $featured_ad_data = Ad::activeCategory()->with(['customer', 'city', 'category:id,name,icon',])->active()->take(6)->latest()->get();
         $featuredad = AdResource::collection($featured_ad_data);
@@ -128,7 +128,7 @@ class FrontendController extends Controller
      */
     public function homePage3($data)
     {
-        $categories = CategoryResource::collection(Category::active()->latest()->get());
+        $categories = CategoryResource::collection(Category::active()->latest()->orderBy('name')->get());
         $plans = Plan::all();
         $featured_ad_data = Ad::activeCategory()->with(['customer', 'city', 'category:id,name,icon',])->active()->take(8)->latest()->get();
         $featuredad = AdResource::collection($featured_ad_data);

@@ -128,9 +128,13 @@
                                 @isset($ad->negotiable)
                                     <input {{ $ad->negotiable == 1 ? 'checked':'' }} value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" />
                                 @else
-                                    <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" />
+                                    <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme"/>
                                 @endisset
                                 <x-forms.label name="negotiable" required="true" class="form-check-label" for="checkme" />
+                            </div>
+                            <div class="form-check">
+                                <input value="1" name="show_customer_info" type="checkbox" class="form-check-input" id="showcustomerinfo" checked/>
+                                <label class="form-check-label" id="changeText">Show Customer Info</label>
                             </div>
                         </div>
                         @if (session('user_plan')->featured_limit)
@@ -162,4 +166,18 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('frontend_script')
+    <script>
+        $("#showcustomerinfo").click(function(){
+            if($(this).is(":checked")){
+                $("#showcustomerinfo").val(1);
+                $("#changeText").text("Show Customer Info");
+            } else if($(this).is(":not(:checked)")){
+                $("#changeText").text("Hide Customer Info");
+                $("#showcustomerinfo").val(0);
+            }
+        });
+    </script>
 @endsection

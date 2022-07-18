@@ -63,7 +63,7 @@
                 <div class="col-md-6">
                     <div class="input-select">
                         <x-forms.label name="town" for="townn" />
-                        <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
+                        <select name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
                             <option value="" hidden>{{ __('select_town') }}</option>
                         </select>
                     </div>

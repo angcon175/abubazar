@@ -2,7 +2,7 @@
     <div class="user">
         <div class="img">
             @if ($customer->image)
-                <img src="{{ asset($customer->image) }}" alt="">
+                <img src="{{ asset($customer->image) }}" alt="{{$customer->name}}">
             @else
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png"
                 alt="user-photo" />
@@ -14,9 +14,9 @@
         </div>
     </div>
     <ul class="contact">
-        <input type="checkbox" id="showCustomerInfo" class="from-control">
-        <label for="showCustomerInfo" class="mb-2 customerInfo" id="showLableInfo">Show Customer Info</label>
-        <div id="infoShow" style="display: none;">
+        <!-- <input type="checkbox" id="showCustomerInfo" class="from-control">
+        <label for="showCustomerInfo" class="mb-2 customerInfo" id="showLableInfo">Show Customer Info</label> -->
+        <div id="infoShow">
             <li class="contact-item">
                 <span class="icon">
                     <x-svg.envelope-icon />

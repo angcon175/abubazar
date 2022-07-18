@@ -46,14 +46,24 @@
                         <input name="phone_2" id="backupPhone" type="tel" class="backupPhone" placeholder="{{ __('phone_number') }}" value="{{ $ad->phone_2 }}"/>
                     </div>
                 </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-check">
+                        <input name="show_customer_info" type="checkbox" class="form-check-input" id="showcustomerinfo" @if($adsInfo->show_customer_info == 1) checked @endif/>
+                        @if($adsInfo->show_customer_info == 1)
+                            <label class="form-check-label" id="changeText">Show Customer Info</label>
+                        @else
+                            <label class="form-check-label" id="changeText">Hide Customer Info</label>
+                        @endif
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="input-select">
                         <x-forms.label name="city" for="cityy" />
                         <select name="city_id" id="cityy" class="form-control select-bg @error('city_id') border-danger @enderror">
                             <option class="d-none" value="" selected>{{ __('select_city') }}</option>
-                                @foreach ($citis as $city)
-                                    <option {{ $city->id == $ad->city_id ? 'selected':'' }} value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
+                            @foreach ($citis as $city)
+                                <option {{ $city->id == $ad->city_id ? 'selected':'' }} value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -90,11 +100,22 @@
 @endsection
 
 @push('post-ad-scripts')
-<script>
-    // ad update and cancel edit
-    function updateCancelEdit(){
-        $('#cancel_edit_input').val(1)
-        $('#step2_edit_form').submit()
-    }
-</script>
+    <script>
+        // ad update and cancel edit
+        function updateCancelEdit(){
+            $('#cancel_edit_input').val(1)
+            $('#step2_edit_form').submit()
+        }
+    </script>
+    <script>
+        $("#showcustomerinfo").click(function(){
+            if($(this).is(":checked")){
+                $("#showcustomerinfo").val(1);
+                $("#changeText").text("Show Customer Info");
+            } else if($(this).is(":not(:checked)")){
+                $("#changeText").text("Hide Customer Info");
+                $("#showcustomerinfo").val(0);
+            }
+        });
+    </script>
 @endpush

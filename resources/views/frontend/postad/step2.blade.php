@@ -43,6 +43,12 @@
                         <input name="phone_2" id="backupPhone" type="tel" class="backupPhone" placeholder="{{ __('phone_number') }}" value="{{ $ad->phone_2 ?? '' }}"/>
                     </div>
                 </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-check">
+                        <input value="1" name="show_customer_info" type="checkbox" class="form-check-input" id="showcustomerinfo" checked/>
+                        <label class="form-check-label" id="changeText">Show Customer Info</label>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="input-select">
                         <x-forms.label name="city" for="cityy" />
@@ -83,4 +89,18 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('frontend_script')
+    <script>
+        $("#showcustomerinfo").click(function(){
+            if($(this).is(":checked")){
+                $("#showcustomerinfo").val(1);
+                $("#changeText").text("Show Customer Info");
+            } else if($(this).is(":not(:checked)")){
+                $("#changeText").text("Hide Customer Info");
+                $("#showcustomerinfo").val(0);
+            }
+        });
+    </script>
 @endsection

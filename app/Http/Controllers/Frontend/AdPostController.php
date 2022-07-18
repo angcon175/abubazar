@@ -92,13 +92,11 @@ class AdPostController extends Controller
             if (empty(session('ad'))) {
                 $ad = new Ad();
                 $ad['slug'] = Str::slug($request->title);
-                $ad['show_customer_info'] = $request->show_customer_info;
                 $ad->fill($validatedData);
                 $request->session()->put('ad', $ad);
             } else {
                 $ad = session('ad');
                 $ad['slug'] = Str::slug($request->title);
-                $ad['show_customer_info'] = $request->show_customer_info;
                 $ad->fill($validatedData);
                 $request->session()->put('ad', $ad);
             }
@@ -129,7 +127,7 @@ class AdPostController extends Controller
             $ad = session('ad');
             $ad->fill($validatedData);
             $request->session()->put('ad', $ad);
-
+            $ad['show_customer_info'] = $request->show_customer_info;
             $this->step1Success2();
             return redirect()->route('frontend.post.step3');
         } catch (\Throwable $th) {
@@ -225,11 +223,11 @@ class AdPostController extends Controller
     {
         if (auth('customer')->id() == $ad->customer_id) {
             $ad = collectionToResource($this->setAdEditStep2Data($ad));
-
+            $adsInfo = DB::table('ads')->where('id', $ad->id)->first();
             if (session('step2') && session('edit_mode')) {
                 $citis = City::latest('id')->get();
 
-                return view('frontend.postad_edit.step2', compact('ad', 'citis'));
+                return view('frontend.postad_edit.step2', compact('ad', 'citis', 'adsInfo'));
             } else {
                 return redirect()->route('frontend.dashboard');
             }
@@ -317,11 +315,18 @@ class AdPostController extends Controller
             'town_id' => 'required',
         ]);
 
+        if($request->show_customer_info) {
+            $showcustomerinfo = 1;
+        }else {
+            $showcustomerinfo = 0;
+        }
+
         $ad->update([
             'phone' => $request->phone,
             'phone_2' => $request->phone_2,
             'city_id' => $request->city_id,
             'town_id' => $request->town_id,
+            'show_customer_info' => $showcustomerinfo,
         ]);
 
         if ($request->cancel_edit) {

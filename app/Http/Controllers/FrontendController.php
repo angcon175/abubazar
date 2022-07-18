@@ -301,8 +301,7 @@ class FrontendController extends Controller
             'name' => "required",
             'username' => "required|unique:customers,username",
             'email' => "required|email|unique:customers,email",
-            'password' => "required|confirmed|min:8|max:50",
-            'g-recaptcha-response' => 'required|captcha'
+            'password' => "required|confirmed|min:8|max:50"
         ]);
 
         $created = Customer::create([

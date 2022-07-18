@@ -136,28 +136,8 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/productslider.css') }}" />
 @endsection
 @section('frontend_script')
-<<<<<<< HEAD
-    <script src="{{ asset('frontend') }}/js/plugins/slick.min.js"></script>
-
-    <script src="{{ asset('frontend') }}/js/plugins/swiper-bundle.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/swiperslider.config.js"></script>
-    @stack('ad_scripts')
-    <script>
-        $('#showCustomerInfo').click(function(){
-            if($(this).is(":checked")){
-                $(".customerInfo").text('Hide Customer Info');
-                $("#infoShow").show();
-            } else if($(this).is(":not(:checked)")){
-                $(".customerInfo").text('Show Customer Info');
-                $("#infoShow").hide();
-            }
-        });
-    </script>
-@endsection
-=======
 <script src="{{ asset('frontend') }}/js/plugins/slick.min.js"></script>
 <script src="{{ asset('frontend') }}/js/plugins/swiper-bundle.min.js"></script>
 <script src="{{ asset('frontend') }}/js/swiperslider.config.js"></script>
 @stack('ad_scripts')
 @endsection
->>>>>>> c646326419e54049c60770dc439bdabd71cbac44

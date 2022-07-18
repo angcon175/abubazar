@@ -18521,7 +18521,6 @@ section.section.registration {
 .categorylist-card__icon {
     display: inline-block;
     border-radius: 6px;
-    background-color: #fff;
     color: #D32323;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;

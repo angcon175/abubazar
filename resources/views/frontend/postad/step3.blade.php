@@ -18,7 +18,7 @@
         <form action="{{ route('frontend.post.step3.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="input-field--textarea">
-                <x-forms.label name="ad_description" for="description" />
+                <x-forms.label name="ad_description" required="true" for="description" />
                 <textarea required name="description" placeholder="{{ __('whats_your_thought') }}..." id="description" class="@error('description') border-danger @enderror"></textarea>
             </div>
             <div class="input-field--textarea">
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-lg-10">
                              <div class="input-field">
-                                 <input required name="features[]" type="text" placeholder="{{ __('feature') }}" id="adname" class="@error('title') border-danger @enderror"/>
+                                 <input name="features[]" type="text" placeholder="{{ __('feature') }}" id="adname" class="@error('title') border-danger @enderror"/>
                              </div>
                         </div>
                         <div class="col-lg-2 mt-10">
@@ -38,8 +38,8 @@
                 </div>
             </div>
             <div class="upload-wrapper">
-                <h3>{{ __('upload_photos') }}</h3>
-                <input id="file-1" type="file" name="images[]" multiple class="file" data-overwrite-initial="false" accept="image/png, image/jpg, image/jpeg">
+                <x-forms.label name="upload_photos" required="true" for="upload_photos" />
+                <input id="file-1" required type="file" name="images[]" multiple class="file" data-overwrite-initial="false" accept="image/png, image/jpg, image/jpeg">
             </div>
             <div class="dashboard-post__ads-bottom">
                 <div class="form-check">

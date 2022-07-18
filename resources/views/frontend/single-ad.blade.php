@@ -61,9 +61,7 @@
                         </span>
                         <div class="product-item__sidebar-top">
                             {{-- ad customer info --}}
-                            @if($ad->show_customer_info == 1)
-                                <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city" :link="$ad->website_link" />
-                            @endif
+                            <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city" :link="$ad->show_customer_info"/>
                             {{-- ad contact --}}
                             <x-ad-details.ad-contact :phone="$ad->phone" :name="$ad->customer->username" />
                             

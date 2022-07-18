@@ -33,7 +33,7 @@
                     </span>
                     @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
-               {{--  <div class="input-field">
+                <div class="input-field">
                     {!! NoCaptcha::renderJs() !!}
                     {!! NoCaptcha::display() !!}
                     @if ($errors->has('g-recaptcha-response'))
@@ -41,7 +41,7 @@
                             <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                         </span>
                     @endif
-                </div>--}}
+                </div>
                 <div class="registration-form__option">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="checkme" />

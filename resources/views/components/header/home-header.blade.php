@@ -31,7 +31,8 @@
                 <!-- Action Buttons -->
                 <div class="navigation-bar__buttons">
                     <a href="{{route('frontend.message')}}" class="chat-text"><i class="fa-solid fa-message"></i>
-                    {{__('Chat')}}</a>
+                     
+                </a>
                     @if (auth('customer')->check())
                     <a href="{{ route('frontend.dashboard') }}" class="user">
                         <div class="user__img-wrapper">

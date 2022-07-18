@@ -130,7 +130,7 @@
                                 @else
                                     <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme"/>
                                 @endisset
-                                <x-forms.label name="negotiable" required="true" class="form-check-label" for="checkme" />
+                                <x-forms.label name="negotiable"  class="form-check-label" for="checkme" />
                             </div>
                         </div>
                         @if (session('user_plan')->featured_limit)
@@ -142,7 +142,7 @@
                                     @else
                                         <input value="1" name="featured" type="checkbox" class="form-check-input" id="featured" />
                                     @endisset
-                                    <x-forms.label name="featured" required="true" class="form-check-label" for="featured" />
+                                    <x-forms.label name="featured"  class="form-check-label" for="featured" />
                                 </div>
                             </div>
                         @endif

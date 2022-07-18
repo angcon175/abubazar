@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-select">
-                        <x-forms.label name="city" for="cityy" />
+                        <x-forms.label name="city" required="true" for="cityy" />
                         <select required name="city_id" id="cityy" class="form-control select-bg @error('city_id') border-danger @enderror">
                             <option class="d-none" value="" selected>{{ __('select_city') }}</option>
                             @isset($ad->brand_id)
@@ -68,8 +68,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-select">
-                        <x-forms.label name="town" for="townn" />
-                        <select name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
+                        <x-forms.label  required="true" name="town" for="townn" />
+                        <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
                             <option value="" hidden>{{ __('select_town') }}</option>
                         </select>
                     </div>

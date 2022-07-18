@@ -31,7 +31,7 @@
 </div>
 @if($admin_ads_slider)
     <!-- Ads Banner -->
-    <div class="ads_banner mt-3">
+    <div class="ads_banner mt-3 mb-3">
         <div class="container">
             <img src="{{ asset($admin_ads_slider->ads_img) }}" width="img-fluid" alt="{{$admin_ads_slider->ads_name}}">
         </div>
@@ -100,7 +100,7 @@
     <!-- top-category section end  -->
 @if($admin_ads_category)
     <!-- Ads Banner -->
-    <div class="ads_banner">
+    <div class="ads_banner mt-3 mb-3">
         <div class="container">
             <img src="{{ asset($admin_ads_category->ads_img) }}" width="img-fluid" alt="{{$admin_ads_category->ads_name}}">
         </div>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="banner_content">
                              <h3>AbuBazar Jobs</h3>
-                             <p>Looking to hire or get hired in Bangladesh ? Get access to 800k+ CVs or browse through 800+ job vacancies!</p>
+                             <p>Are you looking suitable jobs ? Thousands of jobs on our Platform !</p>
                              <a href="{{ route('frontend.all.jobs') }}" target="_blank" class="btn btn-danger explore_more">Explore More</a>
                         </div>
                     </div>

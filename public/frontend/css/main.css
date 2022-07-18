@@ -44,7 +44,7 @@
 }
 
 .custom-sign-in {
-    padding: 0 30px 0 25px;
+    padding: 0 13px 0 25px;
     color: #d32323;
 }
 
@@ -4191,6 +4191,7 @@ a {
 
 .navigation-bar__search-field {
     position: relative;
+    margin-right: 12px;
 }
 
 @media (max-width: 1199px) {
@@ -29475,13 +29476,14 @@ a.btn.post_ads:hover {
 
 .location_btn {
     border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0 20px;
+    padding: 0 7px;
     height: 52px;
     border-radius: 2px;
     line-height: 50px;
     cursor: pointer;
+    width: 205px;
+    margin-right: 10px;
 }
-
 .location_btn p {
     font-size: 14px;
     color: #777;
@@ -29744,4 +29746,30 @@ a.btn.post_ads:hover {
 }
 
 
+@media screen and (max-width: 1200px){
+    a.btn.post_ads {
+        padding: 0px 16px 0px 25px;
+    }
+}
 
+
+@media screen and (max-width:1400px){
+    a.btn.post_ads {
+        width: 40px;
+    height: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 0px;
+    margin: 0px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-shadow: 0px 2px 5px 0px #0000004d;
+    box-shadow: 0px 2px 5px 0px #0000004d;
+    padding: 0px 0px 0px 7px;
+    }
+}

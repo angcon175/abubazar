@@ -322,6 +322,11 @@ class FrontendController extends Controller
             } else {
                 return redirect()->route('frontend.dashboard');
             }
+//            if (!$created->email_verified_at) {
+//                return redirect()->route('verification.notice');
+//            } else {
+//                return redirect()->route('frontend.dashboard');
+//            }
         }
     }
 
@@ -447,7 +452,7 @@ class FrontendController extends Controller
         $ad->load('galleries');
         return view('frontend.single-ad-gallery', compact('ad'));
     }
-    
+
     public function AllJobs()
     {
          return view('frontend.all_jobs');
@@ -469,11 +474,11 @@ class FrontendController extends Controller
             $html .= '<ul>';
                 $html .= '<li class="not_found"><a href="#">'.'Data not found'.'</a></li>';
             $html .= '</ul>';
-        } 
-        $response['html'] = $html;     
-        $response['city'] = $city;     
+        }
+        $response['html'] = $html;
+        $response['city'] = $city;
 
         return response()->json($response);
     }
-    
+
 }

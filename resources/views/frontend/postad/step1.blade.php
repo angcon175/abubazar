@@ -47,25 +47,19 @@
                         <div class="col-md-6">
                             <div class="input-select">
                                 <x-forms.label name="category" required="true" for="allCategory" />
-                                <select required name="category_id" id="ad_category" class="form-control select-bg @error('category_id') border-danger @enderror">
+                                <select required name="category_id" id="categoryId" class="form-control select-bg @error('category_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_category') }}</option>
-                                    @isset($ad->category_id)
-                                        @foreach ($categories as $category)
-                                            <option {{ $category->id == $ad->category_id ? 'selected':'' }} value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    @else
-                                        @foreach ($categories as $category)
-                                            <option {{ old('category_id') == $category->id ? 'selected':'' }} value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    @endisset
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-select">
                                 <x-forms.label name="subcategory" required="true" for="subcategory" />
-                                <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                    <option value="" selected>{{ __('select_subcategory') }}</option>
+                                <select name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
+                                    <option selected>{{ __('select_subcategory') }}</option>
                                 </select>
                             </div>
                         </div>

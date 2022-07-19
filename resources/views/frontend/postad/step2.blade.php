@@ -52,24 +52,18 @@
                 <div class="col-md-6">
                     <div class="input-select">
                         <x-forms.label name="city" required="true" for="cityy" />
-                        <select required name="city_id" id="cityy" class="form-control select-bg @error('city_id') border-danger @enderror">
+                        <select required name="city_id" id="mycityId" class="form-control select-bg @error('city_id') border-danger @enderror">
                             <option class="d-none" value="" selected>{{ __('select_city') }}</option>
-                            @isset($ad->brand_id)
-                                @foreach ($citis as $city)
-                                    <option {{ $city->id == $ad->city_id ? 'selected':'' }} value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
-                            @else
-                                @foreach ($citis as $city)
-                                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                @endforeach
-                            @endisset
+                            @foreach ($citis as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-select">
                         <x-forms.label  required="true" name="town" for="townn" />
-                        <select required name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
+                        <select required name="town_id" id="mytownId" class="form-control select-bg @error('town_id') border-danger @enderror">
                             <option value="" hidden>{{ __('select_town') }}</option>
                         </select>
                     </div>
@@ -101,6 +95,31 @@
                 $("#changeText").text("Hide Customer Info");
                 $("#showcustomerinfo").val(0);
             }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#mycityId').on('change', function(){
+                var city_id = $(this).val();
+                // alert(city_id);
+                if(city_id) {
+                    $.ajax({
+                        url: "{{ url('/dashboard/post/city-town/ajax') }}/" + city_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            $('#mytownId').html('');
+                            var d =$('#mytownId').empty();
+                            $('#mytownId').append('<option value="" disabled selected> Select One </option>');
+                            $.each(data, function(key, value){
+                                $('#mytownId').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
         });
     </script>
 @endsection

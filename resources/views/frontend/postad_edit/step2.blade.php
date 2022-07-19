@@ -59,7 +59,7 @@
                 <div class="col-md-6">
                     <div class="input-select">
                         <x-forms.label name="city" for="cityy" />
-                        <select name="city_id" id="cityy" class="form-control select-bg @error('city_id') border-danger @enderror">
+                        <select name="city_id" id="mycityId" class="form-control select-bg @error('city_id') border-danger @enderror">
                             <option class="d-none" value="" selected>{{ __('select_city') }}</option>
                             @foreach ($citis as $city)
                                 <option {{ $city->id == $ad->city_id ? 'selected':'' }} value="{{ $city->id }}">{{ $city->name }}</option>
@@ -68,10 +68,16 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    @php
+                        $towns = DB::table('towns')->get();
+                    @endphp
                     <div class="input-select">
                         <x-forms.label name="town" for="townn" />
-                        <select name="town_id" id="townn" class="form-control select-bg @error('town_id') border-danger @enderror">
+                        <select name="town_id" id="mytownId" class="form-control select-bg @error('town_id') border-danger @enderror">
                             <option value="" hidden>{{ __('select_town') }}</option>
+                            @foreach($towns as $town)
+                                <option {{ $town->id == $ad->town_id ? 'selected':'' }} value="{{$town->id}}">{{ $town->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -116,6 +122,31 @@
                 $("#changeText").text("Hide Customer Info");
                 $("#showcustomerinfo").val(0);
             }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#mycityId').on('change', function(){
+                var city_id = $(this).val();
+                // alert(city_id);
+                if(city_id) {
+                    $.ajax({
+                        url: "{{ url('/dashboard/post/city-town/ajax') }}/" + city_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            $('#mytownId').html('');
+                            var d =$('#mytownId').empty();
+                            $('#mytownId').append('<option value="" disabled selected> Select One </option>');
+                            $.each(data, function(key, value){
+                                $('#mytownId').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
         });
     </script>
 @endpush

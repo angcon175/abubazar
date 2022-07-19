@@ -42,6 +42,8 @@ Route::group(['as' => 'frontend.'], function () {
             Route::post('/step3', [AdPostController::class, 'storePostStep3'])->name('post.step3.store');
             Route::get('/step2/back/{slug?}', [AdPostController::class, 'postStep2Back'])->name('post.step2.back');
             Route::get('/step1/back/{slug?}', [AdPostController::class, 'postStep1Back'])->name('post.step1.back');
+            Route::get('/category/ajax/{id}', [AdPostController::class, 'categoryAjax']);
+            Route::get('/city-town/ajax/{id}', [AdPostController::class, 'cityTownAjax']);
         });
         // Ad Edit
         Route::prefix('post')->group(function () {

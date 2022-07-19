@@ -397,4 +397,15 @@ class AdPostController extends Controller
 
         // return redirect()->back();
     }
+
+    public function categoryAjax($id)
+    {
+        $subcategory = DB::table('sub_categories')->where('category_id', $id)->get();
+        return json_encode($subcategory);
+    }
+    public function cityTownAjax($id)
+    {
+        $town = DB::table('towns')->where('city_id', $id)->get();
+        return json_encode($town);
+    }
 }

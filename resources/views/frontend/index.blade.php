@@ -33,7 +33,9 @@
     <!-- Ads Banner -->
     <div class="ads_banner mt-3 mb-3">
         <div class="container">
-            <img src="{{ asset($admin_ads_slider->ads_img) }}" width="img-fluid" alt="{{$admin_ads_slider->ads_name}}">
+            <a href="{{ $admin_ads_slider->ads_link }}" target="_blank">
+                <img src="{{ asset($admin_ads_slider->ads_img) }}" width="img-fluid" alt="{{$admin_ads_slider->ads_name}}">
+            </a>
         </div>
     </div>
 @endif
@@ -102,7 +104,9 @@
     <!-- Ads Banner -->
     <div class="ads_banner mt-3 mb-3">
         <div class="container">
-            <img src="{{ asset($admin_ads_category->ads_img) }}" width="img-fluid" alt="{{$admin_ads_category->ads_name}}">
+            <a href="{{ $admin_ads_category->ads_link }}" target="_blank">
+                <img src="{{ asset($admin_ads_category->ads_img) }}" width="img-fluid" alt="{{$admin_ads_category->ads_name}}">
+            </a>
         </div>
     </div>
 @endif

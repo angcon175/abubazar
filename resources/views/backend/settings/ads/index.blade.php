@@ -33,7 +33,7 @@
                                             <div class="form-group row">
                                                 <x-forms.label name="Ads Name" class="col-sm-4"/>
                                                 <div class="col-sm-8">
-                                                    <input name="ads_name" type="text" class="form-control @error('ads_name') is-invalid @enderror" autocomplete="off" placeholder="Ads Name">
+                                                    <input name="ads_name" type="text" class="form-control @error('ads_name') is-invalid @enderror" autocomplete="off" placeholder="Ads Name" required>
                                                     @error('ads_name')
                                                         <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
                                                     @enderror
@@ -42,8 +42,17 @@
                                             <div class="form-group row">
                                                 <x-forms.label name="Ads Image (Height: 125px)" class="col-sm-4" />
                                                 <div class="col-sm-8">
-                                                    <input  type="file" name="ads_img" class="form-control @error('ads_img') is-invalid @enderror" autocomplete="off">
+                                                    <input  type="file" name="ads_img" class="form-control @error('ads_img') is-invalid @enderror" autocomplete="off" required>
                                                     @error('ads_img')
+                                                        <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <x-forms.label name="Ads Link" class="col-sm-4"/>
+                                                <div class="col-sm-8">
+                                                    <input name="ads_link" type="text" class="form-control @error('ads_link') is-invalid @enderror" autocomplete="off" placeholder="Ads Link" required>
+                                                    @error('ads_link')
                                                         <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
                                                     @enderror
                                                 </div>
@@ -86,8 +95,9 @@
                         <thead>
                             <tr>
                                 <th width="5%">{{ __('sl') }}</th>
-                                <th>{{ __('ads name') }}</th>
+                                <th>{{ __('Ads name') }}</th>
                                 <th>{{ __('image') }}</th>
+                                <th>{{ __('Ads Link') }}</th>
                                 <th>{{ __('Ads Position') }}</th>
                                 <th width="20%">{{ __('status') }}</th>
                                 @if (userCan('admin.update') || userCan('admin.delete'))
@@ -102,6 +112,7 @@
                                         <td>
                                             <img width="80" height="50" src="{{ asset($adminad->ads_img) }}" alt="">
                                         </td>
+                                        <td>{{$adminad->ads_link}}</td>
                                         <td>
                                             @if($adminad->image_position == 1)
                                                 Slider Bottom Ads
@@ -163,6 +174,15 @@
                                                                 <img width="80" height="50" src="{{ asset($adminad->ads_img)}}" alt="">
                                                             </div>
                                                         </div>
+                                                        <div class="form-group row">
+                                                        <x-forms.label name="Ads Link" class="col-sm-4"/>
+                                                        <div class="col-sm-8">
+                                                            <input name="ads_link" type="text" class="form-control @error('ads_link') is-invalid @enderror" autocomplete="off" placeholder="Ads Link" required value="{{ $adminad->ads_link }}">
+                                                            @error('ads_link')
+                                                                <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
                                                         <div class="form-group row">
                                                             <x-forms.label name="Ads Position" class="col-sm-4" />
                                                             <div class="col-sm-8">

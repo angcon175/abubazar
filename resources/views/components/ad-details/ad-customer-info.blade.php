@@ -1,5 +1,5 @@
 <div class="product-item__sidebar-item user-details">
-    <div class="user">
+    <div class="user" style="position: relative;">
         <div class="img">
             @if ($customer->image)
                 <img src="{{ asset($customer->image) }}" alt="{{$customer->name}}">
@@ -10,7 +10,10 @@
         </div>
         <div class="info">
             <span class="text--body-4">{{ __('added_by') }}:</span>
-            <h2 class="text--body-3-600"> {{ $customer->name }} </h2>
+            <h2 class="text--body-3-600">
+                {{ $customer->name }}
+                <span class="email_verify"><i class="fa-solid fa-envelope-circle-check"></i></span>
+            </h2>
         </div>
     </div>
     <ul class="contact">

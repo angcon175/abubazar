@@ -473,8 +473,9 @@ class SettingsController extends Controller
     {
         //
         $this->validate($request, [
-            'ads_name' => 'required',
-            'ads_img' => 'required',
+            'ads_name'  => 'required',
+            'ads_img'   => 'required',
+            'ads_link'  => 'required'
         ]);
 
         // if($request->status == 1){
@@ -492,10 +493,11 @@ class SettingsController extends Controller
         $image_url = $upload_path.$admin_ads_image_name;
         
         DB::table('admin_ads')->insert([
-            'ads_name' => $request->ads_name,
+            'ads_name'       => $request->ads_name,
             'image_position' => $request->image_position,
-            'ads_img' => $image_url,
-            'status' => $request->status,
+            'ads_img'        => $image_url,
+            'ads_link'       => $request->ads_link,
+            'status'         => $request->status,
         ]);
 
         return redirect()->back()->with('success', 'Admin Ads successfully created ');
@@ -505,12 +507,12 @@ class SettingsController extends Controller
     {
         $this->validate($request, [
             'ads_name' => 'required',
+            'ads_link' => 'required'
         ]);
 
         $admin_ads_image = $request->file('ads_img');
         $slug = 'ads-image';
         if(isset($admin_ads_image)) {
-
             $admin_ads_image_name = $slug.'-'.uniqid().'.'.$admin_ads_image->getClientOriginalExtension();
             $upload_path = 'media/adminads/';
             $admin_ads_image->move($upload_path, $admin_ads_image_name);
@@ -526,14 +528,15 @@ class SettingsController extends Controller
                 'ads_name' => $request->ads_name,
                 'image_position' => $request->image_position,
                 'ads_img' => $image_url,
+                'ads_link' => $request->ads_link,
                 'status' => $request->status,
             ]);
             return redirect()->back()->with('success', 'Admin Ads successfully updated ');
         }else {
-
             DB::table('admin_ads')->where('id', $id)->update([
                 'ads_name' => $request->ads_name,
                 'image_position' => $request->image_position,
+                'ads_link' => $request->ads_link,
                 'status' => $request->status,
             ]);
             

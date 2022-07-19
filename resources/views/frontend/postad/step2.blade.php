@@ -50,24 +50,6 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-<<<<<<< HEAD
-                    <div class="input-select">
-                        <x-forms.label name="city" required="true" for="cityy" />
-                        <select required name="city_id" id="mycityId" class="form-control select-bg @error('city_id') border-danger @enderror">
-                            <option class="d-none" value="" selected>{{ __('select_city') }}</option>
-                            @foreach ($citis as $city)
-                                <option value="{{ $city->id }}">{{ $city->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-select">
-                        <x-forms.label  required="true" name="town" for="townn" />
-                        <select required name="town_id" id="mytownId" class="form-control select-bg @error('town_id') border-danger @enderror">
-                            <option value="" hidden>{{ __('select_town') }}</option>
-                        </select>
-=======
                     <div class="input-field__group">
                         <div class="mb-3 w-100">
                             <x-forms.label name="city" required="true" class="form-label" for="city" />
@@ -94,7 +76,6 @@
                                 <option value="" hidden>{{ __('select_town') }}</option>
                             </select>
                         </div>
->>>>>>> 5e1599d7d18d48da5040baffb021dc3a57697446
                     </div>
                 </div>
             </div>

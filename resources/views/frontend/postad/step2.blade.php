@@ -46,10 +46,11 @@
                 <div class="col-md-12 mb-3">
                     <div class="form-check">
                         <input value="1" name="show_customer_info" type="checkbox" class="form-check-input" id="showcustomerinfo" checked/>
-                        <label class="form-check-label" id="changeText">Show Customer Info</label>
+                        <label class="form-check-label" id="changeText">Visible my phone and email on Ads</label>
                     </div>
                 </div>
                 <div class="col-md-6">
+<<<<<<< HEAD
                     <div class="input-select">
                         <x-forms.label name="city" required="true" for="cityy" />
                         <select required name="city_id" id="mycityId" class="form-control select-bg @error('city_id') border-danger @enderror">
@@ -66,6 +67,34 @@
                         <select required name="town_id" id="mytownId" class="form-control select-bg @error('town_id') border-danger @enderror">
                             <option value="" hidden>{{ __('select_town') }}</option>
                         </select>
+=======
+                    <div class="input-field__group">
+                        <div class="mb-3 w-100">
+                            <x-forms.label name="city" required="true" class="form-label" for="city" />
+                            <select required name="city_id" id="city" class="form-control select-bg @error('city_id') border-danger @enderror">
+                                <option class="d-none" value="" selected>{{ __('select_city') }}</option>
+                                @isset($ad->brand_id)
+                                    @foreach ($citis as $city)
+                                        <option {{ $city->id == $ad->city_id ? 'selected':'' }} value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                @else
+                                    @foreach ($citis as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                @endisset
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 w-100">
+                        <div class="input-select">
+                            <x-forms.label name="town" class="form-label" for="townn" />
+                            <select required name="town_id" id="town" class="form-control select-bg @error('town_id') border-danger @enderror">
+                                <option value="" hidden>{{ __('select_town') }}</option>
+                            </select>
+                        </div>
+>>>>>>> 5e1599d7d18d48da5040baffb021dc3a57697446
                     </div>
                 </div>
             </div>
@@ -90,9 +119,9 @@
         $("#showcustomerinfo").click(function(){
             if($(this).is(":checked")){
                 $("#showcustomerinfo").val(1);
-                $("#changeText").text("Show Customer Info");
+                $("#changeText").text("Visible my phone and email on Ads");
             } else if($(this).is(":not(:checked)")){
-                $("#changeText").text("Hide Customer Info");
+                $("#changeText").text("Invisible my phone and email on Ads");
                 $("#showcustomerinfo").val(0);
             }
         });

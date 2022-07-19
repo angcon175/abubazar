@@ -13721,7 +13721,7 @@ section.breedcrumb {
 
 .dashboard__message-userscontent {
     margin-top: 12px;
-    height: 714px;
+    height: 520px;
     overflow-y: auto;
 }
 
@@ -14167,8 +14167,11 @@ section.breedcrumb {
 
 .dashboard__message-user .message-body {
     padding: 0px 24px;
-    height: 700px;
     overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 520px !important;
+    overflow-x: auto;
 }
 
 @media -sass-debug-info {
@@ -29798,9 +29801,20 @@ a.btn.post_ads:hover {
     color: #D32325;
 }
 
+.ads_banner img {
+    width: 100% !important;
+}
 
+.email_verify {
+    position: absolute;
+    top: 27px;
+    right: 0;
+}
 
+.email_verify i {
+    color: #0a980a;
+}
 
-
-
-
+.ads_banner a {
+    display: block;
+}

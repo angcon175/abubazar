@@ -46,7 +46,7 @@
                 <div class="col-md-12 mb-3">
                     <div class="form-check">
                         <input value="1" name="show_customer_info" type="checkbox" class="form-check-input" id="showcustomerinfo" checked/>
-                        <label class="form-check-label" id="changeText">Show Customer Info</label>
+                        <label class="form-check-label" id="changeText">Visible my phone and email on Ads</label>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -100,9 +100,9 @@
         $("#showcustomerinfo").click(function(){
             if($(this).is(":checked")){
                 $("#showcustomerinfo").val(1);
-                $("#changeText").text("Show Customer Info");
+                $("#changeText").text("Visible my phone and email on Ads");
             } else if($(this).is(":not(:checked)")){
-                $("#changeText").text("Hide Customer Info");
+                $("#changeText").text("Invisible my phone and email on Ads");
                 $("#showcustomerinfo").val(0);
             }
         });

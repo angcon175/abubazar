@@ -31,7 +31,7 @@
                     <span class="icon">
                         <x-svg.address-icon />
                     </span>
-                    <h6 class="text--body-3">{{ $city->name }}, {{ $town->name }}</h6>
+                    <h6 class="text--body-3">{{ $city->name ?? '' }}, {{ $town->name ?? '' }}</h6>
                 </li>
             </div>
         @endif

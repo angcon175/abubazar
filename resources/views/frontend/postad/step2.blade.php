@@ -50,33 +50,22 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="input-field__group">
-                        <div class="mb-3 w-100">
-                            <x-forms.label name="city" required="true" class="form-label" for="city" />
-                            <select required name="city_id" id="city" class="form-control select-bg @error('city_id') border-danger @enderror">
-                                <option class="d-none" value="" selected>{{ __('select_city') }}</option>
-                                @isset($ad->brand_id)
-                                    @foreach ($citis as $city)
-                                        <option {{ $city->id == $ad->city_id ? 'selected':'' }} value="{{ $city->id }}">{{ $city->name }}</option>
-                                    @endforeach
-                                @else
-                                    @foreach ($citis as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                    @endforeach
-                                @endisset
-                            </select>
-                        </div>
+                    <div class="input-select">
+                        <x-forms.label name="city" required="true" for="cityy" />
+                        <select required name="city_id" id="mycityId" class="form-control select-bg @error('city_id') border-danger @enderror">
+                            <option class="d-none" value="" selected>{{ __('select_city') }}</option>
+                            @foreach ($citis as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="mb-3 w-100">
-                        <div class="input-select">
-                            <x-forms.label name="town" class="form-label" for="townn" />
-                            <select required name="town_id" id="town" class="form-control select-bg @error('town_id') border-danger @enderror">
-                                <option value="" hidden>{{ __('select_town') }}</option>
-                            </select>
-                        </div>
-                    </div>
+                    <div class="input-select">
+                        <x-forms.label  required="true" name="town" for="townn" />
+                        <select required name="town_id" id="mytownId" class="form-control select-bg @error('town_id') border-danger @enderror">
+                            <option value="" hidden>{{ __('select_town') }}</option>
+                        </select>
                 </div>
             </div>
             <div class="dashboard-post__action-btns">

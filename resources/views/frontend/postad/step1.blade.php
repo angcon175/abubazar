@@ -58,7 +58,7 @@
                         <div class="col-md-6">
                             <div class="input-select">
                                 <x-forms.label name="subcategory" required="true" for="subcategory" />
-                                <select name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
+                                <select required name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
                                     <option selected>{{ __('select_subcategory') }}</option>
                                 </select>
                             </div>

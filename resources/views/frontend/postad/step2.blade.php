@@ -43,6 +43,7 @@
                             <input name="phone_2" id="backupPhone" type="tel" class="backupPhone" placeholder="{{ __('phone_number') }}" value="{{ $ad->phone_2 ?? '' }}"/>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-md-12 mb-3">
                         <div class="form-check">
                             <input value="1" name="show_customer_info" type="checkbox" class="form-check-input" id="showcustomerinfo" checked/>
@@ -68,6 +69,26 @@
                             </select>
                         </div>
                     </div>
+=======
+                </div>
+                <div class="col-md-6">
+                    <div class="input-select">
+                        <x-forms.label name="city" required="true" for="cityy" />
+                        <select required name="city_id" id="mycityId" class="form-control select-bg @error('city_id') border-danger @enderror">
+                            <option class="d-none" value="" selected>{{ __('select_city') }}</option>
+                            @foreach ($citis as $city)
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-select">
+                        <x-forms.label  required="true" name="town" for="townn" />
+                        <select required name="town_id" id="mytownId" class="form-control select-bg @error('town_id') border-danger @enderror">
+                            <option value="" hidden>{{ __('select_town') }}</option>
+                        </select>
+>>>>>>> e654f171e1db5190d6c9a245024c81e8b0b280e4
                 </div>
                 <div class="dashboard-post__action-btns">
                     <a href="{{ route('frontend.post.step1.back') }}" class="btn btn--lg btn--outline">

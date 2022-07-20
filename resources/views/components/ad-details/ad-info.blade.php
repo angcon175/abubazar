@@ -8,7 +8,7 @@
             <span class="icon">
                 <x-svg.location-icon />
             </span>
-            <p class="text--body-3">{{ $ad->city->name }}, {{ $ad->town->name }}</p>
+            <p class="text--body-3">{{ $ad->city->name ?? '' }}, {{ $ad->town->name ?? '' }}</p>
         </li>
         <li class="post-details__item">
             <span class="icon">

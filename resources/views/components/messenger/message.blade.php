@@ -1,6 +1,6 @@
 <div class="user-message__content ">
     <div class="img">
-        @if ($message->from_id === auth('customer')->id())
+        @if ($message->from_id == auth('customer')->id())
             <img src="{{ auth('customer')->user()->image_url }}" alt="user-photo">
         @else
             <img src="{{ $user->image_url }}" alt="user-photo">
@@ -8,7 +8,7 @@
     </div>
     <div class="user-message__content-info">
         <h5 class="user-name text--body-4-600">
-            @if ($message->from_id === auth('customer')->id())
+            @if ($message->from_id == auth('customer')->id())
                 {{ auth('customer')->user()->name }}
             @else
                 {{ $user->name }}

@@ -108,13 +108,13 @@
 		initialPreviewAsData: true,
         initialPreview: [
             @foreach ($ad->galleries as $gallery)
-                "{{ $gallery->image ? $gallery->image_url: '' }}",
+                "{{ $gallery->image ? str_replace('adds_multiple\\', 'adds_multiple/',$gallery->image_url) : '' }}",
             @endforeach
         ],
         initialPreviewConfig: [
             @foreach ($ad->galleries as $gallery)
                     {
-                        caption: "{{ str_replace('uploads/adds_multiple/',' ',$gallery->image) }}",
+                         caption: "{{ str_replace('adds_multiple\\', 'adds_multiple/',$gallery->image_url) }}",
                         size: {{ getFileSize($gallery->image) }},
                         width: "20px",
                         url: "{{ route('frontend.ad.gallery.delete', $gallery->id) }}",

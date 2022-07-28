@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="input-select">
-                        <x-forms.label name="city" for="cityy" />
+                        <x-forms.label required="true" name="city" for="cityy" />
                         <select name="city_id" id="mycityId" class="form-control select-bg @error('city_id') border-danger @enderror">
                             <option class="d-none" value="" selected>{{ __('select_city') }}</option>
                             @foreach ($citis as $city)
@@ -72,7 +72,7 @@
                         $towns = DB::table('towns')->get();
                     @endphp
                     <div class="input-select">
-                        <x-forms.label name="town" for="townn" />
+                        <x-forms.label required="true" name="town" for="townn" />
                         <select name="town_id" id="mytownId" class="form-control select-bg @error('town_id') border-danger @enderror">
                             <option value="" hidden>{{ __('select_town') }}</option>
                             @foreach($towns as $town)

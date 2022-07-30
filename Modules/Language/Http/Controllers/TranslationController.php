@@ -81,6 +81,7 @@ class TranslationController extends Controller
 
     public function changeLanguage($lang)
     {
+
         session()->put('lang', $lang);
         app()->setLocale($lang);
 

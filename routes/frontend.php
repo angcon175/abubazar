@@ -76,7 +76,7 @@ Route::group(['as' => 'frontend.'], function () {
     });
 
     Route::post('/ads/report', [App\Http\Controllers\ReportAdsController::class, 'store'])->name('report.store');
-        
+
 });
 // Verification Routes
 Route::middleware('auth:customer', 'setlang')->group(function() {
@@ -84,4 +84,7 @@ Route::middleware('auth:customer', 'setlang')->group(function() {
     Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
     Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
+
+// set language
+Route::get('changelanguage/{lang}', [TranslationController::class, 'changeLanguage'])->name('changeLanguage');
 

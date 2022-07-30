@@ -34,6 +34,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        $lang = 'en';
+        session()->put('lang', $lang);
+        app()->setLocale($lang);
+
         if (!app()->runningInConsole()) {
             $moduleSetting = ModuleSetting::first();
             View::share('top_categories', CategoryResource::collection(Category::active()->withCount('ads as ad_count')->latest('ad_count')->take(5)->get()));
@@ -61,5 +66,6 @@ class AppServiceProvider extends ServiceProvider
                 return preg_match('/^[\pL\s]+$/u', $value);
             });
         }
+
     }
 }

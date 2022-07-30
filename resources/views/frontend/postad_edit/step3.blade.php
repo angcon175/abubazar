@@ -52,6 +52,12 @@
                     @endforeach
                 </div>
             </div>
+            <div class="input-field--textarea">
+                <img src="{{ asset($ad->thumbnail ?? '') }}" alt="product" style="width: 200px;" />
+                <x-forms.label name="thumbnail" for="thumbnail" />
+                <input value="" name="thumbnail" type="file" id="thumbnail" class="form-control @error('thumbnail') border-danger @enderror"/>
+            </div>
+
             <div class="upload-wrapper">
                 <h3>{{ __('upload_photos') }}</h3>
                 <input id="file-1" type="file" name="images[]" multiple class="file" data-overwrite-initial="false" >

@@ -349,7 +349,16 @@ class AdPostController extends Controller
             'description' => 'required',
         ]);
 
-        $ad->update(['description' => $request->description]);
+        $updateData['description'] = $request->description;
+
+        if( $request->file('thumbnail')){
+            $thumbnail = $request->file('thumbnail');
+            $thumbnail_url = $thumbnail->move('uploads/adds_multiple',$thumbnail->hashName());
+            $updateData['thumbnail'] = $thumbnail_url;
+
+        }
+
+        $ad->update($updateData);
 
         // feature inserting
         $ad->adFeatures()->delete();
@@ -358,6 +367,7 @@ class AdPostController extends Controller
                 $ad->adFeatures()->create(['name' => $feature]);
             }
         }
+
 
         // image uploading
         $images = $request->file('images');

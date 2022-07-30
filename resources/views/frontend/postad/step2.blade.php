@@ -34,13 +34,22 @@
                     <div class="col-md-6">
                         <div class="input-field">
                             <x-forms.label name="phone_number" required="true" for="phoneNumber" />
-                            <input required name="phone" id="phoneNumber" type="tel" placeholder="{{ __('phone') }}" value="{{ $ad->phone ?? '' }}" class="@error('phone') border-danger @enderror"/>
+                            {{-- <input required name="phone" id="phoneNumber" type="tel" placeholder="{{ __('phone') }}" value="{{ $ad->phone ?? '' }}" class="@error('phone') border-danger @enderror"/> --}}
+                            <div class="input-group">
+                                <input type="number" required name="phone"  id="phoneNumber" class="form-control" placeholder="{{ __('phone') }}" value="{{ $ad->phone ?? '' }}" class="@error('phone') border-danger @enderror"/>
+                                <button type="submit" class="input-group-text">Send</button>
+                            </div>
                         </div>
+
                     </div>
                     <div class="col-md-6">
                         <div class="input-field">
                             <x-forms.label name="backup_phone_number" for="backupPhone" />
-                            <input name="phone_2" id="backupPhone" type="tel" class="backupPhone" placeholder="{{ __('phone_number') }}" value="{{ $ad->phone_2 ?? '' }}"/>
+                            {{-- <input name="phone_2" id="backupPhone" type="tel" class="backupPhone" placeholder="{{ __('phone_number') }}" value="{{ $ad->phone_2 ?? '' }}"/> --}}
+                            <div class="input-group">
+                                <input type="number" required name="phone_2"  id="backupPhone" class="backupPhone form-control" placeholder="{{ __('phone_number') }}" value="{{ $ad->phone_2 ?? '' }}"/>
+                                <button type="submit" class="input-group-text">Send</button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">

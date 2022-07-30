@@ -24,9 +24,9 @@ use App\Notifications\LogoutNotification;
 use Modules\Blog\Entities\PostCategory;
 use Modules\Testimonial\Entities\Testimonial;
 use Modules\Category\Transformers\CategoryResource;
+use DB;
 
-class 
-FrontendController extends Controller
+class FrontendController extends Controller
 {
     /**
      * View Home page
@@ -38,7 +38,7 @@ FrontendController extends Controller
         $data = [];
         $topCategories = CategoryResource::collection(Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
-        })->withCount('ads as ad_count')->latest('ad_count')->take(12)->get());
+        })->withCount('ads as ad_count')->latest('ad_count')->take(12)->orderBy('name')->get());
         $home_page = Theme::first()->home_page;
         $topCities = City::withCount('ads as ad_count')->latest('ad_count')->take(6)->get();
 
@@ -69,13 +69,14 @@ FrontendController extends Controller
         $ads = AdResource::collection($ad_data->get());
         $categories = CategoryResource::collection(Category::active()->with('subcategories', function ($q) {
             $q->where('status', 1);
-        })->get());
+        })->oldest('order')->orderBy('name')->get());
         $recommendedAds = AdResource::collection($ad_data->where('featured', true)->take(12)->latest()->get());
         $latestAds = AdResource::collection(Ad::activeCategory()->with(['customer', 'city', 'category:id,name,icon'])->active()->where('featured', '!=', 1)->take(12)->latest()->get());
 
         $data['ads'] = collectionToResource($ads);
         $data['categories'] = collectionToResource($categories);
-        $data['recommendedAds'] = collectionToResource($recommendedAds);
+        // $data['recommendedAds'] = collectionToResource($recommendedAds);
+        $data['recommendedAds'] = Ad::where('featured', 1)->orderBy('title')->get();
         $data['latestAds'] = collectionToResource($latestAds);
 
         $data['verified_users'] = Customer::whereNotNull('email_verified_at')->count();
@@ -86,7 +87,8 @@ FrontendController extends Controller
         })->count();
         $data['towns'] = Town::orderBy('name')->get();
         $data['total_ads'] = Ad::activeCategory()->active()->count();
-
+        $data['admin_ads_category'] = DB::table('admin_ads')->where('image_position', 0)->where('status', 1)->inRandomOrder()->first();
+        $data['admin_ads_slider'] = DB::table('admin_ads')->where('image_position', 1)->where('status', 1)->inRandomOrder()->first();
         return view('frontend.index', $data);
     }
 
@@ -100,7 +102,7 @@ FrontendController extends Controller
      */
     public function homePage2($data)
     {
-        $categories = CategoryResource::collection(Category::active()->withCount('ads as ad_count')->latest()->get());
+        $categories = CategoryResource::collection(Category::active()->withCount('ads as ad_count')->latest()->orderBy('name')->get());
         $recentads = AdResource::collection(Ad::activeCategory()->with('category', 'customer', 'city')->active()->latest('id')->get()->take(4));
         $featured_ad_data = Ad::activeCategory()->with(['customer', 'city', 'category:id,name,icon',])->active()->take(6)->latest()->get();
         $featuredad = AdResource::collection($featured_ad_data);
@@ -112,6 +114,8 @@ FrontendController extends Controller
         $data['recentads'] = $recentads;
         $data['towns'] = Town::orderBy('name')->get();
         $data['total_ads'] = Ad::activeCategory()->active()->count();
+        $data['admin_ads_category'] = DB::table('admin_ads')->where('image_position', 0)->where('status', 1)->inRandomOrder()->first();
+        $data['admin_ads_slider'] = DB::table('admin_ads')->where('image_position', 1)->where('status', 1)->inRandomOrder()->first();
 
         return view('frontend.index_02', $data);
     }
@@ -124,7 +128,7 @@ FrontendController extends Controller
      */
     public function homePage3($data)
     {
-        $categories = CategoryResource::collection(Category::active()->latest()->get());
+        $categories = CategoryResource::collection(Category::active()->latest()->orderBy('name')->get());
         $plans = Plan::all();
         $featured_ad_data = Ad::activeCategory()->with(['customer', 'city', 'category:id,name,icon',])->active()->take(8)->latest()->get();
         $featuredad = AdResource::collection($featured_ad_data);
@@ -136,7 +140,8 @@ FrontendController extends Controller
         $data['towns']  = Town::orderBy('name')->get();
         $data['plans']  = $plans;
         $data['total_ads'] = Ad::activeCategory()->active()->count();
-
+        $data['admin_ads_category'] = DB::table('admin_ads')->where('image_position', 0)->where('status', 1)->inRandomOrder()->first();
+        $data['admin_ads_slider'] = DB::table('admin_ads')->where('image_position', 1)->where('status', 1)->inRandomOrder()->first();
         currentCurrency();
 
         return view('frontend.index_03', $data);
@@ -296,7 +301,7 @@ FrontendController extends Controller
             'name' => "required",
             'username' => "required|unique:customers,username",
             'email' => "required|email|unique:customers,email",
-            'password' => "required|confirmed|min:8|max:50",
+            'password' => "required|confirmed|min:8|max:50"
         ]);
 
         $created = Customer::create([
@@ -317,6 +322,11 @@ FrontendController extends Controller
             } else {
                 return redirect()->route('frontend.dashboard');
             }
+//            if (!$created->email_verified_at) {
+//                return redirect()->route('verification.notice');
+//            } else {
+//                return redirect()->route('frontend.dashboard');
+//            }
         }
     }
 
@@ -443,15 +453,39 @@ FrontendController extends Controller
         return view('frontend.single-ad-gallery', compact('ad'));
     }
 
-
-
-
     public function AllJobs()
     {
          return view('frontend.all_jobs');
     }
 
+    public function CountryToCity(Request $request, $id)
+    {
+         $town  = DB::table('towns')->where('city_id', $id)->get();
+         $city  = DB::table('cities')->where('id', $id)->first();
+         $html = '';
+        if($town && count($town) > 0 ){
+            $html .= '<ul>';
+            foreach($town as $k => $val){
+                $town_ads_count = DB::table('ads')->where('town_id', $val->id)->count();
+                $route = route('frontend.adlist.search',['city' => $city->name, 'town' => $val->name ]);
+                $html .= '
+                        <li>
+                            <a class="nav-link" href="'.$route.'">
+                            '.$val->name.'
+                              <span>('.$town_ads_count.')</span>
+                            </a>
+                        </li>';
+            }
+            $html .= '</ul>';
+        }else{
+            $html .= '<ul>';
+                $html .= '<li class="not_found"><a href="#">'.'Data not found'.'</a></li>';
+            $html .= '</ul>';
+        }
+        $response['html'] = $html;
+        $response['city'] = $city;
 
-
+        return response()->json($response);
+    }
 
 }

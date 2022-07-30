@@ -51,7 +51,7 @@
                         <div class="col-md-6">
                             <div class="input-select">
                                 <x-forms.label name="category" for="allCategory" required="true" />
-                                <select required name="category_id" id="ad_category" class="form-control select-bg @error('category_id') border-danger @enderror">
+                                <select required name="category_id" id="categoryId" class="form-control select-bg @error('category_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_category') }}</option>
                                     @foreach ($categories as $category)
                                         <option {{ $category->id == $ad->category_id ? 'selected':'' }} value="{{ $category->id }}">{{ $category->name }}</option>
@@ -60,10 +60,16 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            @php
+                                $subcategories = DB::table('sub_categories')->where('status', 1)->get();
+                            @endphp
                             <div class="input-select">
                                 <x-forms.label name="subcategory" for="subcategory" required="true" />
-                                <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
+                                <select required name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
                                     <option value="" selected>{{ __('select_subcategory') }}</option>
+                                    @foreach($subcategories as $subcate)
+                                        <option {{ $subcate->id == $ad->subcategory_id ? 'selected':'' }} value="{{$subcate->id}}" >{{ $subcate->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

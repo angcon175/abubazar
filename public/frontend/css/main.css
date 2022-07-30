@@ -44,7 +44,7 @@
 }
 
 .custom-sign-in {
-    padding: 0 30px 0 25px;
+    padding: 0 13px 0 25px;
     color: #d32323;
 }
 
@@ -4191,6 +4191,7 @@ a {
 
 .navigation-bar__search-field {
     position: relative;
+    margin-right: 12px;
 }
 
 @media (max-width: 1199px) {
@@ -13720,7 +13721,7 @@ section.breedcrumb {
 
 .dashboard__message-userscontent {
     margin-top: 12px;
-    height: 714px;
+    height: 520px;
     overflow-y: auto;
 }
 
@@ -14166,8 +14167,11 @@ section.breedcrumb {
 
 .dashboard__message-user .message-body {
     padding: 0px 24px;
-    height: 700px;
     overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 520px !important;
+    overflow-x: auto;
 }
 
 @media -sass-debug-info {
@@ -18521,7 +18525,6 @@ section.section.registration {
 .categorylist-card__icon {
     display: inline-block;
     border-radius: 6px;
-    background-color: #fff;
     color: #D32323;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
@@ -29476,13 +29479,14 @@ a.btn.post_ads:hover {
 
 .location_btn {
     border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 0 20px;
+    padding: 0 7px;
     height: 52px;
     border-radius: 2px;
     line-height: 50px;
     cursor: pointer;
+    width: 205px;
+    margin-right: 10px;
 }
-
 .location_btn p {
     font-size: 14px;
     color: #777;
@@ -29652,6 +29656,10 @@ a.btn.post_ads:hover {
     box-shadow: none !important;
 }
 
+.banner_wrapper .explore_more{
+    color: #fff !important;
+}
+
 
 .banner_wrapper .btn.btn-primary {
     background: #232121;
@@ -29709,3 +29717,118 @@ a.btn.post_ads:hover {
     padding-top: 4px;
 }
 
+.report_form .accordion-body {
+    background: #d3232308;
+    padding: 20px 18px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.report_form .btn {
+    border: none !important;
+    font-size: 13px;
+    padding: 0px 13px;
+    display: inline-block;
+    height: 38px;
+    line-height: 39px;
+}
+.report_form .form-check label {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #000000;
+    text-transform: capitalize;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+
+.report_form textarea.form-control {
+    min-height: calc(1.5em + 0.75rem + 2px);
+    font-size: 14px;
+}
+
+
+@media screen and (max-width: 1200px){
+    a.btn.post_ads {
+        padding: 0px 16px 0px 25px;
+    }
+}
+
+
+@media screen and (max-width:1400px){
+    a.btn.post_ads {
+        width: 40px;
+    height: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 0px;
+    margin: 0px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-shadow: 0px 2px 5px 0px #0000004d;
+    box-shadow: 0px 2px 5px 0px #0000004d;
+    padding: 0px 0px 0px 7px;
+    }
+}
+
+.job_menu {
+    background: #85bc47;
+    color: #000 !important;
+}
+
+.job_menu .menu__link {
+    color: #ffffff;
+}
+
+.header.header--home-three.header--four.job_menu .navigation-bar__buttons a {
+    color: #fff !important;
+}
+
+.job_menu .menu__link {
+    color: #ffffff;
+}
+.job_menu .menu__link {
+    color: #ffffff;
+}
+
+.header.header--home-three.header--four.job_menu .menu__link:hover {
+    color: #D32325;
+}
+
+.ads_banner img {
+    width: 100% !important;
+}
+
+.email_verify {
+    position: absolute;
+    top: 27px;
+    right: 0;
+}
+
+.email_verify i {
+    color: #0a980a;
+}
+
+.ads_banner a {
+    display: block;
+}
+.mobile_select_location {
+    color: #666;
+    width: inherit;
+    height: 48px;
+    padding: 12px 18px;
+    border-radius: 5px;
+    border: 1px solid #edeff5;
+    margin-top: 8px;
+}
+
+.mobile_select_location i {
+    color: #C02F2F;
+    font-size: 14px;
+}

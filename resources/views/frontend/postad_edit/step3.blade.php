@@ -52,6 +52,12 @@
                     @endforeach
                 </div>
             </div>
+            <div class="input-field--textarea">
+                <img src="{{ asset($ad->thumbnail ?? '') }}" alt="product" style="width: 200px;" />
+                <x-forms.label name="thumbnail" for="thumbnail" />
+                <input value="" name="thumbnail" type="file" id="thumbnail" class="form-control @error('thumbnail') border-danger @enderror"/>
+            </div>
+
             <div class="upload-wrapper">
                 <h3>{{ __('upload_photos') }}</h3>
                 <input id="file-1" type="file" name="images[]" multiple class="file" data-overwrite-initial="false" >
@@ -108,13 +114,13 @@
 		initialPreviewAsData: true,
         initialPreview: [
             @foreach ($ad->galleries as $gallery)
-                "{{ $gallery->image ? $gallery->image_url: '' }}",
+                "{{ $gallery->image ? str_replace('adds_multiple\\', 'adds_multiple/',$gallery->image_url) : '' }}",
             @endforeach
         ],
         initialPreviewConfig: [
             @foreach ($ad->galleries as $gallery)
                     {
-                        caption: "{{ str_replace('uploads/adds_multiple/',' ',$gallery->image) }}",
+                         caption: "{{ str_replace('adds_multiple\\', 'adds_multiple/',$gallery->image_url) }}",
                         size: {{ getFileSize($gallery->image) }},
                         width: "20px",
                         url: "{{ route('frontend.ad.gallery.delete', $gallery->id) }}",

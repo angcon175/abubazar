@@ -100,6 +100,31 @@
 
 @section('frontend_script')
     <script src="{{ asset('frontend') }}/js/axios.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#categoryId').on('change', function(){
+                var category_id = $(this).val();
+                // alert(category_id);
+                if(category_id) {
+                    $.ajax({
+                        url: "{{ url('/dashboard/post/category/ajax') }}/" + category_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            $('#subcategory').html('');
+                            var d =$('#subcategory').empty();
+                            $('#subcategory').append('<option value="" disabled selected> Select One </option>');
+                            $.each(data, function(key, value){
+                                $('#subcategory').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
     <script>
         // session category wise subcategory
         var cat_id = document.getElementById('cat_id').value;

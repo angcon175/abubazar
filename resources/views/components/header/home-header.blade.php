@@ -27,11 +27,12 @@
                         <button type="submit" class="custom-search-icon"> <i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </form>
-                
+
                 <!-- Action Buttons -->
                 <div class="navigation-bar__buttons">
-                    <a href="#" class="chat-text"><i class="fa-solid fa-message"></i>
-                    {{__('Chat')}}</a>
+                    <a href="{{route('frontend.message')}}" class="chat-text"><i class="fa-solid fa-message"></i>
+
+                </a>
                     @if (auth('customer')->check())
                     <a href="{{ route('frontend.dashboard') }}" class="user">
                         <div class="user__img-wrapper">
@@ -89,7 +90,7 @@
                                 @if ($category->subcategories->count() > 0)
                                 <ul class="category-menu__subdropdown">
                                     @foreach ($category->subcategories as $subcategory)
-                                    
+
                                     <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm3" class="d-none">
                                         <input type="hidden" name="subcategory[]" value="" id="adFilterInput3">
                                     </form>
@@ -134,7 +135,7 @@
                         Location
                         <span class="city_name">
                             <i class="fa fa-angle-right"></i>
-                            Louisiana
+                            <span id="country_name"></span>
                         </span>
                         <span class="go_back">
                             <i class="fa fa-angle-left"></i>
@@ -146,45 +147,39 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    @php
+                        $countries = Modules\Location\Entities\City::orderBy('name')->get();
+                        $country_name = explode(',', request('country'));
+                    @endphp
                     <div class="city_list">
                         <ul>
-                            <li>
-                                <a class="nav-link" href="#">California <i class="fa fa-angle-right"></i></a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">Kansas <i class="fa fa-angle-right"></i></a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">Louisiana <i class="fa fa-angle-right"></i></a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">New Jersey <i class="fa fa-angle-right"></i></a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">New York <i class="fa fa-angle-right"></i></a>
-                            </li>
+                            @if(isset($countries) && count($countries) > 0)
+                                @foreach ($countries as $country)
+                                    @php
+                                       $country_ads = DB::table('ads')->where('city_id', $country->id)->count();
+                                    @endphp
+                                    <li>
+                                        <a class="nav-link country_name" id="selectCountry" data-id="{{$country->id}}" href="javascript:;">
+                                            {{ Str::ucfirst($country->name) }}
+                                            <i class="fa fa-angle-right"></i>
+                                            <span><strong>({{ $country_ads }})</strong></span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
-                    <div class="area_list">
-                        <ul>
-                            <li>
-                                <a class="nav-link" href="#">Bogalusa</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">Monroe</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="#">New Orleans</a>
-                            </li>
-                        </ul>
+                    <div class="loadding_icon text-center" style="display: none;">
+                        <img src="{{ asset('loading.gif') }}" alt="">
+                    </div>
+                    <div class="area_list" id="city_show">
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
 <script src="{{ asset('frontend/') }}/js/plugins/jquery.min.js"></script>
  <script>
@@ -200,7 +195,8 @@
         $('.city_list').show();
         $('.area_list').hide();
         $('.city_name').hide();
+        $('.area_list').empty();
+        $('#country_name').empty();
         $('.go_back').hide();
      });
-    
 </script>

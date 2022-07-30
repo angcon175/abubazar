@@ -136,6 +136,17 @@
                     @endif
                 @endif
 
+                {{-- Ads Reports --}}
+                @if (Module::collections()->has('Customer') && userCan('customer.view'))
+                    <li class="nav-item">
+                        <a href="{{ route('admin.ads.report') }}"
+                            class="nav-link {{ Route::is('admin.ads.report') ? ' active' : '' }}">
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>{{ __('Ads Reports') }}</p>
+                        </a>
+                    </li>
+                @endif
+
                 {{-- Customer --}}
                 @if (Module::collections()->has('Customer') && userCan('customer.view'))
                     <li class="nav-item">
@@ -268,8 +279,8 @@
                 {{-- Setting --}}
                 @if (userCan('setting.view'))
                     <x-sidebar-dropdown
-                        :linkActive="Route::is('language.*') || request()->is('admin/settings*') || Route::is('module.themes.index') || Route::is('module.currency.*') ? true : false"
-                        :subLinkActive="Route::is('language.*') || request()->is('admin/settings*') || Route::is('module.themes.index') || Route::is('module.currency.*') ? true : false"
+                        :linkActive="Route::is('language.*') || request()->is('admin/settings*') || Route::is('admin.ads.show') || Route::is('module.themes.index') || Route::is('module.currency.*') ? true : false"
+                        :subLinkActive="Route::is('language.*') || request()->is('admin/settings*') || Route::is('admin.ads.show') || Route::is('module.themes.index') || Route::is('module.currency.*') ? true : false"
                         icon="fas fa-cog">
                         @slot('title')
                             {{ __('settings') }}

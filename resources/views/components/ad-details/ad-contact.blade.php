@@ -1,9 +1,11 @@
 <div class="product-item__sidebar-item">
+    
     <div class="card-number">
         <div class="number number--hide text--body-2">
             <span class="icon">
                 <x-svg.phone-icon width="32" height="32" />
             </span>
+
             {{ Str::limit($phone, 8,' XXXXXXXX') }}
         </div>
         <div class="number number--show text--body-2">
@@ -12,9 +14,9 @@
             </span>
             {{ $phone }}
         </div>
-
         <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
     </div>
+ 
 
     @if (auth('customer')->check() && auth('customer')->user()->username !== $name )
         <form action="{{ route('frontend.message.store', $name) }}" method="POST"

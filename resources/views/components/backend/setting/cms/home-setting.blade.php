@@ -69,8 +69,8 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <x-forms.label name="index1_title" />
-                <textarea class="form-control" name="index1_title" rows="4">{{ $cms->index1_title }}</textarea>
+                <x-forms.label name="Slider Title" />
+                <textarea class="form-control" name="index1_title" rows="4" placeholder="Title content">{{ $cms->index1_title }}</textarea>
                 @error('index1_title')
                     <span class="text-danger" style="font-size: 13px;">{{ $message }}</span>
                 @enderror
@@ -78,7 +78,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <x-forms.label name="index1_description" />
+                <x-forms.label name="Slider Description" />
                 <div class="row">
                     <textarea class="form-control" name="index1_description" rows="4">{{ $cms->index1_description }}</textarea>
                     @error('index1_description')

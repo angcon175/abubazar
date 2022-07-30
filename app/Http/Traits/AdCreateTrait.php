@@ -151,6 +151,7 @@ trait AdCreateTrait
             'description' => $ad->description,
             'features' => $ad->adFeatures,
             'galleries' => $ad->galleries,
+            'thumbnail' => $ad->thumbnail,
         ];
     }
 

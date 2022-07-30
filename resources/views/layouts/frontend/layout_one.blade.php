@@ -80,6 +80,26 @@
 
     <!-- Scripts goes here -->
     @include('layouts.frontend.partials.scripts')
+    <script>
+            $(document).on('click', '#selectCountry', function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: "{{ url('country/to/city') }}/" + id,
+                type: 'get',
+                dataType: "json",
+                beforeSend: function () {
+                    $('.loadding_icon').show();
+                    $('.city_name').hide();
+                },
+                success: function(data) {
+                    $('.loadding_icon').hide();
+                    $('.city_name').show();
+                    $("#city_show").html(data.html);
+                    $("#country_name").text(data.city.name);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

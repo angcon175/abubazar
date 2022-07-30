@@ -120,14 +120,14 @@ class AdPostController extends Controller
             'phone' => 'required',
             'phone_2' => 'sometimes',
             'city_id' => 'required',
-            'town_id' => 'required',
+            // 'town_id' => 'required',
         ]);
 
         try {
             $ad = session('ad');
             $ad->fill($validatedData);
             $request->session()->put('ad', $ad);
-
+            $ad['show_customer_info'] = $request->show_customer_info;
             $this->step1Success2();
             return redirect()->route('frontend.post.step3');
         } catch (\Throwable $th) {
@@ -223,11 +223,11 @@ class AdPostController extends Controller
     {
         if (auth('customer')->id() == $ad->customer_id) {
             $ad = collectionToResource($this->setAdEditStep2Data($ad));
-
+            $adsInfo = DB::table('ads')->where('id', $ad->id)->first();
             if (session('step2') && session('edit_mode')) {
                 $citis = City::latest('id')->get();
 
-                return view('frontend.postad_edit.step2', compact('ad', 'citis'));
+                return view('frontend.postad_edit.step2', compact('ad', 'citis', 'adsInfo'));
             } else {
                 return redirect()->route('frontend.dashboard');
             }
@@ -315,11 +315,18 @@ class AdPostController extends Controller
             'town_id' => 'required',
         ]);
 
+        if($request->show_customer_info) {
+            $showcustomerinfo = 1;
+        }else {
+            $showcustomerinfo = 0;
+        }
+
         $ad->update([
             'phone' => $request->phone,
             'phone_2' => $request->phone_2,
             'city_id' => $request->city_id,
             'town_id' => $request->town_id,
+            'show_customer_info' => $showcustomerinfo,
         ]);
 
         if ($request->cancel_edit) {
@@ -342,7 +349,16 @@ class AdPostController extends Controller
             'description' => 'required',
         ]);
 
-        $ad->update(['description' => $request->description]);
+        $updateData['description'] = $request->description;
+
+        if( $request->file('thumbnail')){
+            $thumbnail = $request->file('thumbnail');
+            $thumbnail_url = $thumbnail->move('uploads/adds_multiple',$thumbnail->hashName());
+            $updateData['thumbnail'] = $thumbnail_url;
+
+        }
+
+        $ad->update($updateData);
 
         // feature inserting
         $ad->adFeatures()->delete();
@@ -351,6 +367,7 @@ class AdPostController extends Controller
                 $ad->adFeatures()->create(['name' => $feature]);
             }
         }
+
 
         // image uploading
         $images = $request->file('images');
@@ -389,5 +406,16 @@ class AdPostController extends Controller
         }
 
         // return redirect()->back();
+    }
+
+    public function categoryAjax($id)
+    {
+        $subcategory = DB::table('sub_categories')->where('category_id', $id)->get();
+        return json_encode($subcategory);
+    }
+    public function cityTownAjax($id)
+    {
+        $town = DB::table('towns')->where('city_id', $id)->get();
+        return json_encode($town);
     }
 }

@@ -283,7 +283,7 @@ function currentLanguage()
     if (session()->has('lang')) {
         $lang = Language::where('code', session('lang'))->first();
     } else {
-        $lang = Language::where('code', env('APP_DEFAULT_LANGUAGE'))->first();
+        $lang = Language::where('code', 'en')->first();
     }
 
     return $lang;

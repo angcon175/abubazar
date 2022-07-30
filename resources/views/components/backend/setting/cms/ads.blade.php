@@ -1,5 +1,4 @@
-<form class="form-horizontal" action="{{ route('admin.ads.update') }}" method="POST"
-    enctype="multipart/form-data">
+<form class="form-horizontal" action="{{ route('admin.ads.update', $cms->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="row ">

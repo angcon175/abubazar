@@ -12,8 +12,8 @@
         </x-slot>
     </x-frontend.breedcrumb-component>
     <!-- breedcrumb section end  -->
-    <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="false"
-        :total-ads="$adlistings->total()" />
+
+    <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="false" :total-ads="$adlistings->total()" />
 
     <section class="section ad-list">
         <div class="container">
@@ -239,17 +239,19 @@
             slider.noUiSlider.on('change', function() {
                 changeFilter();
             });
-
-            // ===== Select2 ===== \\
-            $('#town').select2({
-                theme: 'bootstrap-5',
-                width: $(this).data('width') ?
-                    $(this).data('width') : $(this).hasClass('w-100') ?
-                    '100%' : 'style',
-                placeholder: 'Select town',
-                allowClear: Boolean($(this).data('allow-clear')),
-                closeOnSelect: !$(this).attr('multiple'),
-            });
         });
+    </script>
+    <script>
+        // ===== Select2 ===== \\
+        $('#town').select2({
+            theme: 'bootstrap-5',
+            width: $(this).data('width') ?
+                $(this).data('width') : $(this).hasClass('w-100') ?
+                '100%' : 'style',
+            placeholder: 'Select Location',
+            allowClear: Boolean($(this).data('allow-clear')),
+            closeOnSelect: !$(this).attr('multiple'),
+        });
+
     </script>
 @endsection

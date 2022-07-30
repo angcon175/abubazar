@@ -47,25 +47,19 @@
                         <div class="col-md-6">
                             <div class="input-select">
                                 <x-forms.label name="category" required="true" for="allCategory" />
-                                <select required name="category_id" id="ad_category" class="form-control select-bg @error('category_id') border-danger @enderror">
+                                <select required name="category_id" id="categoryId" class="form-control select-bg @error('category_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_category') }}</option>
-                                    @isset($ad->category_id)
-                                        @foreach ($categories as $category)
-                                            <option {{ $category->id == $ad->category_id ? 'selected':'' }} value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    @else
-                                        @foreach ($categories as $category)
-                                            <option {{ old('category_id') == $category->id ? 'selected':'' }} value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    @endisset
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-select">
                                 <x-forms.label name="subcategory" required="true" for="subcategory" />
-                                <select name="subcategory_id" id="ad_subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                    <option value="" selected>{{ __('select_subcategory') }}</option>
+                                <select required name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
+                                    <option selected>{{ __('select_subcategory') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -128,9 +122,9 @@
                                 @isset($ad->negotiable)
                                     <input {{ $ad->negotiable == 1 ? 'checked':'' }} value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" />
                                 @else
-                                    <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" />
+                                    <input value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme"/>
                                 @endisset
-                                <x-forms.label name="negotiable" required="true" class="form-check-label" for="checkme" />
+                                <x-forms.label name="negotiable"  class="form-check-label" for="checkme" />
                             </div>
                         </div>
                         @if (session('user_plan')->featured_limit)
@@ -142,7 +136,7 @@
                                     @else
                                         <input value="1" name="featured" type="checkbox" class="form-check-input" id="featured" />
                                     @endisset
-                                    <x-forms.label name="featured" required="true" class="form-check-label" for="featured" />
+                                    <x-forms.label name="featured"  class="form-check-label" for="featured" />
                                 </div>
                             </div>
                         @endif

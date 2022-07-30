@@ -27,6 +27,7 @@ class CreateAdsTable extends Migration
             $table->enum('condition', ['used', 'new'])->nullable();
             $table->enum('authenticity', ['original', 'refurbished'])->nullable();
             $table->boolean('negotiable')->default(0);
+            $table->integer('show_customer_info')->default(0);
             $table->float('price');
             $table->longText('description');
             $table->string('phone');

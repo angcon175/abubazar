@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Customer;
 use Illuminate\Support\Str;
 use Modules\Ad\Entities\Ad;
 use Illuminate\Http\Request;
 use Modules\Brand\Entities\Brand;
 use App\Http\Traits\AdCreateTrait;
 use Illuminate\Support\Facades\DB;
+use Modules\Ad\Entities\AdGallery;
 use Modules\Location\Entities\City;
 use App\Http\Controllers\Controller;
-use Modules\Ad\Entities\AdGallery;
 use Modules\Category\Entities\Category;
 
 class AdPostController extends Controller
@@ -45,8 +46,9 @@ class AdPostController extends Controller
         if (session('step2')) {
             $ad = session('ad');
             $citis = City::latest('id')->get();
+            $user = Customer::find(auth('customer')->id());
 
-            return view('frontend.postad.step2', compact('ad', 'citis'));
+            return view('frontend.postad.step2', compact('ad', 'citis','user'));
         } else {
             return redirect()->route('frontend.post');
         }
@@ -226,8 +228,9 @@ class AdPostController extends Controller
             $adsInfo = DB::table('ads')->where('id', $ad->id)->first();
             if (session('step2') && session('edit_mode')) {
                 $citis = City::latest('id')->get();
+                $user = Customer::find(auth('customer')->id());
 
-                return view('frontend.postad_edit.step2', compact('ad', 'citis', 'adsInfo'));
+                return view('frontend.postad_edit.step2', compact('ad', 'citis', 'adsInfo','user'));
             } else {
                 return redirect()->route('frontend.dashboard');
             }

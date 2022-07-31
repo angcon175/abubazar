@@ -1,0 +1,5 @@
+ALTER TABLE `customers` ADD `phone2` VARCHAR(20) NULL DEFAULT NULL AFTER `phone`;
+
+ALTER TABLE `customers` ADD `code` INT(4) NULL DEFAULT NULL AFTER `provider_id`, ADD `code_exp_time` DATETIME NULL DEFAULT NULL AFTER `code`, ADD `code_daily_counter` INT(2) NULL DEFAULT NULL AFTER `code_exp_time`, ADD `code_send_date` DATE NULL DEFAULT NULL AFTER `code_daily_counter`, ADD `code2` INT(4) NULL DEFAULT NULL AFTER `code_send_date`, ADD `code_exp_time2` DATETIME NULL DEFAULT NULL AFTER `code2`, ADD `code_daily_counter2` INT(2) NULL DEFAULT NULL AFTER `code_exp_time2`, ADD `code_send_date2` DATE NULL DEFAULT NULL AFTER `code_daily_counter2`;
+
+ALTER TABLE `customers` ADD `is_verified_phone` INT(1) NOT NULL DEFAULT '0' COMMENT '1=verified,0=not' AFTER `code_send_date2`, ADD `is_verified_phone2` INT(1) NULL DEFAULT '0' COMMENT '1=verified,0=not' AFTER `is_verified_phone`;

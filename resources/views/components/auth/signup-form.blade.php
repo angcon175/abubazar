@@ -8,26 +8,31 @@
             <form action="{{ route('customer.register') }}" method="POST">
                 @csrf
                 <div class="input-field">
-                    <input value="{{ old('name') }}" type="text" placeholder="{{ __('full_name') }}" name="name" class="@error('name') is-invalid border-danger @enderror" />
+                    <input value="{{ old('name') }}" type="text" placeholder="{{ __('full_name') }}" name="name" class="@error('name') is-invalid border-danger @enderror" required />
                     @error('name')<span class="text-danger">{{ $message }}</span>@enderror
                 </div>
                 <div class="input-field">
-                    <input value="{{ old('username') }}" type="text" placeholder="{{ __('username') }}" name="username" class="@error('username') is-invalid border-danger @enderror" />
+                    <input value="{{ old('username') }}" type="text" placeholder="{{ __('username') }}" name="username" class="@error('username') is-invalid border-danger @enderror" required />
                     @error('username')<span class="text-danger">{{ $message }}</span>@enderror
                 </div>
                 <div class="input-field">
-                    <input value="{{ old('email') }}" type="email" placeholder="{{ __('email_address') }}" name="email" class="@error('email') is-invalid border-danger @enderror" />
+                    <input value="{{ old('email') }}" type="email" placeholder="{{ __('email_address') }}" name="email" class="@error('email') is-invalid border-danger @enderror" required />
                     @error('email')<span class="text-danger">{{ $message }}</span>@enderror
                 </div>
                 <div class="input-field">
-                    <input type="password" name="password" placeholder="{{ __('password') }}" id="password" class="@error('password') is-invalid border-danger @enderror" />
+                    <input value="{{ old('phone') }}" type="tel" placeholder="{{ __('phone') }}" name="phone" class="@error('phone') is-invalid border-danger @enderror" required />
+                    @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
+                </div>
+
+                <div class="input-field">
+                    <input type="password" name="password" placeholder="{{ __('password') }}" id="password" class="@error('password') is-invalid border-danger @enderror" required />
                     <span class="icon icon--eye" onclick="showPassword('password',this)">
                         <x-svg.eye-icon />
                     </span>
                     @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="input-field">
-                    <input type="password" name="password_confirmation" placeholder="{{ __('confirm_password') }}" id="cpassword" class="@error('password') is-invalid border-danger @enderror" />
+                    <input type="password" name="password_confirmation" placeholder="{{ __('confirm_password') }}" id="cpassword" class="@error('password') is-invalid border-danger @enderror" required />
                     <span class="icon icon--eye" onclick="showPassword('cpassword',this)">
                         <x-svg.eye-icon />
                     </span>

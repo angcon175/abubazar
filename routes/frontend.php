@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MessangerController;
+use App\Http\Controllers\Frontend\OtpController;
 use App\Http\Controllers\Frontend\AdPostController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Frontend\DashboardController;
@@ -44,6 +45,8 @@ Route::group(['as' => 'frontend.'], function () {
             Route::get('/step1/back/{slug?}', [AdPostController::class, 'postStep1Back'])->name('post.step1.back');
             Route::get('/category/ajax/{id}', [AdPostController::class, 'categoryAjax']);
             Route::get('/city-town/ajax/{id}', [AdPostController::class, 'cityTownAjax']);
+            Route::post('/sendotp', [OtpController::class, 'sendotp'])->name('post.sendotp');
+            Route::post('/verifyotp', [OtpController::class, 'verifyotp'])->name('post.verifyotp');
         });
         // Ad Edit
         Route::prefix('post')->group(function () {

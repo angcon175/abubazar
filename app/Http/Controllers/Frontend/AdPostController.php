@@ -164,6 +164,7 @@ class AdPostController extends Controller
 
         // image uploading
         $images = $request->file('images');
+        dd($images);
         foreach ($images as $key => $image) {
             if ($key == 0 && $image && $image->isValid()) {
                 $url = $image->move('uploads/addds_images',$image->hashName());
@@ -172,6 +173,7 @@ class AdPostController extends Controller
 
             if ($image && $image->isValid()) {
                 $gallery_url = $image->move('uploads/adds_multiple',$image->hashName());
+
                 $ad->galleries()->create(['image' => $gallery_url]);
             }
         }

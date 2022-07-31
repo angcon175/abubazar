@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use File;
 use App\Models\Customer;
 use Illuminate\Support\Str;
 use Modules\Ad\Entities\Ad;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use Modules\Brand\Entities\Brand;
 use App\Http\Traits\AdCreateTrait;
 use Illuminate\Support\Facades\DB;
@@ -164,17 +166,26 @@ class AdPostController extends Controller
 
         // image uploading
         $images = $request->file('images');
-        dd($images);
+
         foreach ($images as $key => $image) {
             if ($key == 0 && $image && $image->isValid()) {
                 $url = $image->move('uploads/addds_images',$image->hashName());
                 $ad->update(['thumbnail' => $url]);
             }
+            $waterMarkUrl = public_path('img/watermark.png');
+            // dd($waterMarkUrl);
+
 
             if ($image && $image->isValid()) {
-                $gallery_url = $image->move('uploads/adds_multiple',$image->hashName());
+                $thumb_img = Image::make($image->getRealPath());
+                $destinationPath2 = public_path('uploads/adds_multiple/');
+                $name = uniqid() . '.' . $image->getClientOriginalExtension();
+                $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
+                $thumb_img->save($destinationPath2 . '/' . $name);
 
-                $ad->galleries()->create(['image' => $gallery_url]);
+                // $gallery_url = $image->move('uploads/adds_multiple',$image->hashName());
+                $name = 'uploads/ad_multiple/'.$name;
+                $ad->galleries()->create(['image' => $name]);
             }
         }
 

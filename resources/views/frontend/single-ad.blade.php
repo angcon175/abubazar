@@ -48,7 +48,7 @@
                     :verifiedseller="$verified_seller" :status="$ad->status" />
                     {{-- ad info --}}
                     <x-ad-details.ad-info :ad="$ad" />
-                    
+
                     {{-- ad gallery --}}
                     <x-ad-details.ad-gallery :galleries="$ad->galleries" :thumbnail="$ad->image_url" :slug="$ad->slug" />
                     {{-- ad description --}}
@@ -82,7 +82,7 @@
                                         <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
                                     </div>
                                 @endif
-                                @if (auth('customer')->check() && auth('customer')->user()->username !== $name )
+                                @if (auth('customer')->check() && auth('customer')->user()->id != $ad->customer_id )
                                     <form action="{{ route('frontend.message.store', $ad->customer->username) }}" method="POST"
                                         id="sendMessageForm">
                                         @csrf
@@ -105,7 +105,7 @@
                                 @endif
                             </div>
 
-                            
+
                         </div>
                         <div class="product-item__sidebar-bottom">
                             <div class="product-item__sidebar-item overview">

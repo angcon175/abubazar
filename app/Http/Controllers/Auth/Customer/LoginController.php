@@ -68,10 +68,18 @@ class LoginController extends Controller
      */
     protected function sendLoginResponse(Request $request)
     {
+        if($this->guard()->user()->is_verified_phone == 0){
+            $email = $this->guard()->user()->email;
+            $phone = $this->guard()->user()->phone;
+            $user = Customer::where('email',$email)->first();
+            $this->guard()->logout();
+            //need to send otp
+
+            return redirect()->route('frontend.otpverifiaction',['phone' => $phone])->withUser($user)->withInput();
+        }
+
         $request->session()->regenerate();
-
         $this->clearLoginAttempts($request);
-
         if ($response = $this->authenticated($request, $this->guard()->user())) {
             return $response;
         }

@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use DB;
 use DateTime;
+use Exception;
 use App\Models\Cms;
 use App\Models\Theme;
 use App\Models\Setting;
+use Twilio\Rest\Client;
 use App\Models\Customer;
 use App\Models\BlogComment;
 use Modules\Ad\Entities\Ad;
 use Illuminate\Http\Request;
+use App\Http\Traits\SmsTrait;
 use Modules\Faq\Entities\Faq;
 use App\Models\PaymentSetting;
 use Modules\Blog\Entities\Post;
@@ -29,6 +32,7 @@ use Modules\Category\Transformers\CategoryResource;
 
 class FrontendController extends Controller
 {
+    use SmsTrait;
     /**
      * View Home page
      * @return \Illuminate\Http\Response
@@ -307,24 +311,29 @@ class FrontendController extends Controller
             'name' => "required",
             'username' => "required|unique:customers,username",
             'email' => "required|email|unique:customers,email",
-            'phone' => "required|min:10|max:12|unique:customers,phone",
+            'phone' => "required|min:9|max:12|unique:customers,phone",
             'password' => "required|confirmed|min:8|max:50"
         ]);
         $otp = rand (1000,9999);
-        $created = Customer::create([
-            'name'                  => $request->name,
-            'username'              => $request->username,
-            'email'                 => $request->email,
-            'phone'                 => $request->phone,
-            'password'              => bcrypt($request->password),
-            'code'                  => $otp,
-            'code_exp_time'         =>  date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
-            'code_daily_counter'    => 1,
-            'code_send_date'        => date('Y-m-d'),
-            'is_verified_phone'     => 0,
-        ]);
 
-        if ($created) {
+        $phone = (int)$request->phone;
+        $receiverNumber = '+971'.$phone;
+        $message = "Welcome to abubazar.com, you otp code is ".$otp;
+        $res = $this->sendSms($message,$receiverNumber);
+        if ($res) {
+            $created = Customer::create([
+                'name'                  => $request->name,
+                'username'              => $request->username,
+                'email'                 => $request->email,
+                'phone'                 => $request->phone,
+                'password'              => bcrypt($request->password),
+                'code'                  => $otp,
+                'code_exp_time'         =>  date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
+                'code_daily_counter'    => 1,
+                'code_send_date'        => date('Y-m-d'),
+                'is_verified_phone'     => 0,
+            ]);
+
             Auth::guard('customer')->logout();
             Auth::guard('super_admin')->logout();
             flashSuccess('Registration Successful!');
@@ -344,7 +353,14 @@ class FrontendController extends Controller
 //            } else {
 //                return redirect()->route('frontend.dashboard');
 //            }
+        }else{
+            Auth::guard('customer')->logout();
+            Auth::guard('super_admin')->logout();
+            flashError('Your phone number may wrong');
+            return redirect()->back()->withInput();
         }
+
+
     }
 
     public function otpVerify(Request $request){
@@ -366,13 +382,22 @@ class FrontendController extends Controller
                     return redirect()->back()->withUser($user)->withInput();
                 }else{
                     $code_daily_counter = $user->code_daily_counter+1;
-                    $user = Customer::where('phone',$request->phone)->update([
-                        'code'                  => $otp,
-                        'code_exp_time'         =>  date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
-                        'code_daily_counter'    => $code_daily_counter,
-                        'code_send_date'        => date('Y-m-d'),
-                    ]);
-                    flashSuccess('Otp send again');
+                    $phone = (int)$user->phone;
+                    $receiverNumber = '+971'.$phone;
+                    $message = "Welcome to abubazar.com, you otp code is ".$otp;
+
+                    $res = $this->sendSms($message,$receiverNumber);
+                    if($res){
+                        $user = Customer::where('phone',$request->phone)->update([
+                            'code'                  => $otp,
+                            'code_exp_time'         =>  date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
+                            'code_daily_counter'    => 1,
+                            'code_send_date'        => date('Y-m-d'),
+                        ]);
+                        flashSuccess('Otp send again');
+                    }else{
+                        flashError('Your phone number may wrong');
+                    }
                     return redirect()->back()->withUser($user)->withInput();
                 }
 
@@ -380,7 +405,7 @@ class FrontendController extends Controller
             }else{
                 $request->validate([
                     'otp' => "required|min:4|max:4",
-                    'phone' => "required|min:10|max:12",
+                    'phone' => "required|min:9|max:12",
                 ]);
                 $user = Customer::where('phone',$request->phone)->first();
                 if($user){

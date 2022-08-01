@@ -390,8 +390,8 @@ class FrontendController extends Controller
                     if($res){
                         $user = Customer::where('phone',$request->phone)->update([
                             'code'                  => $otp,
-                            'code_exp_time'         =>  date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
-                            'code_daily_counter'    => 1,
+                            'code_exp_time'         => date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
+                            'code_daily_counter'    => $code_daily_counter,
                             'code_send_date'        => date('Y-m-d'),
                         ]);
                         flashSuccess('Otp send again');

@@ -306,7 +306,7 @@ class FrontendController extends Controller
     public function register(Request $request)
     {
         $setting = setting();
-        date_default_timezone_set('Asia/Dubai');
+
         $request->validate([
             'name' => "required",
             'username' => "required|unique:customers,username",
@@ -365,7 +365,7 @@ class FrontendController extends Controller
 
     public function otpVerify(Request $request){
             $setting = setting();
-            date_default_timezone_set('Asia/Dubai');
+
             if($request->submit == 'againotp'){
                 $request->validate([
                     'phone' => "required|min:10|max:12",

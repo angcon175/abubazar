@@ -177,15 +177,16 @@ class AdPostController extends Controller
 
 
             if ($image && $image->isValid()) {
+
+                $name = $image->hashName();
                 $thumb_img = Image::make($image->getRealPath());
                 $destinationPath2 = public_path('uploads/adds_multiple/');
-                $name = uniqid() . '.' . $image->getClientOriginalExtension();
                 $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
                 $thumb_img->save($destinationPath2 . '/' . $name);
+                $gallery_url = 'uploads/adds_multiple/'.$name;
 
-                // $gallery_url = $image->move('uploads/adds_multiple',$image->hashName());
-                $name = 'uploads/ad_multiple/'.$name;
-                $ad->galleries()->create(['image' => $name]);
+                $gallery_url = $image->move('uploads/adds_multiple',$image->hashName());
+                $ad->galleries()->create(['image' => $gallery_url]);
             }
         }
 
@@ -384,13 +385,22 @@ class AdPostController extends Controller
             }
         }
 
-
+        $waterMarkUrl = public_path('img/watermark.png');
         // image uploading
         $images = $request->file('images');
         if ($images) {
             foreach ($images as $image) {
                 if ($image && $image->isValid()) {
-                    $gallery_url = $image->move('uploads/adds_multiple',$image->hashName());
+
+                    $name = $image->hashName();
+                    $thumb_img = Image::make($image->getRealPath());
+                    $destinationPath2 = public_path('uploads/adds_multiple/');
+                    $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
+                    $thumb_img->save($destinationPath2 . '/' . $name);
+                    $gallery_url = 'uploads/adds_multiple/'.$name;
+
+
+                    // $gallery_url = $image->move('uploads/adds_multiple',$image->hashName());
                     $ad->galleries()->create(['image' => $gallery_url]);
                 }
             }

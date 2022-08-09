@@ -82,22 +82,42 @@ class AdPostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|unique:ads,title',
             'price' => 'required|numeric',
-            'model' => 'required',
-            'condition' => 'required',
-            'authenticity' => 'required',
-            'negotiable' => 'required',
+            // 'model' => 'required',
+            // 'condition' => 'required',
+            // 'authenticity' => 'required',
+            // 'negotiable' => 'required',
             'featured' => 'sometimes',
             'category_id' => 'required',
-            'subcategory_id' => 'sometimes',
-            'brand_id' => 'required',
+            // 'subcategory_id' => 'sometimes',
+            // 'brand_id' => 'required',
         ]);
 
         try {
             if (empty(session('ad'))) {
                 $ad = new Ad();
-                $ad['slug'] = Str::slug($request->title);
-                $ad->fill($validatedData);
-                $request->session()->put('ad', $ad);
+                if($request->category_id  == 11) {
+                    $ad['slug'] = Str::slug($request->title); 
+                    $ad['subcategory_id'] = $request->subcategory_id;   
+                    $ad['businessfunction'] = $request->businessfunction;
+                    $ad['role_designation'] = $request->role_designation;
+                    $ad['receive_response'] = $request->receive_response;
+                    $ad['total_vacancies'] = $request->total_vacancies;
+                    $ad['company_employeer_name'] = $request->company_employeer_name;
+                    $ad['application_deadline'] = $request->application_deadline;
+                    $ad['required_experience'] = $request->required_experience;
+                    $ad['minimum_qualification'] = $request->minimum_qualification;
+                    $ad['educational_specialization'] = $request->educational_specialization;
+                    $ad['skills'] = $request->skills;
+                    $ad['mixium_age'] = $request->mixium_age;
+                    $ad['gender_preference'] = $request->gender_preference;
+                    // return $ad;
+                    $ad->fill($validatedData);
+                    $request->session()->put('ad', $ad);
+                }else {
+                    $ad['slug'] = Str::slug($request->title);    
+                    $ad->fill($validatedData);
+                    $request->session()->put('ad', $ad);
+                }
             } else {
                 $ad = session('ad');
                 $ad['slug'] = Str::slug($request->title);
@@ -285,27 +305,50 @@ class AdPostController extends Controller
         $request->validate([
             'title' => "required|unique:ads,title,$ad->id",
             'price' => 'required|numeric',
-            'model' => 'required',
-            'condition' => 'required',
-            'authenticity' => 'required',
+            // 'model' => 'required',
+            // 'condition' => 'required',
+            // 'authenticity' => 'required',
             'negotiable' => 'sometimes',
             'category_id' => 'required',
-            'brand_id' => 'required',
+            // 'brand_id' => 'required',
         ]);
-
-        $ad->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'category_id' => $request->category_id,
-            'subcategory_id' => $request->subcategory_id,
-            'brand_id' => $request->brand_id,
-            'price' => $request->price,
-            'model' => $request->model,
-            'condition' => $request->condition,
-            'authenticity' => $request->authenticity,
-            'negotiable' => $request->negotiable,
-            'featured' => $request->featured,
-        ]);
+        if($request->category_id  == 11) {
+            $ad->update([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'price' => $request->price,
+                'negotiable' => $request->negotiable,
+                'featured' => $request->featured,
+                'businessfunction' => $request->businessfunction,
+                'role_designation' => $request->role_designation,
+                'receive_response' => $request->receive_response,
+                'total_vacancies' => $request->total_vacancies,
+                'company_employeer_name' => $request->company_employeer_name,
+                'application_deadline' => $request->application_deadline,
+                'required_experience' => $request->required_experience,
+                'minimum_qualification' => $request->minimum_qualification,
+                'educational_specialization' => $request->educational_specialization,
+                'skills' => $request->skills,
+                'mixium_age' => $request->mixium_age,
+                'gender_preference' => $request->gender_preference,
+            ]);
+        }else {
+            $ad->update([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'brand_id' => $request->brand_id,
+                'price' => $request->price,
+                'model' => $request->model,
+                'condition' => $request->condition,
+                'authenticity' => $request->authenticity,
+                'negotiable' => $request->negotiable,
+                'featured' => $request->featured,
+            ]);
+        }
 
 
         if ($request->cancel_edit) {

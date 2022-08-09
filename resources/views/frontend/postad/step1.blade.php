@@ -40,7 +40,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
-                                <x-forms.label name="price" required="true" for="price" />
+                                <label id="month">Price <span class="text-danger">*</span></label>
+                                <label id="permonth" style="display:none;">Price Per Month <span class="text-danger">*</span></label>
                                 <input required value="{{ $ad->price ?? '' }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price"  class="@error('price') border-danger @enderror"/>
                             </div>
                         </div>
@@ -55,17 +56,168 @@
                                 </select>
                             </div>
                         </div>
+                            @php
+                                $subcategories = DB::table('sub_categories')->where('status', 1)->get();
+                            @endphp
                         <div class="col-md-6">
                             <div class="input-select">
-                                <x-forms.label name="subcategory" required="true" for="subcategory" />
+                                <x-forms.label name="subcategory"for="subcategory" />
                                 <select required name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                    <option selected>{{ __('select_subcategory') }}</option>
+                                    @foreach($subcategories as $subcate)
+                                        <option value="{{$subcate->id}}" >{{ $subcate->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="row" id="showAlInfo" style="display:none;">
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Business Function <span class="text-danger">*</span></label>
+                                    <select name="businessfunction" class="form-control">
+                                        <option selected="selected" value="">Select one</option>
+                                        <option value="administration">Administration</option>
+                                        <option value="accounting_finance">Accounting &amp; Finance</option>
+                                        <option value="contractual">Contractual</option>
+                                        <option value="customer_support">Customer Support</option>
+                                        <option value="data_entry_analysis">Data Entry &amp; Analysis</option>
+                                        <option value="creative_design_architecture">Creative, Design &amp; Architecture</option>
+                                        <option value="education_training">Education &amp; Training</option>
+                                        <option value="hospitality">Hospitality</option>
+                                        <option value="human_resources">Human Resources</option>
+                                        <option value="it_telecom">IT &amp; Telecom</option>
+                                        <option value="legel">Legal</option>
+                                        <option value="logistics">Logistics</option>
+                                        <option value="management">Management</option>
+                                        <option value="manufacturing">Manufacturing</option>
+                                        <option value="marketing_salse">Marketing &amp; Sales</option>
+                                        <option value="operations">Operations</option>
+                                        <option value="quality_assurance">Quality Assurance</option>
+                                        <option value="research_technical">Research &amp; Technical</option>
+                                        <option value="security">Security</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Role / Designation<span class="text-danger">*</span></label>
+                                    <input type="text" name="role_designation" class="form-control" placeholder="Role / Designation">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Receive Response<span class="text-danger">*</span></label>
+                                    <select name="receive_response" class="form-control">
+                                        <option value="" selected>Select One</option>
+                                        <option value="Employer Dashboard">Employer Dashboard</option>
+                                        <option value="Phone">Phone</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Total vacancies<span class="text-danger">*</span></label>
+                                    <input type="number" name="total_vacancies" class="form-control" placeholder="Total vacancies">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2 mb-3">
+                                <h4>About the company / Employer</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Company / Employeer<span class="text-danger">*</span></label>
+                                    <input type="text" name="company_employeer_name" class="form-control" placeholder="Company / Employeer name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Company Logo</label>
+                                    <input type="file" name="company_logo" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Application Deadline<span class="text-danger">*</span></label>
+                                    <input type="date" name="application_deadline" class="form-control" placeholder="Application Deadline">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Required experience (years)</label>
+                                    <input type="text" name="required_experience" class="form-control" placeholder="Required experience (years)">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2 mb-3">
+                                <h4>Candidate preferences</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Minimum qualification<span class="text-danger">*</span></label>
+                                    <select name="minimum_qualification" class="form-control">
+                                        <option selected="selected" value="">Select one</option>
+                                        <option value="primary_school">Primary School</option>
+                                        <option value="high_school">High School</option>
+                                        <option value="ssc">SSC / O Level</option>
+                                        <option value="hsc">HSC / A Level</option>
+                                        <option value="diploma">Diploma</option>
+                                        <option value="graduate">Bachelor / Honors</option>
+                                        <option value="post_graduate">Masters</option>
+                                        <option value="doctorate">PhD / Doctorate</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Educational specialization</label>
+                                    <select name="educational_specialization" class="form-control">
+                                        <option selected="selected" value="">Select one</option>
+                                        <option value="art_humanities">Art and Humanities</option>
+                                        <option value="business_management">Business and Management</option>
+                                        <option value="accounting">Accounting</option>
+                                        <option value="design_fashion">Design and Fashion</option>
+                                        <option value="engineering">Engineering</option>
+                                        <option value="events_hospitality">Events and Hospitality</option>
+                                        <option value="finance_commerce">Finance and Commerce</option>
+                                        <option value="human_resources">Resources</option>
+                                        <option value="info_technology">Information Technology</option>
+                                        <option value="law">Law</option>
+                                        <option value="marketing_sales">Marketing and Sales</option>
+                                        <option value="mass_comm">Mass Communication</option>
+                                        <option value="medicine">Medicine</option>
+                                        <option value="sciences">Sciences</option>
+                                        <option value="vocational">Vocational and Technical</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-field">
+                                    <label>Skills</label>
+                                    <input type="text" name="skills" class="form-control" placeholder="skills">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Maximum age</label>
+                                    <input type="number" name="mixium_age" class="form-control" placeholder="Maximum age">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Gender preference</label>
+                                    <select name="gender_preference" class="form-control">
+                                        <option selected="selected" value="">Select one</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                        <option value="Any">Any</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="brandShowHide">
                             <div class="input-select">
-                                <x-forms.label name="brand" required="true" for="brand" />
+                                <x-forms.label name="brand" for="brand" />
                                 <select required name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_brand') }}</option>
                                     @isset($ad->brand_id)
@@ -80,15 +232,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="modelShowHide">
                             <div class="input-field">
-                                <x-forms.label name="model" required="true" for="modell" />
+                                <x-forms.label name="model" for="modell" />
                                 <input required value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="conditionShowHide">
                             <div class="input-select">
-                                <x-forms.label name="condition" required="true" for="conditionss" />
+                                <x-forms.label name="condition" for="conditionss" />
                                 <select required name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
                                     @isset($ad->condition)
                                         <option {{ $ad->condition == 'new' ? 'selected':'' }} value="new">{{ __('new') }}</option>
@@ -100,9 +252,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="authenticityShowHide">
                             <div class="input-select">
-                                <x-forms.label name="authenticity" required="true" for="authenticityy" />
+                                <x-forms.label name="authenticity" for="authenticityy" />
                                 <select required name="authenticity" id="authenticityy" class="form-control select-bg @error('authenticity') border-danger @enderror">
                                     @isset($ad->condition)
                                         <option {{ $ad->authenticity == 'original'? 'selected':'' }} value="original">{{ __('original') }}</option>
@@ -128,7 +280,7 @@
                             </div>
                         </div>
                         @if (session('user_plan')->featured_limit)
-                            <div class="col-lg-3">
+                            <div class="col-lg-3" id="featuredShowHide">
                                 <div class="form-check">
                                     <input name="featured" type="hidden" value="0">
                                     @isset($ad->featured)
@@ -156,4 +308,37 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('frontend_script')
+    <script>
+        $("#categoryId").on('change', function() {
+            let id = $(this).val();
+            if(id == 11) {
+                // alert(id);
+                $("#permonth").show();
+                $("#month").hide();
+                $("#brandShowHide").hide();
+                $("#modelShowHide").hide();
+                $("#conditionShowHide").hide();
+                $("#authenticityShowHide").hide();
+                $("#featuredShowHide").hide();
+                $("#showAlInfo").show();
+                $('#brandd').removeAttr('required');
+                $('#modell').removeAttr('required');
+            }else {
+                // alert('work');
+                $("#permonth").hide();
+                $("#month").show();
+                $("#brandShowHide").show();
+                $("#modelShowHide").show();
+                $("#authenticityShowHide").show();
+                $("#conditionShowHide").show();
+                $("#featuredShowHide").show();
+                $("#showAlInfo").hide();
+                $('#brandd').attr('required', 'required');
+                $('#modell').attr('required', 'required');
+            }
+        });
+    </script>
 @endsection

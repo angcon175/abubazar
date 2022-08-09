@@ -85,8 +85,19 @@ Route::prefix('admin')->middleware(['auth:super_admin', 'setlang'])->group(funct
     Route::get('/reports', [App\Http\Controllers\ReportAdsController::class, 'Index'])->name('admin.ads.report');
     Route::get('/reports/view/{id}', [App\Http\Controllers\ReportAdsController::class, 'show'])->name('admin.reports.view');
     Route::get('/reports/delete/{id}', [App\Http\Controllers\ReportAdsController::class, 'destroy'])->name('admin.reports.destroy');
-
-
+    // business-functions
+    Route::get('business-functions', [SettingsController::class, 'businessFunction'])->name('admin.business.functions');
+    Route::post('business-functions-store', [SettingsController::class, 'businessFunctionStore'])->name('admin.business.functions.store');
+    Route::post('business-functions-update/{id}', [SettingsController::class, 'businessFunctionUpdate'])->name('admin.business.functions.update');
+    // educational_specializations
+    Route::get('educational-specializations', [SettingsController::class, 'educationalSpecializations'])->name('admin.educational.specializations');
+    Route::post('educational-specializations-store', [SettingsController::class, 'educationalSpecializationsStore'])->name('admin.educational.specializations.store');
+    Route::post('educational-specializations-update/{id}', [SettingsController::class, 'educationalSpecializationsUpdate'])->name('admin.educational.specializations.update');
+    // minimum_qualifications
+    Route::get('minimum-qualifications', [SettingsController::class, 'minimumQualifications'])->name('admin.minimum.qualifications');
+    Route::post('minimum-qualifications-store', [SettingsController::class, 'minimumQualificationsStore'])->name('admin.minimum.qualifications.store');
+    Route::post('minimum-qualifications-update/{id}', [SettingsController::class, 'minimumQualificationsUpdate'])->name('admin.minimum.qualifications.update');
+    
 });
 
 // Admin Reset Password

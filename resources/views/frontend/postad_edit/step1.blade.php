@@ -4,6 +4,11 @@
     {{ __('edit_ad') }} ({{ __('steps01') }}) - {{ $ad->title }}
 @endsection
 
+@section('adlisting_style')
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+@endsection
+
+
 <style>
     select {
         height: 48px;
@@ -18,6 +23,11 @@
     }
 </style>
 @section('post-ad-content')
+    @php
+        $businessfunctions = DB::table('business_functions')->orderBy('name')->get();
+        $educational = DB::table('educational_specializations')->orderBy('name')->get();
+        $minimum = DB::table('minimum_qualifications')->orderBy('name')->get();
+    @endphp
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -82,28 +92,11 @@
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Business Function <span class="text-danger">*</span></label>
-                                        <select name="businessfunction" class="form-control">
+                                        <select name="businessfunction_id" class="form-control">
                                             <option value="">Select one</option>
-                                            <option @if($myads->businessfunction == 'administration') selected @endif value="administration">Administration</option>
-                                            <option @if($myads->businessfunction == 'accounting_finance') selected @endif value="accounting_finance">Accounting &amp; Finance</option>
-                                            <option @if($myads->businessfunction == 'contractual') selected @endif value="contractual">Contractual</option>
-                                            <option @if($myads->businessfunction == 'customer_support') selected @endif value="customer_support">Customer Support</option>
-                                            <option @if($myads->businessfunction == 'data_entry_analysis') selected @endif value="data_entry_analysis">Data Entry &amp; Analysis</option>
-                                            <option @if($myads->businessfunction == 'creative_design_architecture') selected @endif value="creative_design_architecture">Creative, Design &amp; Architecture</option>
-                                            <option @if($myads->businessfunction == 'education_training') selected @endif value="education_training">Education &amp; Training</option>
-                                            <option @if($myads->businessfunction == 'hospitality') selected @endif value="hospitality">Hospitality</option>
-                                            <option @if($myads->businessfunction == 'human_resources') selected @endif value="human_resources">Human Resources</option>
-                                            <option @if($myads->businessfunction == 'it_telecom') selected @endif value="it_telecom">IT &amp; Telecom</option>
-                                            <option @if($myads->businessfunction == 'legel') selected @endif value="legel">Legal</option>
-                                            <option @if($myads->businessfunction == 'logistics') selected @endif value="logistics">Logistics</option>
-                                            <option @if($myads->businessfunction == 'management') selected @endif value="management">Management</option>
-                                            <option @if($myads->businessfunction == 'manufacturing') selected @endif value="manufacturing">Manufacturing</option>
-                                            <option @if($myads->businessfunction == 'marketing_salse') selected @endif value="marketing_salse">Marketing &amp; Sales</option>
-                                            <option @if($myads->businessfunction == 'operations') selected @endif value="operations">Operations</option>
-                                            <option @if($myads->businessfunction == 'quality_assurance') selected @endif value="quality_assurance">Quality Assurance</option>
-                                            <option @if($myads->businessfunction == 'research_technical') selected @endif value="research_technical">Research &amp; Technical</option>
-                                            <option @if($myads->businessfunction == 'security') selected @endif value="security">Security</option>
-                                            <option @if($myads->businessfunction == 'others') selected @endif value="others">Others</option>
+                                            @foreach($businessfunctions as $business)
+                                                <option @if($business->id == $myads->businessfunction_id) selected @endif value="{{$business->id}}">{{$business->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -147,7 +140,7 @@
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Application Deadline<span class="text-danger">*</span></label>
-                                        <input type="date" name="application_deadline" value="{{$myads->application_deadline}}" class="form-control" placeholder="Application Deadline">
+                                        <input type="text" name="application_deadline" id="datepicker" value="{{$myads->application_deadline}}" class="form-control" placeholder="Application Deadline">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -162,40 +155,22 @@
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Minimum qualification<span class="text-danger">*</span></label>
-                                        <select name="minimum_qualification" class="form-control">
+                                        <select name="minimum_qualification_id" class="form-control">
                                             <option value="">Select one</option>
-                                            <option @if($myads->minimum_qualification == 'primary_school') selected @endif value="primary_school">Primary School</option>
-                                            <option @if($myads->minimum_qualification == 'high_school') selected @endif value="high_school">High School</option>
-                                            <option @if($myads->minimum_qualification == 'ssc') selected @endif value="ssc">SSC / O Level</option>
-                                            <option @if($myads->minimum_qualification == 'hsc') selected @endif value="hsc">HSC / A Level</option>
-                                            <option @if($myads->minimum_qualification == 'diploma') selected @endif value="diploma">Diploma</option>
-                                            <option @if($myads->minimum_qualification == 'graduate') selected @endif value="graduate">Bachelor / Honors</option>
-                                            <option @if($myads->minimum_qualification == 'post_graduate') selected @endif value="post_graduate">Masters</option>
-                                            <option @if($myads->minimum_qualification == 'doctorate') selected @endif value="doctorate">PhD / Doctorate</option>
+                                            @foreach($minimum as $min)
+                                                <option @if($min->id == $myads->minimum_qualification_id) selected @endif value="{{$min->id}}">{{$min->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Educational specialization</label>
-                                        <select name="educational_specialization" class="form-control">
+                                        <select name="educational_specialization_id" class="form-control">
                                             <option value="">Select one</option>
-                                            <option @if($myads->educational_specialization == 'art_humanities') selected @endif value="art_humanities">Art and Humanities</option>
-                                            <option @if($myads->educational_specialization == 'business_management') selected @endif value="business_management">Business and Management</option>
-                                            <option @if($myads->educational_specialization == 'accounting') selected @endif value="accounting">Accounting</option>
-                                            <option @if($myads->educational_specialization == 'design_fashion') selected @endif value="design_fashion">Design and Fashion</option>
-                                            <option @if($myads->educational_specialization == 'engineering') selected @endif value="engineering">Engineering</option>
-                                            <option @if($myads->educational_specialization == 'events_hospitality') selected @endif value="events_hospitality">Events and Hospitality</option>
-                                            <option @if($myads->educational_specialization == 'finance_commerce') selected @endif value="finance_commerce">Finance and Commerce</option>
-                                            <option @if($myads->educational_specialization == 'human_resources') selected @endif value="human_resources">Resources</option>
-                                            <option @if($myads->educational_specialization == 'info_technology') selected @endif value="info_technology">Information Technology</option>
-                                            <option @if($myads->educational_specialization == 'law') selected @endif value="law">Law</option>
-                                            <option @if($myads->educational_specialization == 'marketing_sales') selected @endif value="marketing_sales">Marketing and Sales</option>
-                                            <option @if($myads->educational_specialization == 'mass_comm') selected @endif value="mass_comm">Mass Communication</option>
-                                            <option @if($myads->educational_specialization == 'medicine') selected @endif value="medicine">Medicine</option>
-                                            <option @if($myads->educational_specialization == 'sciences') selected @endif value="sciences">Sciences</option>
-                                            <option @if($myads->educational_specialization == 'vocational') selected @endif value="vocational">Vocational and Technical</option>
-                                            <option @if($myads->educational_specialization == 'others') selected @endif value="others">Others</option>
+                                            @foreach($educational as $educationa)
+                                                <option @if($educationa->id == $myads->educational_specialization_id) selected @endif value="{{$educationa->id}}">{{$educationa->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -229,28 +204,11 @@
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Business Function <span class="text-danger">*</span></label>
-                                        <select name="businessfunction" class="form-control">
+                                        <select name="businessfunction_id" class="form-control">
                                             <option selected="selected" value="">Select one</option>
-                                            <option value="administration">Administration</option>
-                                            <option value="accounting_finance">Accounting &amp; Finance</option>
-                                            <option value="contractual">Contractual</option>
-                                            <option value="customer_support">Customer Support</option>
-                                            <option value="data_entry_analysis">Data Entry &amp; Analysis</option>
-                                            <option value="creative_design_architecture">Creative, Design &amp; Architecture</option>
-                                            <option value="education_training">Education &amp; Training</option>
-                                            <option value="hospitality">Hospitality</option>
-                                            <option value="human_resources">Human Resources</option>
-                                            <option value="it_telecom">IT &amp; Telecom</option>
-                                            <option value="legel">Legal</option>
-                                            <option value="logistics">Logistics</option>
-                                            <option value="management">Management</option>
-                                            <option value="manufacturing">Manufacturing</option>
-                                            <option value="marketing_salse">Marketing &amp; Sales</option>
-                                            <option value="operations">Operations</option>
-                                            <option value="quality_assurance">Quality Assurance</option>
-                                            <option value="research_technical">Research &amp; Technical</option>
-                                            <option value="security">Security</option>
-                                            <option value="others">Others</option>
+                                            @foreach($businessfunctions as $business)
+                                                <option value="{{$business->id}}">{{$business->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -294,7 +252,7 @@
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Application Deadline<span class="text-danger">*</span></label>
-                                        <input type="date" name="application_deadline" class="form-control" placeholder="Application Deadline">
+                                        <input type="text" name="application_deadline" id="datepicker" class="form-control" placeholder="Application Deadline">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -309,40 +267,22 @@
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Minimum qualification<span class="text-danger">*</span></label>
-                                        <select name="minimum_qualification" class="form-control">
+                                        <select name="minimum_qualification_id" class="form-control">
                                             <option selected="selected" value="">Select one</option>
-                                            <option value="primary_school">Primary School</option>
-                                            <option value="high_school">High School</option>
-                                            <option value="ssc">SSC / O Level</option>
-                                            <option value="hsc">HSC / A Level</option>
-                                            <option value="diploma">Diploma</option>
-                                            <option value="graduate">Bachelor / Honors</option>
-                                            <option value="post_graduate">Masters</option>
-                                            <option value="doctorate">PhD / Doctorate</option>
+                                            @foreach($minimum as $min)
+                                                <option value="{{$min->id}}">{{$min->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-field">
                                         <label>Educational specialization</label>
-                                        <select name="educational_specialization" class="form-control">
+                                        <select name="educational_specialization_id" class="form-control">
                                             <option selected="selected" value="">Select one</option>
-                                            <option value="art_humanities">Art and Humanities</option>
-                                            <option value="business_management">Business and Management</option>
-                                            <option value="accounting">Accounting</option>
-                                            <option value="design_fashion">Design and Fashion</option>
-                                            <option value="engineering">Engineering</option>
-                                            <option value="events_hospitality">Events and Hospitality</option>
-                                            <option value="finance_commerce">Finance and Commerce</option>
-                                            <option value="human_resources">Resources</option>
-                                            <option value="info_technology">Information Technology</option>
-                                            <option value="law">Law</option>
-                                            <option value="marketing_sales">Marketing and Sales</option>
-                                            <option value="mass_comm">Mass Communication</option>
-                                            <option value="medicine">Medicine</option>
-                                            <option value="sciences">Sciences</option>
-                                            <option value="vocational">Vocational and Technical</option>
-                                            <option value="others">Others</option>
+                                                @foreach($educational as $educationa)
+                                                    <option value="{{$educationa->id}}">{{$educationa->name}}</option>
+                                                @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -456,13 +396,16 @@
 @endsection
 
 @push('post-ad-scripts')
-<script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
     // ad update and cancel edit
     function updateCancelEdit(){
         $('#cancel_edit_input').val(1)
         $('#step1_edit_form').submit()
     }
-</script>
+    $("#datepicker").datepicker();
+    </script>
     <script>
         $("#categoryId").on('change', function() {
             let id = $(this).val();

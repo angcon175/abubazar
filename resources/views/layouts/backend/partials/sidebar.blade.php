@@ -206,13 +206,30 @@
                 @if (userCan('testimonial.view') || userCan('contact.view') || userCan('faqcategory.view') || userCan('faq.view'))
                     @if ($testimonial_enable || $contact_enable || $faq_enable)
                         <x-sidebar-dropdown
-                            :linkActive="Route::is('module.testimonial.*') || Route::is('module.contact.*') || Route::is('module.faq.category.*') || Route::is('module.faq.*') ? true : false"
-                            :subLinkActive="Route::is('module.testimonial.*') || Route::is('module.contact.*') || Route::is('module.faq.category.*') || Route::is('module.faq.*') ? true : false"
+                            :linkActive="Route::is('module.testimonial.*') || Route::is('admin.minimum.qualifications') || Route::is('admin.educational.specializations') || Route::is('admin.business.functions')  || Route::is('module.contact.*') || Route::is('module.faq.category.*') || Route::is('module.faq.*') ? true : false"
+                            :subLinkActive="Route::is('module.testimonial.*') || Route::is('admin.minimum.qualifications') || Route::is('admin.educational.specializations') || Route::is('admin.business.functions') || Route::is('module.contact.*') || Route::is('module.faq.category.*') || Route::is('module.faq.*') ? true : false"
                             icon="far fa-list-alt">
                             @slot('title')
                                 {{ __('others') }}
                             @endslot
-
+                            <ul class="nav nav-treeview">
+                                <x-sidebar-list :linkActive="Route::is('admin.business.functions') ? true : false"
+                                    route="admin.business.functions" icon="fas fa-circle">
+                                    {{ __('Business Function') }}
+                                </x-sidebar-list>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <x-sidebar-list :linkActive="Route::is('admin.educational.specializations') ? true : false"
+                                    route="admin.educational.specializations" icon="fas fa-circle">
+                                    {{ __('Education Special') }}
+                                </x-sidebar-list>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <x-sidebar-list :linkActive="Route::is('admin.minimum.qualifications') ? true : false"
+                                    route="admin.minimum.qualifications" icon="fas fa-circle">
+                                    {{ __('Minimum Qualification') }}
+                                </x-sidebar-list>
+                            </ul>
                             @if (Module::collections()->has('Testimonial') && userCan('testimonial.view') && $testimonial_enable)
                                 <ul class="nav nav-treeview">
                                     <x-sidebar-list :linkActive="Route::is('module.testimonial.*') ? true : false"

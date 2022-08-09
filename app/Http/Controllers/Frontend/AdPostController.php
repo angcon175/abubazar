@@ -98,15 +98,15 @@ class AdPostController extends Controller
                 if($request->category_id  == 11) {
                     $ad['slug'] = Str::slug($request->title); 
                     $ad['subcategory_id'] = $request->subcategory_id;   
-                    $ad['businessfunction'] = $request->businessfunction;
+                    $ad['businessfunction_id'] = $request->businessfunction_id;
                     $ad['role_designation'] = $request->role_designation;
                     $ad['receive_response'] = $request->receive_response;
                     $ad['total_vacancies'] = $request->total_vacancies;
                     $ad['company_employeer_name'] = $request->company_employeer_name;
                     $ad['application_deadline'] = $request->application_deadline;
                     $ad['required_experience'] = $request->required_experience;
-                    $ad['minimum_qualification'] = $request->minimum_qualification;
-                    $ad['educational_specialization'] = $request->educational_specialization;
+                    $ad['minimum_qualification_id'] = $request->minimum_qualification_id;
+                    $ad['educational_specialization_id'] = $request->educational_specialization_id;
                     $ad['skills'] = $request->skills;
                     $ad['mixium_age'] = $request->mixium_age;
                     $ad['gender_preference'] = $request->gender_preference;
@@ -322,15 +322,15 @@ class AdPostController extends Controller
                 'price' => $request->price,
                 'negotiable' => $request->negotiable,
                 'featured' => $request->featured,
-                'businessfunction' => $request->businessfunction,
+                'businessfunction_id' => $request->businessfunction_id,
                 'role_designation' => $request->role_designation,
                 'receive_response' => $request->receive_response,
                 'total_vacancies' => $request->total_vacancies,
                 'company_employeer_name' => $request->company_employeer_name,
                 'application_deadline' => $request->application_deadline,
                 'required_experience' => $request->required_experience,
-                'minimum_qualification' => $request->minimum_qualification,
-                'educational_specialization' => $request->educational_specialization,
+                'minimum_qualification_id' => $request->minimum_qualification_id,
+                'educational_specialization_id' => $request->educational_specialization_id,
                 'skills' => $request->skills,
                 'mixium_age' => $request->mixium_age,
                 'gender_preference' => $request->gender_preference,

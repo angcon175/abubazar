@@ -564,4 +564,101 @@ class SettingsController extends Controller
 
         return redirect()->back()->with('success', 'Admin Ads status successfully updated');
     }
+    // businessFunction
+    public function businessFunction()
+    {
+        $business = DB::table('business_functions')->paginate(10);
+        return view('backend.others.businessfunction', compact('business'));
+    }
+    public function businessFunctionStore(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        DB::table('business_functions')->insert([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Business functions successfully save');
+    }
+
+    public function businessFunctionUpdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        
+        DB::table('business_functions')->where('id', $id)->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Business functions successfully update');
+    }
+
+    // educationalSpecializations
+    public function educationalSpecializations()
+    {
+        $educational = DB::table('educational_specializations')->paginate(10);
+        return view('backend.others.educational', compact('educational'));
+    }
+    
+    public function educationalSpecializationsStore(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        DB::table('educational_specializations')->insert([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Educational specializations successfully save');
+    }
+
+    public function educationalSpecializationsUpdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        
+        DB::table('educational_specializations')->where('id', $id)->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Educational specializations successfully update');
+    }
+
+    // minimumQualifications
+    public function minimumQualifications()
+    {
+        $minimum = DB::table('minimum_qualifications')->paginate(10);
+        return view('backend.others.minimum', compact('minimum'));
+    }
+    
+    public function minimumQualificationsStore(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        DB::table('minimum_qualifications')->insert([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Minimum Qualifications successfully save');
+    }
+
+    public function minimumQualificationsUpdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        
+        DB::table('minimum_qualifications')->where('id', $id)->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back()->with('success', 'Minimum Qualifications successfully update');
+    }
 }

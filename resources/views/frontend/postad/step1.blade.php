@@ -2,7 +2,12 @@
 
 @section('title', __('step1'))
 
+@section('adlisting_style')
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+@endsection
+
 @section('post-ad-content')
+
 <style>
     select {
         height: 48px;
@@ -16,6 +21,11 @@
         border-color: #d32323 !important;
     }
 </style>
+    @php
+        $businessfunctions = DB::table('business_functions')->orderBy('name')->get();
+        $educational = DB::table('educational_specializations')->orderBy('name')->get();
+        $minimum = DB::table('minimum_qualifications')->orderBy('name')->get();
+    @endphp
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -58,7 +68,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="input-select">
-                                <label id="month">Sub Category <span class="text-danger">*</span></label>
+                                <label id="month">Sub category <span class="text-danger">*</span></label>
                                 <select required name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
                                 </select>
                             </div>
@@ -66,41 +76,24 @@
                         <div class="row" id="showAlInfo" style="display:none;">
                             <div class="col-md-6">
                                 <div class="input-field">
-                                    <label>Business Function <span class="text-danger">*</span></label>
-                                    <select name="businessfunction" class="form-control">
+                                    <label>Business function <span class="text-danger">*</span></label>
+                                    <select name="businessfunction_id" class="form-control">
                                         <option selected="selected" value="">Select one</option>
-                                        <option value="administration">Administration</option>
-                                        <option value="accounting_finance">Accounting &amp; Finance</option>
-                                        <option value="contractual">Contractual</option>
-                                        <option value="customer_support">Customer Support</option>
-                                        <option value="data_entry_analysis">Data Entry &amp; Analysis</option>
-                                        <option value="creative_design_architecture">Creative, Design &amp; Architecture</option>
-                                        <option value="education_training">Education &amp; Training</option>
-                                        <option value="hospitality">Hospitality</option>
-                                        <option value="human_resources">Human Resources</option>
-                                        <option value="it_telecom">IT &amp; Telecom</option>
-                                        <option value="legel">Legal</option>
-                                        <option value="logistics">Logistics</option>
-                                        <option value="management">Management</option>
-                                        <option value="manufacturing">Manufacturing</option>
-                                        <option value="marketing_salse">Marketing &amp; Sales</option>
-                                        <option value="operations">Operations</option>
-                                        <option value="quality_assurance">Quality Assurance</option>
-                                        <option value="research_technical">Research &amp; Technical</option>
-                                        <option value="security">Security</option>
-                                        <option value="others">Others</option>
+                                        @foreach($businessfunctions as $business)
+                                            <option value="{{$business->id}}">{{$business->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
-                                    <label>Role / Designation<span class="text-danger">*</span></label>
+                                    <label>Role or designation<span class="text-danger">*</span></label>
                                     <input type="text" name="role_designation" class="form-control" placeholder="Role / Designation">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
-                                    <label>Receive Response<span class="text-danger">*</span></label>
+                                    <label>Receive response<span class="text-danger">*</span></label>
                                     <select name="receive_response" class="form-control">
                                         <option value="" selected>Select One</option>
                                         <option value="Employer Dashboard">Employer Dashboard</option>
@@ -115,24 +108,24 @@
                                 </div>
                             </div>
                             <div class="col-md-12 mt-2 mb-3">
-                                <h4>About the company / Employer</h4>
+                                <h4>About the company or employer</h4>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
-                                    <label>Company / Employeer<span class="text-danger">*</span></label>
+                                    <label>Company or employeer<span class="text-danger">*</span></label>
                                     <input type="text" name="company_employeer_name" class="form-control" placeholder="Company / Employeer name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
-                                    <label>Company Logo</label>
+                                    <label>Company logo</label>
                                     <input type="file" name="company_logo" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
-                                    <label>Application Deadline<span class="text-danger">*</span></label>
-                                    <input type="date" name="application_deadline" class="form-control" placeholder="Application Deadline">
+                                    <label>Application deadline<span class="text-danger">*</span></label>
+                                    <input type="text" name="application_deadline" id="datepicker" class="form-control" placeholder="Application Deadline">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -147,40 +140,22 @@
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Minimum qualification<span class="text-danger">*</span></label>
-                                    <select name="minimum_qualification" class="form-control">
+                                    <select name="minimum_qualification_id" class="form-control">
                                         <option selected="selected" value="">Select one</option>
-                                        <option value="primary_school">Primary School</option>
-                                        <option value="high_school">High School</option>
-                                        <option value="ssc">SSC / O Level</option>
-                                        <option value="hsc">HSC / A Level</option>
-                                        <option value="diploma">Diploma</option>
-                                        <option value="graduate">Bachelor / Honors</option>
-                                        <option value="post_graduate">Masters</option>
-                                        <option value="doctorate">PhD / Doctorate</option>
+                                        @foreach($minimum as $min)
+                                            <option value="{{$min->id}}">{{$min->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Educational specialization</label>
-                                    <select name="educational_specialization" class="form-control">
+                                    <select name="educational_specialization_id" class="form-control">
                                         <option selected="selected" value="">Select one</option>
-                                        <option value="art_humanities">Art and Humanities</option>
-                                        <option value="business_management">Business and Management</option>
-                                        <option value="accounting">Accounting</option>
-                                        <option value="design_fashion">Design and Fashion</option>
-                                        <option value="engineering">Engineering</option>
-                                        <option value="events_hospitality">Events and Hospitality</option>
-                                        <option value="finance_commerce">Finance and Commerce</option>
-                                        <option value="human_resources">Resources</option>
-                                        <option value="info_technology">Information Technology</option>
-                                        <option value="law">Law</option>
-                                        <option value="marketing_sales">Marketing and Sales</option>
-                                        <option value="mass_comm">Mass Communication</option>
-                                        <option value="medicine">Medicine</option>
-                                        <option value="sciences">Sciences</option>
-                                        <option value="vocational">Vocational and Technical</option>
-                                        <option value="others">Others</option>
+                                        @foreach($educational as $educationa)
+                                            <option value="{{$educationa->id}}">{{$educationa->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -305,6 +280,8 @@
 @endsection
 
 @section('frontend_script')
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $("#categoryId").on('change', function() {
             let id = $(this).val();
@@ -334,6 +311,9 @@
                 $('#modell').attr('required', 'required');
             }
         });
+
+        $("#datepicker").datepicker();
+
     </script><script type="text/javascript">
         $(document).ready(function() {
             $('#categoryId').on('change', function(){

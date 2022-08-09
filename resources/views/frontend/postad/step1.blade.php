@@ -61,7 +61,7 @@
                             @endphp
                         <div class="col-md-6">
                             <div class="input-select">
-                                <x-forms.label name="subcategory"for="subcategory" />
+                                <label id="month">Sub Category <span class="text-danger">*</span></label>
                                 <select required name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
                                     @foreach($subcategories as $subcate)
                                         <option value="{{$subcate->id}}" >{{ $subcate->name }}</option>

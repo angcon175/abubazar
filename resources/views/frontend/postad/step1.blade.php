@@ -56,16 +56,10 @@
                                 </select>
                             </div>
                         </div>
-                            @php
-                                $subcategories = DB::table('sub_categories')->where('status', 1)->get();
-                            @endphp
                         <div class="col-md-6">
                             <div class="input-select">
                                 <label id="month">Sub Category <span class="text-danger">*</span></label>
                                 <select required name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                    @foreach($subcategories as $subcate)
-                                        <option value="{{$subcate->id}}" >{{ $subcate->name }}</option>
-                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -339,6 +333,30 @@
                 $('#brandd').attr('required', 'required');
                 $('#modell').attr('required', 'required');
             }
+        });
+    </script><script type="text/javascript">
+        $(document).ready(function() {
+            $('#categoryId').on('change', function(){
+                var category_id = $(this).val();
+                // alert(category_id);
+                if(category_id) {
+                    $.ajax({
+                        url: "{{ url('/dashboard/post/category/ajax') }}/" + category_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            $('#subcategory').html('');
+                            var d =$('#subcategory').empty();
+                            $('#subcategory').append('<option value="" disabled selected> Select One </option>');
+                            $.each(data, function(key, value){
+                                $('#subcategory').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
         });
     </script>
 @endsection

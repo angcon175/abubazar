@@ -45,7 +45,7 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="ad_name" required="true" for="adname" />
-                                <input required value="{{ $ad->title ?? '' }}" name="title" type="text" placeholder="{{ __('ad_name') }}" id="adname"  class="@error('title') border-danger @enderror"/>
+                                <input required value="{{$ad->title ?? ''}}" name="title" type="text" placeholder="{{ __('ad_name') }}" id="adname"  class="@error('title') border-danger @enderror"/>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -88,7 +88,7 @@
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Role or designation<span class="text-danger">*</span></label>
-                                    <input type="text" name="role_designation" class="form-control" placeholder="Role / Designation">
+                                    <input type="text" name="role_designation" value="{{ $ad->role_designation ?? '' }}" class="form-control" placeholder="Role / Designation">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -104,7 +104,7 @@
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Total vacancies<span class="text-danger">*</span></label>
-                                    <input type="number" name="total_vacancies" class="form-control" placeholder="Total vacancies">
+                                    <input type="number" name="total_vacancies" value="{{ $ad->total_vacancies ?? '' }}" class="form-control" placeholder="Total vacancies">
                                 </div>
                             </div>
                             <div class="col-md-12 mt-2 mb-3">
@@ -113,25 +113,25 @@
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Company or employeer<span class="text-danger">*</span></label>
-                                    <input type="text" name="company_employeer_name" class="form-control" placeholder="Company / Employeer name">
+                                    <input type="text" value="{{ $ad->company_employeer_name ?? '' }}" name="company_employeer_name" class="form-control" placeholder="Company / Employeer name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Company logo</label>
-                                    <input type="file" name="company_logo" class="form-control">
+                                    <input type="file" value="{{ $ad->company_logo ?? '' }}" name="company_logo" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Application deadline<span class="text-danger">*</span></label>
-                                    <input type="text" name="application_deadline" id="datepicker" class="form-control" placeholder="Application Deadline">
+                                    <input type="text" value="{{ $ad->application_deadline ?? '' }}" name="application_deadline" id="datepicker" class="form-control" placeholder="Application Deadline">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Required experience (years)</label>
-                                    <input type="text" name="required_experience" class="form-control" placeholder="Required experience (years)">
+                                    <input type="text" value="{{ $ad->required_experience ?? '' }}" name="required_experience" class="form-control" placeholder="Required experience (years)">
                                 </div>
                             </div>
                             <div class="col-md-12 mt-2 mb-3">
@@ -162,13 +162,13 @@
                             <div class="col-md-12">
                                 <div class="input-field">
                                     <label>Skills</label>
-                                    <input type="text" name="skills" class="form-control" placeholder="skills">
+                                    <input type="text" value="{{ $ad->skills ?? '' }}" name="skills" class="form-control" placeholder="skills">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="input-field">
                                     <label>Maximum age</label>
-                                    <input type="number" name="mixium_age" class="form-control" placeholder="Maximum age">
+                                    <input type="number" value="{{ $ad->mixium_age ?? '' }}" name="mixium_age" class="form-control" placeholder="Maximum age">
                                 </div>
                             </div>
                             <div class="col-md-6">

@@ -457,22 +457,26 @@ class SettingsController extends Controller
      */
     public function updateSeo(Request $request)
     {
+        if ($request->hasFile('og_image')) {
 
-        $og_image = $request->file('og_image');
-        $slug = 'og-image';
-        $og_image_name = $slug.'-'.uniqid().'.'.$og_image->getClientOriginalExtension();
-        $upload_path = 'media/admin/seo/og_image/';
-        $og_image->move($upload_path, $og_image_name);
+            $og_image = $request->file('og_image');
+            $slug = 'og-image';
+            $og_image_name = $slug . '-' . uniqid() . '.' . $og_image->getClientOriginalExtension();
+            $upload_path = 'media/admin/seo/og_image/';
+            $og_image->move($upload_path, $og_image_name);
+            $image_url = $upload_path . $og_image_name;
+        }
 
-        $image_url = $upload_path.$og_image_name;
+        $seting = Setting::first();
+        $seting->seo_meta_title = $request->seo_meta_title;
+        $seting->seo_meta_description = $request->seo_meta_description;
+        $seting->seo_meta_keywords = $request->seo_meta_keywords;
+        $seting->og_title = $request->og_title;
+        $seting->og_descriptin = $request->og_descriptin;
+        if ($request->hasFile('og_image')) {
 
-        $seting=Setting::first();
-        $seting->seo_meta_title=$request->seo_meta_title;
-        $seting-> seo_meta_description=$request->seo_meta_description;
-        $seting-> seo_meta_keywords=$request->seo_meta_keywords;
-        $seting->og_title=$request->og_title;
-        $seting->og_descriptin=$request->og_descriptin;
-        $seting->og_img=$image_url;
+            $seting->og_img = $image_url;
+        }
         $seting->save();
         return redirect()->back()->with('success', 'SEO Settings update successfully!');
     }
@@ -501,11 +505,11 @@ class SettingsController extends Controller
 
         $admin_ads_image = $request->file('ads_img');
         $slug = 'ads-image';
-        $admin_ads_image_name = $slug.'-'.uniqid().'.'.$admin_ads_image->getClientOriginalExtension();
+        $admin_ads_image_name = $slug . '-' . uniqid() . '.' . $admin_ads_image->getClientOriginalExtension();
         $upload_path = 'media/adminads/';
         $admin_ads_image->move($upload_path, $admin_ads_image_name);
 
-        $image_url = $upload_path.$admin_ads_image_name;
+        $image_url = $upload_path . $admin_ads_image_name;
 
         DB::table('admin_ads')->insert([
             'ads_name'       => $request->ads_name,
@@ -527,8 +531,8 @@ class SettingsController extends Controller
 
         $admin_ads_image = $request->file('ads_img');
         $slug = 'ads-image';
-        if(isset($admin_ads_image)) {
-            $admin_ads_image_name = $slug.'-'.uniqid().'.'.$admin_ads_image->getClientOriginalExtension();
+        if (isset($admin_ads_image)) {
+            $admin_ads_image_name = $slug . '-' . uniqid() . '.' . $admin_ads_image->getClientOriginalExtension();
             $upload_path = 'media/adminads/';
             $admin_ads_image->move($upload_path, $admin_ads_image_name);
 
@@ -537,7 +541,7 @@ class SettingsController extends Controller
                 unlink($adminadsimage->ads_img);
             }
 
-            $image_url = $upload_path.$admin_ads_image_name;
+            $image_url = $upload_path . $admin_ads_image_name;
 
             DB::table('admin_ads')->where('id', $id)->update([
                 'ads_name' => $request->ads_name,
@@ -547,7 +551,7 @@ class SettingsController extends Controller
                 'status' => $request->status,
             ]);
             return redirect()->back()->with('success', 'Admin Ads successfully updated ');
-        }else {
+        } else {
             DB::table('admin_ads')->where('id', $id)->update([
                 'ads_name' => $request->ads_name,
                 'image_position' => $request->image_position,
@@ -563,7 +567,7 @@ class SettingsController extends Controller
         $adminads = DB::table('admin_ads')->where('id', $id)->first();
         $deleteadminadsimage = $adminads->ads_img;
 
-        if(file_exists($deleteadminadsimage)) {
+        if (file_exists($deleteadminadsimage)) {
             unlink($deleteadminadsimage);
         }
 

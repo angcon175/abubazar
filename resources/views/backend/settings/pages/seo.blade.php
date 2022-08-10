@@ -55,7 +55,7 @@
 
                             <div class="col-3 mx-2">
                                 <div class="form-group">
-                                    <x-forms.label name="og_image" />
+                                    <x-forms.label name="og_image" /> <span class="text-danger">Image Height:400px and Width:700px</span>
                                     <div class="row">
                                         <input type="file" class="form-control dropify"
                                             data-default-file="{{asset('/').$setting->og_Image}}" name="og_image"

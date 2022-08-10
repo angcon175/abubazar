@@ -471,8 +471,8 @@ class SettingsController extends Controller
         $seting-> seo_meta_description=$request->seo_meta_description;
         $seting-> seo_meta_keywords=$request->seo_meta_keywords;
         $seting->og_title=$request->og_title;
-        $seting->og_description=$request->og_description;
-        $seting->og_image=$image_url;
+        $seting->og_descriptin=$request->og_description;
+        $seting->og_img=$image_url;
         $seting->save();
         return redirect()->back()->with('success', 'SEO Settings update successfully!');
     }

@@ -324,3 +324,19 @@ if (!function_exists('checkFileExit')) {
 
     }
 }
+
+if (!function_exists('checkFileExit1')) {
+    function checkFileExit1($path) {
+        if($path){
+            $ppath = public_path($path);
+            if(file_exists($ppath)){
+              return asset($path);
+            } else {
+                return asset('img/no-photo.png');
+           }
+        }else{
+            return asset('img/no-photo.png');
+        }
+
+    }
+}

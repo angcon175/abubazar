@@ -1,5 +1,21 @@
 @extends('layouts.frontend.layout_one')
 
+@section('meta')
+
+@php
+    $setting = setting();
+@endphp
+<meta property="og:title" content="{{ $setting->og_title ?? 'ABUBAZAAR | Buy and sell everything' }}" />
+<meta property="og:description" content="{{ $setting->og_description ?? 'ABUBAZAAR | Buy and sell everything in UAE' }}" />
+<meta name="twitter:title" content="{{ $setting->og_title ?? 'ABUBAZAAR | Buy and sell everything' }}" />
+<meta name="twitter:description" content="{{ $setting->og_description ?? 'ABUBAZAAR | Buy and sell everything in UAE' }}" />
+<meta property="og:image" content="{{ checkFileExit1($setting->og_img) }}" />
+<meta name="twitter:image" content="{{ checkFileExit1($setting->og_img) }}" />
+
+
+@endsection
+
+
 @section('title', __('home'))
 
 @section('frontend_style')

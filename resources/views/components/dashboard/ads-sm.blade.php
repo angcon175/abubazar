@@ -25,7 +25,6 @@
                 <a href="ad-details.html" class="text--body-3-600 cards__caption-title">
                     {{ \Illuminate\Support\Str::limit($ad->title, 25, $end = '...') }}
                 </a>
-
                 @if (!request()->routeIs('frontend.favourites'))
                     <div class="cards__info-status">
                         <x-frontend.dashboard-ad-status :ad="$ad" />

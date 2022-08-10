@@ -19,7 +19,7 @@
             @csrf
             <div class="input-field--textarea">
                 <x-forms.label name="ad_description" required="true" for="description" />
-                <textarea required name="description" placeholder="{{ __('whats_your_thought') }}..." id="description" class="@error('description') border-danger @enderror">{{$ad->description ?? ' ' }}</textarea>
+                <textarea required name="description" placeholder="{{ __('whats_your_thought') }}..." id="description" class="@error('description') border-danger @enderror">{{$ad->description }}</textarea>
             </div>
             <div class="input-field--textarea">
                 <x-forms.label name="feature" for="feature" />

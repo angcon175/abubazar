@@ -63,8 +63,9 @@ class AdPostController extends Controller
      */
     public function postStep3()
     {
+        $ad = session('ad');
         if (session('step3')) {
-            return view('frontend.postad.step3');
+            return view('frontend.postad.step3', compact('ad'));
         } else {
             return redirect()->route('frontend.post');
         }

@@ -104,7 +104,7 @@ class AdPostController extends Controller
                     $ad['receive_response'] = $request->receive_response;
                     $ad['total_vacancies'] = $request->total_vacancies;
                     $ad['company_employeer_name'] = $request->company_employeer_name;
-                    $ad['application_deadline'] = $request->application_deadline;
+                    $ad['application_deadline'] = date('Y-m-d', strtotime($request->application_deadline));
                     $ad['required_experience'] = $request->required_experience;
                     $ad['minimum_qualification_id'] = $request->minimum_qualification_id;
                     $ad['educational_specialization_id'] = $request->educational_specialization_id;
@@ -183,6 +183,7 @@ class AdPostController extends Controller
         $ad['customer_id'] = auth('customer')->id();
         $request->session()->put('ad', $ad);
         $ad['status'] = setting('ads_admin_approval') ? 'pending': 'active';
+        // dd($ad);
         $ad->save();
 
         // image uploading

@@ -457,11 +457,26 @@ class SettingsController extends Controller
      */
     public function updateSeo(Request $request)
     {
-        Setting::first()->update($request->only(['seo_meta_title', 'seo_meta_description', 'seo_meta_keywords']));
 
+        $og_image = $request->file('og_image');
+        $slug = 'og-image';
+        $og_image_name = $slug.'-'.uniqid().'.'.$og_image->getClientOriginalExtension();
+        $upload_path = 'media/admin/seo/og_image/';
+        $og_image->move($upload_path, $og_image_name);
+
+        $image_url = $upload_path.$og_image_name;
+
+        $seting=Setting::first();
+        $seting->seo_meta_title=$request->seo_meta_title;
+        $seting-> seo_meta_description=$request->seo_meta_description;
+        $seting-> seo_meta_keywords=$request->seo_meta_keywords;
+        $seting->og_title=$request->og_title;
+        $seting->og_description=$request->og_description;
+        $seting->og_image=$image_url;
+        $seting->save();
         return redirect()->back()->with('success', 'SEO Settings update successfully!');
     }
-    
+
 
     public function showAdminAds()
     {
@@ -491,7 +506,7 @@ class SettingsController extends Controller
         $admin_ads_image->move($upload_path, $admin_ads_image_name);
 
         $image_url = $upload_path.$admin_ads_image_name;
-        
+
         DB::table('admin_ads')->insert([
             'ads_name'       => $request->ads_name,
             'image_position' => $request->image_position,
@@ -539,7 +554,7 @@ class SettingsController extends Controller
                 'ads_link' => $request->ads_link,
                 'status' => $request->status,
             ]);
-            
+
             return redirect()->back()->with('success', 'Admin Ads successfully update without image');
         }
     }
@@ -588,7 +603,7 @@ class SettingsController extends Controller
         $this->validate($request, [
             'name' => 'required',
         ]);
-        
+
         DB::table('business_functions')->where('id', $id)->update([
             'name' => $request->name,
         ]);
@@ -602,7 +617,7 @@ class SettingsController extends Controller
         $educational = DB::table('educational_specializations')->paginate(10);
         return view('backend.others.educational', compact('educational'));
     }
-    
+
     public function educationalSpecializationsStore(Request $request)
     {
         $this->validate($request, [
@@ -621,7 +636,7 @@ class SettingsController extends Controller
         $this->validate($request, [
             'name' => 'required',
         ]);
-        
+
         DB::table('educational_specializations')->where('id', $id)->update([
             'name' => $request->name,
         ]);
@@ -635,7 +650,7 @@ class SettingsController extends Controller
         $minimum = DB::table('minimum_qualifications')->paginate(10);
         return view('backend.others.minimum', compact('minimum'));
     }
-    
+
     public function minimumQualificationsStore(Request $request)
     {
         $this->validate($request, [
@@ -654,7 +669,7 @@ class SettingsController extends Controller
         $this->validate($request, [
             'name' => 'required',
         ]);
-        
+
         DB::table('minimum_qualifications')->where('id', $id)->update([
             'name' => $request->name,
         ]);

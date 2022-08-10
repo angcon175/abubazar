@@ -783,5 +783,8 @@
     "translation_all" : "Translation All",
     "translate" : "Translate",
     "otp_verification" : "Otp verification",
-    "otp_send_again" : "Otp send again"
+    "otp_send_again" : "Otp send again",
+    "og_title":"OG Title",
+    "og_description":"OG Description",
+    "og_image":"OG Image"
 }

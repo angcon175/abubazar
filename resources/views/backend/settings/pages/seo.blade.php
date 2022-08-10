@@ -45,9 +45,9 @@
                             </div>
 
                             <div class="form-group">
-                                <x-forms.label name="og_description" for="og_description" />
-                                <textarea id="og_description" name="og_description" class="form-control @error('og_description') is-invalid @enderror" rows="3">{{ $setting->og_description }}</textarea>
-                                @error('og_description')
+                                <x-forms.label name="og_descriptin" for="og_descriptin" />
+                                <textarea id="og_descriptin" name="og_descriptin" class="form-control @error('og_descriptin') is-invalid @enderror" rows="3">{{ $setting->og_descriptin }}</textarea>
+                                @error('og_descriptin')
                                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
@@ -58,7 +58,7 @@
                                     <x-forms.label name="og_image" /> <span class="text-danger">Image Height:400px and Width:700px</span>
                                     <div class="row">
                                         <input type="file" class="form-control dropify"
-                                            data-default-file="{{asset('/').$setting->og_Image}}" name="og_image"
+                                            data-default-file="{{asset('/').$setting->og_img}}" name="og_image"
                                             autocomplete="image" accept="image/png, image/jpg, image/jpeg"
                                             data-allowed-file-extensions='["jpg", "jpeg","png"]' data-max-file-size="3M">
                                     </div>

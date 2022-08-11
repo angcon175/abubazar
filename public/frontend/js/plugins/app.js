@@ -54,7 +54,7 @@ var range = document.getElementById("priceRangeSlider")
 
 // ===== Page Loader ===== \\
 window.addEventListener("load", (event) => {
-    preloader.style.display = "none"
+   // preloader.style.display = "none"
 })
 
 // ===== Message Dashboard ===== \\
@@ -502,17 +502,18 @@ if (stateSelect) {
         breakpoint: 450,
     })
 }
-if (subCategorySelect) {
-    var subcategory = new BVSelect({
-        selector: "#subcategory",
-        searchbox: false,
-        offset: true,
-        placeholder: "select...",
-        search_placeholder: "Search...",
-        search_autofocus: true,
-        breakpoint: 450,
-    })
-}
+// if (subCategorySelect) {
+//     var subcategory = new BVSelect({
+//         selector: "#subcategory",
+//         searchbox: false,
+//         offset: true,
+//         placeholder: "select...",
+//         search_placeholder: "Search...",
+//         search_autofocus: true,
+//         breakpoint: 450,
+//     })
+// }
+
 if (brandSelect) {
     var brand = new BVSelect({
         selector: "#brand",

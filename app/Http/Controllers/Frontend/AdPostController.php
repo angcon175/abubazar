@@ -145,14 +145,15 @@ class AdPostController extends Controller
             'phone' => 'required',
             'phone_2' => 'sometimes',
             'city_id' => 'required',
-            // 'town_id' => 'required',
+            'town_id' => 'sometimes',
         ]);
 
         try {
             $ad = session('ad');
+            $ad['show_customer_info'] = $request->show_customer_info;
+            $ad['town_id'] = $request->town_id;
             $ad->fill($validatedData);
             $request->session()->put('ad', $ad);
-            $ad['show_customer_info'] = $request->show_customer_info;
             $this->step1Success2();
             return redirect()->route('frontend.post.step3');
         } catch (\Throwable $th) {

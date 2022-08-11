@@ -237,7 +237,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3" id="negotiableShowHide">
                             <div class="form-check">
                                 <input name="negotiable" type="hidden" value="0">
                                 @isset($ad->negotiable)
@@ -295,6 +295,7 @@
                 $("#authenticityShowHide").hide();
                 $("#featuredShowHide").hide();
                 $("#showAlInfo").show();
+                $("#negotiableShowHide").hide();
                 $('#brandd').removeAttr('required');
                 $('#modell').removeAttr('required');
             }else {
@@ -307,6 +308,7 @@
                 $("#conditionShowHide").show();
                 $("#featuredShowHide").show();
                 $("#showAlInfo").hide();
+                $("#negotiableShowHide").show();
                 $('#brandd').attr('required', 'required');
                 $('#modell').attr('required', 'required');
             }

@@ -312,62 +312,124 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="col-md-6" id="brandShowHide">
-                            <div class="input-select">
-                                <x-forms.label name="brand" for="brand" required="true" />
-                                <select required name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
-                                    <option value="" hidden>{{ __('select_brand') }}</option>
-                                        @foreach ($brands as $brand)
-                                            <option {{ $brand->id == $ad->brand_id ? 'selected':'' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                        @endforeach
-                                </select>
+
+                        @if($ad->category_id != 11)
+                            <div class="col-md-6" id="brandShowHide">
+                                <div class="input-select">
+                                    <x-forms.label name="brand" for="brand"/>
+                                    <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
+                                        <option value="" hidden>{{ __('select_brand') }}</option>
+                                            @foreach ($brands as $brand)
+                                                <option {{ $brand->id == $ad->brand_id ? 'selected':'' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6" id="modelShowHide">
-                            <div class="input-field">
-                                <x-forms.label name="model" for="modell" required="true" />
-                                <input required value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                            <div class="col-md-6" id="modelShowHide">
+                                <div class="input-field">
+                                    <x-forms.label name="model" for="modell"/>
+                                    <input value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6" id="conditionShowHide">
-                            <div class="input-select">
-                                <x-forms.label name="condition" for="conditionss" required="true" />
-                                <select required name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
-                                        <option {{ $ad->condition == 'new' ? 'selected':'' }} value="new">{{ __('new') }}</option>
-                                        <option {{ $ad->condition == 'used' ? 'selected':'' }} value="used">{{ __('used') }}</option>
-                                </select>
+                            <div class="col-md-6" id="conditionShowHide">
+                                <div class="input-select">
+                                    <x-forms.label name="condition" for="conditionss"/>
+                                    <select name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
+                                            <option {{ $ad->condition == 'new' ? 'selected':'' }} value="new">{{ __('new') }}</option>
+                                            <option {{ $ad->condition == 'used' ? 'selected':'' }} value="used">{{ __('used') }}</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6" id="authenticityShowHide">
-                            <div class="input-select">
-                                <x-forms.label name="authenticity" for="authenticityy" required="true" />
-                                <select required name="authenticity" id="authenticityy" class="form-control select-bg @error('authenticity') border-danger @enderror">
-                                        <option {{ $ad->authenticity == 'original'? 'selected':'' }} value="original">{{ __('original') }}</option>
-                                        <option {{ $ad->authenticity == 'refurbished'? 'selected':'' }} value="refurbished">{{ __('refurbished') }}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-check">
-                                <input name="negotiable" type="hidden" value="0">
-                                <input {{ $ad->negotiable == 1 ? 'checked':'' }} value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" />
-                                <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
-                            </div>
-                        </div>
-                        @if ($ad->featured)
-                            <div class="col-lg-3" id="featuredShowHide">
-                                <div class="form-check">
-                                    <input name="featured" type="hidden" value="0">
-                                    <input {{ $ad->featured == 1 ? 'checked':'' }} value="1" name="featured" type="checkbox" class="form-check-input" id="featured" />
-                                    <x-forms.label name="featured" for="featured" class="form-check-label" />
+                            <div class="col-md-6" id="authenticityShowHide">
+                                <div class="input-select">
+                                    <x-forms.label name="authenticity" for="authenticityy"/>
+                                    <select required name="authenticity" id="authenticityy" class="form-control select-bg @error('authenticity') border-danger @enderror">
+                                            <option {{ $ad->authenticity == 'original'? 'selected':'' }} value="original">{{ __('original') }}</option>
+                                            <option {{ $ad->authenticity == 'refurbished'? 'selected':'' }} value="refurbished">{{ __('refurbished') }}</option>
+                                    </select>
                                 </div>
                             </div>
                         @else
-                            <input name="featured" type="hidden" value="0">
+                            <div class="col-md-6" id="brandShowHide" style="display:none;">
+                                <div class="input-select">
+                                    <x-forms.label name="brand" for="brand"/>
+                                    <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
+                                        <option value="" hidden>{{ __('select_brand') }}</option>
+                                            @foreach ($brands as $brand)
+                                                <option {{ $brand->id == $ad->brand_id ? 'selected':'' }} value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="modelShowHide" style="display:none;">
+                                <div class="input-field">
+                                    <x-forms.label name="model" for="modell"/>
+                                    <input value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="conditionShowHide" style="display:none;">
+                                <div class="input-select">
+                                    <x-forms.label name="condition" for="conditionss"/>
+                                    <select name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
+                                            <option {{ $ad->condition == 'new' ? 'selected':'' }} value="new">{{ __('new') }}</option>
+                                            <option {{ $ad->condition == 'used' ? 'selected':'' }} value="used">{{ __('used') }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" id="authenticityShowHide" style="display:none;">
+                                <div class="input-select">
+                                    <x-forms.label name="authenticity" for="authenticityy"/>
+                                    <select required name="authenticity" id="authenticityy" class="form-control select-bg @error('authenticity') border-danger @enderror">
+                                            <option {{ $ad->authenticity == 'original'? 'selected':'' }} value="original">{{ __('original') }}</option>
+                                            <option {{ $ad->authenticity == 'refurbished'? 'selected':'' }} value="refurbished">{{ __('refurbished') }}</option>
+                                    </select>
+                                </div>
+                            </div>
                         @endif
                     </div>
+                    @if($ad->category_id != 11)
+                        <div class="row">
+                            <div class="col-lg-3" id="negotiableShowHide">
+                                <div class="form-check">
+                                    <input name="negotiable" type="hidden" value="0">
+                                    <input {{ $ad->negotiable == 1 ? 'checked':'' }} value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" />
+                                    <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
+                                </div>
+                            </div>
+                            @if ($ad->featured)
+                                <div class="col-lg-3" id="featuredShowHide">
+                                    <div class="form-check">
+                                        <input name="featured" type="hidden" value="0">
+                                        <input {{ $ad->featured == 1 ? 'checked':'' }} value="1" name="featured" type="checkbox" class="form-check-input" id="featured" />
+                                        <x-forms.label name="featured" for="featured" class="form-check-label" />
+                                    </div>
+                                </div>
+                            @else
+                                <input name="featured" type="hidden" value="0">
+                            @endif
+                        </div>
+                    @else
+                        <div class="row" id="negotiableShowHide" style="display:none;"> 
+                            <div class="col-lg-3">
+                                <div class="form-check">
+                                    <input name="negotiable" type="hidden" value="0">
+                                    <input {{ $ad->negotiable == 1 ? 'checked':'' }} value="1" name="negotiable" type="checkbox" class="form-check-input" id="checkme" />
+                                    <x-forms.label name="negotiable" for="checkme" class="form-check-label" />
+                                </div>
+                            </div>
+                            @if ($ad->featured)
+                                <div class="col-lg-3" id="featuredShowHide">
+                                    <div class="form-check">
+                                        <input name="featured" type="hidden" value="0">
+                                        <input {{ $ad->featured == 1 ? 'checked':'' }} value="1" name="featured" type="checkbox" class="form-check-input" id="featured" />
+                                        <x-forms.label name="featured" for="featured" class="form-check-label" />
+                                    </div>
+                                </div>
+                            @else
+                                <input name="featured" type="hidden" value="0">
+                            @endif
+                        </div>
+                    @endif
                 </div>
                 <div class="dashboard-post__action-btns">
                     <a href="{{ route('frontend.post.cancel.edit') }}" class="btn btn--lg bg-danger text-light">
@@ -419,6 +481,7 @@
                 $("#authenticityShowHide").hide();
                 $("#featuredShowHide").hide();
                 $("#showAlInfo").show();
+                $("#negotiableShowHide").hide();
                 $('#brandd').removeAttr('required');
                 $('#modell').removeAttr('required');
             }else {
@@ -431,6 +494,7 @@
                 $("#conditionShowHide").show();
                 $("#featuredShowHide").show();
                 $("#showAlInfo").hide();
+                $("#negotiableShowHide").show();
                 $('#brandd').attr('required', 'required');
                 $('#modell').attr('required', 'required');
             }

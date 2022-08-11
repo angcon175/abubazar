@@ -373,8 +373,8 @@ class AdPostController extends Controller
         $request->validate([
             'phone' => 'required',
             'phone_2' => 'sometimes',
-            'city_id' => 'required',
-            'town_id' => 'required',
+            // 'city_id' => 'required',
+            // 'town_id' => 'required',
         ]);
 
         if($request->show_customer_info) {

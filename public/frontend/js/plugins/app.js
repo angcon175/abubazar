@@ -54,7 +54,7 @@ var range = document.getElementById("priceRangeSlider")
 
 // ===== Page Loader ===== \\
 window.addEventListener("load", (event) => {
-    preloader.style.display = "none"
+   // preloader.style.display = "none"
 })
 
 // ===== Message Dashboard ===== \\

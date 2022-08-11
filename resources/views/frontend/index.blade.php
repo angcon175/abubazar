@@ -295,7 +295,7 @@
 
 @section('frontend_script')
     <script type="module" src="{{ asset('frontend') }}/js/plugins/purecounter.js"></script>
-    <script type="module" src="https://adlisting.templatecookie.com/frontend/js/plugins/select2.min.js"></script>
+    <script src="https://adlisting.templatecookie.com/frontend/js/plugins/select2.min.js"></script>
     <script src="https://adminlte.io/themes/v3/plugins/select2/js/select2.full.min.js"></script>
     <script>
         $(document).ready(function() {

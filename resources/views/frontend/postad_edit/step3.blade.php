@@ -77,6 +77,7 @@
                     </button>
                 </div>
             </div>
+
         </form>
     </div>
 </div>
@@ -114,18 +115,22 @@
 		initialPreviewAsData: true,
         initialPreview: [
             @foreach ($ad->galleries as $gallery)
+                @if(checkFileExit($gallery->image))
                 "{{ $gallery->image ? str_replace('adds_multiple\\', 'adds_multiple/',$gallery->image_url) : '' }}",
+                @endif
             @endforeach
         ],
         initialPreviewConfig: [
             @foreach ($ad->galleries as $gallery)
+            @if(checkFileExit($gallery->image))
                     {
-                         caption: "{{ str_replace('adds_multiple\\', 'adds_multiple/',$gallery->image_url) }}",
+                        caption: "{{ str_replace('adds_multiple\\', 'adds_multiple/',$gallery->image_url) }}",
                         size: {{ getFileSize($gallery->image) }},
                         width: "20px",
                         url: "{{ route('frontend.ad.gallery.delete', $gallery->id) }}",
                         key: {{ $gallery->id }}
                     },
+            @endif
             @endforeach
 
         ]

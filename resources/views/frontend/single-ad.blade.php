@@ -91,7 +91,7 @@
                                             <span class="icon--left">
                                                 <x-svg.message-icon width="24" height="24" stroke="white" strokeWidth="1.6" />
                                             </span>
-                                            {{ __('send_message') }}
+                                            {{ __('send_message') }}phone
                                         </button>
                                     </form>
                                 @endif

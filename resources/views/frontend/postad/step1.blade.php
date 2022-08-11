@@ -2,7 +2,12 @@
 
 @section('title', __('step1'))
 
+@section('adlisting_style')
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+@endsection
+
 @section('post-ad-content')
+
 <style>
     select {
         height: 48px;
@@ -16,6 +21,11 @@
         border-color: #d32323 !important;
     }
 </style>
+    @php
+        $businessfunctions = DB::table('business_functions')->orderBy('name')->get();
+        $educational = DB::table('educational_specializations')->orderBy('name')->get();
+        $minimum = DB::table('minimum_qualifications')->orderBy('name')->get();
+    @endphp
     <!-- Step 01 -->
     <div class="tab-pane fade show active" id="pills-basic" role="tabpanel" aria-labelledby="pills-basic-tab">
         <div class="dashboard-post__information step-information">
@@ -35,12 +45,13 @@
                         <div class="col-md-6">
                             <div class="input-field">
                                 <x-forms.label name="ad_name" required="true" for="adname" />
-                                <input required value="{{ $ad->title ?? '' }}" name="title" type="text" placeholder="{{ __('ad_name') }}" id="adname"  class="@error('title') border-danger @enderror"/>
+                                <input required value="{{$ad->title ?? ''}}" name="title" type="text" placeholder="{{ __('ad_name') }}" id="adname"  class="@error('title') border-danger @enderror"/>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="input-field">
-                                <x-forms.label name="price" required="true" for="price" />
+                                <label id="month">Price <span class="text-danger">*</span></label>
+                                <label id="permonth" style="display:none;">Price Per Month <span class="text-danger">*</span></label>
                                 <input required value="{{ $ad->price ?? '' }}" name="price" type="number" min="1" placeholder="{{ __('price') }}" id="price"  class="@error('price') border-danger @enderror"/>
                             </div>
                         </div>
@@ -57,15 +68,125 @@
                         </div>
                         <div class="col-md-6">
                             <div class="input-select">
-                                <x-forms.label name="subcategory" required="true" for="subcategory" />
+                                <label id="month">Sub category <span class="text-danger">*</span></label>
                                 <select required name="subcategory_id" id="subcategory" class="form-control select-bg @error('subcategory_id') border-danger @enderror">
-                                    <option selected>{{ __('select_subcategory') }}</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="row" id="showAlInfo" style="display:none;">
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Business function <span class="text-danger">*</span></label>
+                                    <select name="businessfunction_id" class="form-control">
+                                        <option selected="selected" value="">Select one</option>
+                                        @foreach($businessfunctions as $business)
+                                            <option value="{{$business->id}}">{{$business->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Role or designation<span class="text-danger">*</span></label>
+                                    <input type="text" name="role_designation" value="{{ $ad->role_designation ?? '' }}" class="form-control" placeholder="Role / Designation">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Receive response<span class="text-danger">*</span></label>
+                                    <select name="receive_response" class="form-control">
+                                        <option value="" selected>Select One</option>
+                                        <option value="Employer Dashboard">Employer Dashboard</option>
+                                        <option value="Phone">Phone</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Total vacancies<span class="text-danger">*</span></label>
+                                    <input type="number" name="total_vacancies" value="{{ $ad->total_vacancies ?? '' }}" class="form-control" placeholder="Total vacancies">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2 mb-3">
+                                <h4>About the company or employer</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Company or employeer<span class="text-danger">*</span></label>
+                                    <input type="text" value="{{ $ad->company_employeer_name ?? '' }}" name="company_employeer_name" class="form-control" placeholder="Company / Employeer name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Company logo</label>
+                                    <input type="file" value="{{ $ad->company_logo ?? '' }}" name="company_logo" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Application deadline<span class="text-danger">*</span></label>
+                                    <input type="text" value="{{ $ad->application_deadline ?? '' }}" name="application_deadline" id="datepicker" class="form-control" placeholder="Application Deadline">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Required experience (years)</label>
+                                    <input type="text" value="{{ $ad->required_experience ?? '' }}" name="required_experience" class="form-control" placeholder="Required experience (years)">
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-2 mb-3">
+                                <h4>Candidate preferences</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Minimum qualification<span class="text-danger">*</span></label>
+                                    <select name="minimum_qualification_id" class="form-control">
+                                        <option selected="selected" value="">Select one</option>
+                                        @foreach($minimum as $min)
+                                            <option value="{{$min->id}}">{{$min->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Educational specialization</label>
+                                    <select name="educational_specialization_id" class="form-control">
+                                        <option selected="selected" value="">Select one</option>
+                                        @foreach($educational as $educationa)
+                                            <option value="{{$educationa->id}}">{{$educationa->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="input-field">
+                                    <label>Skills</label>
+                                    <input type="text" value="{{ $ad->skills ?? '' }}" name="skills" class="form-control" placeholder="skills">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Maximum age</label>
+                                    <input type="number" value="{{ $ad->mixium_age ?? '' }}" name="mixium_age" class="form-control" placeholder="Maximum age">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-field">
+                                    <label>Gender preference</label>
+                                    <select name="gender_preference" class="form-control">
+                                        <option selected="selected" value="">Select one</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                        <option value="Any">Any</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="brandShowHide">
                             <div class="input-select">
-                                <x-forms.label name="brand" required="true" for="brand" />
+                                <x-forms.label name="brand" for="brand" />
                                 <select required name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_brand') }}</option>
                                     @isset($ad->brand_id)
@@ -80,15 +201,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="modelShowHide">
                             <div class="input-field">
-                                <x-forms.label name="model" required="true" for="modell" />
+                                <x-forms.label name="model" for="modell" />
                                 <input required value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="conditionShowHide">
                             <div class="input-select">
-                                <x-forms.label name="condition" required="true" for="conditionss" />
+                                <x-forms.label name="condition" for="conditionss" />
                                 <select required name="condition" id="conditionss" class="form-control select-bg @error('condition') border-danger @enderror">
                                     @isset($ad->condition)
                                         <option {{ $ad->condition == 'new' ? 'selected':'' }} value="new">{{ __('new') }}</option>
@@ -100,9 +221,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="authenticityShowHide">
                             <div class="input-select">
-                                <x-forms.label name="authenticity" required="true" for="authenticityy" />
+                                <x-forms.label name="authenticity" for="authenticityy" />
                                 <select required name="authenticity" id="authenticityy" class="form-control select-bg @error('authenticity') border-danger @enderror">
                                     @isset($ad->condition)
                                         <option {{ $ad->authenticity == 'original'? 'selected':'' }} value="original">{{ __('original') }}</option>
@@ -128,7 +249,7 @@
                             </div>
                         </div>
                         @if (session('user_plan')->featured_limit)
-                            <div class="col-lg-3">
+                            <div class="col-lg-3" id="featuredShowHide">
                                 <div class="form-check">
                                     <input name="featured" type="hidden" value="0">
                                     @isset($ad->featured)
@@ -156,4 +277,66 @@
             </form>
         </div>
     </div>
+@endsection
+
+@section('frontend_script')
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $("#categoryId").on('change', function() {
+            let id = $(this).val();
+            if(id == 11) {
+                // alert(id);
+                $("#permonth").show();
+                $("#month").hide();
+                $("#brandShowHide").hide();
+                $("#modelShowHide").hide();
+                $("#conditionShowHide").hide();
+                $("#authenticityShowHide").hide();
+                $("#featuredShowHide").hide();
+                $("#showAlInfo").show();
+                $('#brandd').removeAttr('required');
+                $('#modell').removeAttr('required');
+            }else {
+                // alert('work');
+                $("#permonth").hide();
+                $("#month").show();
+                $("#brandShowHide").show();
+                $("#modelShowHide").show();
+                $("#authenticityShowHide").show();
+                $("#conditionShowHide").show();
+                $("#featuredShowHide").show();
+                $("#showAlInfo").hide();
+                $('#brandd').attr('required', 'required');
+                $('#modell').attr('required', 'required');
+            }
+        });
+
+        $("#datepicker").datepicker();
+
+    </script><script type="text/javascript">
+        $(document).ready(function() {
+            $('#categoryId').on('change', function(){
+                var category_id = $(this).val();
+                // alert(category_id);
+                if(category_id) {
+                    $.ajax({
+                        url: "{{ url('/dashboard/post/category/ajax') }}/" + category_id,
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data) {
+                            $('#subcategory').html('');
+                            var d =$('#subcategory').empty();
+                            $('#subcategory').append('<option value="" disabled selected> Select One </option>');
+                            $.each(data, function(key, value){
+                                $('#subcategory').append('<option value="'+ value.id +'">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
 @endsection

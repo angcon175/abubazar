@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
         $lang = 'en';
         session()->put('lang', $lang);
         app()->setLocale($lang);
+        date_default_timezone_set('Asia/Dubai');
 
         if (!app()->runningInConsole()) {
             $moduleSetting = ModuleSetting::first();

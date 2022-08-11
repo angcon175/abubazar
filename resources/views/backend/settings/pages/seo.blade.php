@@ -10,7 +10,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin.seo.update') }}" method="POST">
+                        <form action="{{ route('admin.seo.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
@@ -34,6 +34,39 @@
                                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
+
+
+                            <div class="form-group">
+                                <x-forms.label name="og_title" for="og_title" />
+                                <input id="og_title" name="og_title" class="form-control @error('og_title') is-invalid @enderror" rows="3" value="{{ $setting->og_title }}">
+                                @error('og_title')
+                                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <x-forms.label name="og_descriptin" for="og_descriptin" />
+                                <textarea id="og_descriptin" name="og_descriptin" class="form-control @error('og_descriptin') is-invalid @enderror" rows="3">{{ $setting->og_descriptin }}</textarea>
+                                @error('og_descriptin')
+                                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                            </div>
+
+
+                            <div class="col-3 mx-2">
+                                <div class="form-group">
+                                    <x-forms.label name="og_image" /> <span class="text-danger">Image Height:400px and Width:700px</span>
+                                    <div class="row">
+                                        <input type="file" class="form-control dropify"
+                                            data-default-file="{{asset('/').$setting->og_img}}" name="og_image"
+                                            autocomplete="image" accept="image/png, image/jpg, image/jpeg"
+                                            data-allowed-file-extensions='["jpg", "jpeg","png"]' data-max-file-size="3M">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             @if (userCan('setting.update'))
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success"><i class="fas fa-sync"></i> {{ __('update') }}</button>
@@ -46,3 +79,22 @@
         </div>
     </div>
 @endsection
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('backend') }}/css/dropify.min.css" />
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 170px;
+        }
+
+    </style>
+@endsection
+
+@section('script')
+    <script src="{{ asset('backend') }}/js/dropify.min.js"></script>
+    <script src="{{ asset('backend') }}/dist/js/ckeditor.js"></script>
+    <script>
+        $('.dropify').dropify();
+    </script>
+@endsection
+

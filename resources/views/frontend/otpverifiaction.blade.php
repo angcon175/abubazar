@@ -49,7 +49,7 @@ $code_exp_time = new DateTime($user->code_exp_time);
                                     </span>
                                 </button>
 
-                                <button type="submit" name="submit" value="againotp" style="display: block; color:blue; margin: 0 auto; padding: 10px;">{{ __('otp_send_again') }}</button>
+                                <button type="submit" name="submit" value="againotp" style="display: block; color:blue; margin: 0 auto; padding: 10px;">{{ __('otp_send_again') }} to {{ request()->get('phone') }}</button>
 
                                 <p class="text--body-3 registration-form__redirect">{{ __('have_account') }} ? <a href="{{ route('customer.login') }}">{{ __('sign_in') }}</a></p>
                             </form>

@@ -19,8 +19,8 @@
                     <input value="{{ old('email') }}" type="email" placeholder="{{ __('email_address') }}" name="email" class="@error('email') is-invalid border-danger @enderror" required />
                     @error('email')<span class="text-danger">{{ $message }}</span>@enderror
                 </div>
-                <div class="input-field">
-                    <input value="{{ old('phone') }}" type="tel" placeholder="{{ __('phone') }}" name="phone" class="@error('phone') is-invalid border-danger @enderror" required />
+                <div class="input-field" title="Do not put any wrong or inactive number for otp verification ">
+                    <input value="{{ old('phone') }}" type="tel" placeholder="Ex:554867836" name="phone" class="@error('phone') is-invalid border-danger @enderror" required />
                     @error('phone')<span class="text-danger">{{ $message }}</span>@enderror
                 </div>
 

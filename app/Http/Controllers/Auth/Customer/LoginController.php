@@ -69,22 +69,6 @@ class LoginController extends Controller
     protected function sendLoginResponse(Request $request)
     {
 
-        $request->session()->regenerate();
-        $this->clearLoginAttempts($request);
-        if ($response = $this->authenticated($request, $this->guard()->user())) {
-            return $response;
-        }
-
-        storePlanInformation();
-        $this->loggedinNotification();
-
-        resetSessionWishlist();
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect()->intended($this->redirectPath());
-
-
         if($this->guard()->user()->is_verified_phone == 0){
             $email = $this->guard()->user()->email;
             $user = Customer::where('email',$email)->first();

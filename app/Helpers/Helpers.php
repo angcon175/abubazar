@@ -306,3 +306,37 @@ function autoTransLation($lang, $text)
     $afterTrans = $tr->translate($text);
     return $afterTrans;
 }
+
+if (!function_exists('checkFileExit')) {
+    function checkFileExit($path) {
+        if($path){
+            $ppath = public_path($path);
+            // dd($ppath);
+            if(file_exists($ppath)){
+                return true;
+            } else {
+                return false;
+           }
+
+        }else{
+            return false;
+        }
+
+    }
+}
+
+if (!function_exists('checkFileExit1')) {
+    function checkFileExit1($path) {
+        if($path){
+            $ppath = public_path($path);
+            if(file_exists($ppath)){
+              return asset($path);
+            } else {
+                return asset('img/no-photo.png');
+           }
+        }else{
+            return asset('img/no-photo.png');
+        }
+
+    }
+}

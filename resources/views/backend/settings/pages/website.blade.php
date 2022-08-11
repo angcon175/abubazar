@@ -138,7 +138,7 @@
                                     <x-forms.label name="theme_logo_white_background" />
                                     <div class="row">
                                         <input type="file" class="form-control dropify"
-                                            data-default-file="{{ $setting->logo_image_url }}" name="logo_image"
+                                            data-default-file="{{assets('/').$setting->logo_image_url }}" name="logo_image"
                                             autocomplete="image" accept="image/png, image/jpg, image/jpeg"
                                             data-allowed-file-extensions='["jpg", "jpeg","png"]' data-max-file-size="3M">
                                     </div>

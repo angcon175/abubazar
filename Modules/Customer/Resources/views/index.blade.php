@@ -11,11 +11,11 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title" style="line-height: 36px;">{{ __('customer_list') }}</h3>
-                    <a href="{{ route('module.customer.create') }}"
-                        class="btn bg-primary float-right d-flex align-items-center justify-content-center"><i
-                            class="fas fa-plus"></i>&nbsp; {{ __('add_customer') }}</a>
+                    <a href="{{ route('module.customer.create') }}" class="btn bg-primary float-right d-flex align-items-center justify-content-center">
+                        <i class="fas fa-plus"></i> &nbsp; {{ __('add_customer') }}
+                    </a>
                 </div>
-                <div class="card-body table-responsive p-0">
+                <div class="card-body p-0">
                     <form action="{{ route('module.customer.index')  }}" method="GET">
                         <div class="row justify-content-between my-3">
                             <div class="col-sm-12 col-md-6 ml-2">
@@ -91,81 +91,85 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($customers as $key =>$customer)
-                                    <tr>
-                                        <td class="text-center" tabindex="0">{{ $key+1 }}
-                                        </td>
-                                        <td class="text-center" tabindex="0">
-                                            <img src="{{ $customer->image_url }}" class="rounded" height="50px"
-                                                width="50px" alt="image">
-                                        </td>
-                                        <td class="text-center" tabindex="0">{{ $customer->name }}</td>
-                                        <td class="text-center" tabindex="0">{{ $customer->email }}</td>
-                                        <td class="text-center" tabindex="0">{{ $customer->username }}</td>
-                                        <td class="text-center" tabindex="0">{{ $customer->transactions_count }}
-                                            {{ __('times') }}</td>
-                                        <td class="text-center">
-                                            <span
-                                                class="badge badge-{{ $customer->email_verified_at ? 'success':'warning' }}">
-                                                {{ $customer->email_verified_at ? 'Verified':'Unverified' }}
-                                            </span>
-                        </td>
-                        <td class="text-center" tabindex="0">
-                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false">
-                                {{ __('options') }}
-                            </button>
-                            <ul class="dropdown-menu" x-placement="bottom-start"
-                                style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                <li><a class="dropdown-item"
-                                        href="{{ route('module.customer.show', $customer->username) }}">
-                                        <i class="fas fa-eye text-info"></i> {{ __('view_details') }}
-                                    </a></li>
-
-                                <li><a class="dropdown-item"
-                                        href="{{ route('module.customer.edit', $customer->username) }}">
-                                        <i class="fas fa-edit text-success"></i> {{ __('edit_customer') }}
-                                    </a></li>
-                                <li><a class="dropdown-item"
-                                        href="{{ route('module.customer.ads',$customer->username) }}">
-                                        <i class="fab fa-adversal text-primary"></i></i>
-                                        {{ __('view_customer_ads') }}
-                                    </a></li>
-                                <li>
-                                    <form action="{{ route('module.customer.destroy', $customer->username) }}"
-                                        method="POST" class="d-inline">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="dropdown-item"
-                                            onclick="return confirm('Are you sure you want to delete this item?');">
-                                            <i class="fas fa-trash text-danger"></i> {{ __('delete_customer') }}
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="10" class="text-center">
-                                <x-not-found word="Customer" />
-                            </td>
-                        </tr>
-                        @endforelse
-                        </tbody>
-                        </table>
+                                        <tr>
+                                            <td class="text-center" tabindex="0">{{ $key+1 }}
+                                            </td>
+                                            <td class="text-center" tabindex="0">
+                                                <img src="{{ $customer->image_url }}" class="rounded" height="50px"
+                                                    width="50px" alt="image">
+                                            </td>
+                                            <td class="text-center" tabindex="0">{{ $customer->name }}</td>
+                                            <td class="text-center" tabindex="0">{{ $customer->email }}</td>
+                                            <td class="text-center" tabindex="0">{{ $customer->username }}</td>
+                                            <td class="text-center" tabindex="0">{{ $customer->transactions_count }}
+                                                {{ __('times') }}</td>
+                                            <td class="text-center">
+                                                <span
+                                                    class="badge badge-{{ $customer->email_verified_at ? 'success':'warning' }}">
+                                                    {{ $customer->email_verified_at ? 'Verified':'Unverified' }}
+                                                </span>
+                                            </td>
+                                            <td class="text-center" tabindex="0">
+                                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    {{ __('options') }}
+                                                </button>
+                                                <ul class="dropdown-menu" x-placement="bottom-start"
+                                                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('module.customer.show', $customer->username) }}">
+                                                            <i class="fas fa-eye text-info"></i> {{ __('view_details') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('module.customer.edit', $customer->username) }}">
+                                                            <i class="fas fa-edit text-success"></i> {{ __('edit_customer') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="{{ route('module.customer.ads',$customer->username) }}">
+                                                            <i class="fab fa-adversal text-primary"></i></i>
+                                                            {{ __('view_customer_ads') }}
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <form action="{{ route('module.customer.destroy', $customer->username) }}" method="POST" class="d-inline">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure you want to delete this item?');">
+                                                                <i class="fas fa-trash text-danger"></i>
+                                                                {{ __('delete_customer') }}
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="10" class="text-center">
+                                                <x-not-found word="Customer" />
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @if (request('perpage') != 'all' && $customers->total() > $customers->count())
-            <div class="card-footer ">
-                <div class="d-flex justify-content-center">
-                    {{ $customers->links() }}
+                @if (request('perpage') != 'all' && $customers->total() > $customers->count())
+                <div class="card-footer ">
+                    <div class="d-flex justify-content-center">
+                        {{ $customers->links() }}
+                    </div>
                 </div>
+                @endif
             </div>
-            @endif
         </div>
     </div>
-</div>
 </div>
 @endsection
 

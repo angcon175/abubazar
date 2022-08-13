@@ -138,7 +138,7 @@
                                     <x-forms.label name="theme_logo_white_background" />
                                     <div class="row">
                                         <input type="file" class="form-control dropify"
-                                            data-default-file="{{assets('/').$setting->logo_image_url }}" name="logo_image"
+                                            data-default-file="{{asset($setting->logo_image_url) }}" name="logo_image"
                                             autocomplete="image" accept="image/png, image/jpg, image/jpeg"
                                             data-allowed-file-extensions='["jpg", "jpeg","png"]' data-max-file-size="3M">
                                     </div>
@@ -149,7 +149,7 @@
                                     <x-forms.label name="theme_logo_dark_background" />
                                     <div class="row">
                                         <input type="file" class="form-control dropify"
-                                            data-default-file="{{ $setting->logo2_image_url }}" name="logo_image2"
+                                            data-default-file="{{ asset($setting->logo2_image_url) }}" name="logo_image2"
                                             autocomplete="image" accept="image/png, image/jpg, image/jpeg"
                                             data-allowed-file-extensions='["jpg", "jpeg","png"]' data-max-file-size="3M">
                                     </div>
@@ -160,7 +160,7 @@
                                     <x-forms.label name="site_favicon" />
                                     <div class="row">
                                         <input type="file" class="form-control dropify"
-                                            data-default-file="{{ $setting->favicon_image_url }}" name="favicon_image"
+                                            data-default-file="{{ asset($setting->favicon_image_url) }}" name="favicon_image"
                                             accept="image/png, image/jpg, image/jpeg"
                                             data-allowed-file-extensions='["jpg", "jpeg","png"]' data-max-file-size="3M">
                                     </div>
@@ -198,7 +198,6 @@
         .ck-editor__editable_inline {
             min-height: 170px;
         }
-
     </style>
 @endsection
 

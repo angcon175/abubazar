@@ -82,6 +82,7 @@
                                         <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
                                     </div>
                                 @endif
+
                                 @if (auth('customer')->check() && auth('customer')->user()->id != $ad->customer_id )
                                     <form action="{{ route('frontend.message.store', $ad->customer->username) }}" method="POST"
                                         id="sendMessageForm">
@@ -104,8 +105,6 @@
                                     </a>
                                 @endif
                             </div>
-
-
                         </div>
                         <div class="product-item__sidebar-bottom">
                             <div class="product-item__sidebar-item overview">

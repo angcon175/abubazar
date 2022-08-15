@@ -13,15 +13,15 @@
             </li>
             <li class="overview-details__item">
                 <span class="text--body-3 title">Business Function :</span>
-                <span class="text--body-3 info">{{ $businessfunction->name }}</span>
+                <span class="text--body-3 info">{{ $businessfunction->name ?? '' }}</span>
             </li>
             <li class="overview-details__item">
                 <span class="text--body-3 title">Minimum Qualification :</span>
-                <span class="text--body-3 info">{{ $minimumqualification->name }}</span>
+                <span class="text--body-3 info">{{ $minimumqualification->name ?? '' }}</span>
             </li>
             <li class="overview-details__item">
                 <span class="text--body-3 title">Educational Specialization :</span>
-                <span class="text--body-3 info">{{ $educationalspecialization->name }}</span>
+                <span class="text--body-3 info">{{ $educationalspecialization->name ?? '' }}</span>
             </li>
             @if($ad->required_experience)
                 <li class="overview-details__item">

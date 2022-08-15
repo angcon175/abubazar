@@ -14,7 +14,6 @@
                 </span>
                 <p class="text--body-3">
                     {{ $activity->data['msg'] }}
-
                     @isset($activity->data['url'])
                         <a href="{{ $activity->data['url'] }}">{{ __('view_ad') }}</a>
                     @endisset

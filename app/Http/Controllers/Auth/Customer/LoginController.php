@@ -68,22 +68,39 @@ class LoginController extends Controller
      */
     protected function sendLoginResponse(Request $request)
     {
-        $request->session()->regenerate();
 
-        $this->clearLoginAttempts($request);
+        if($this->guard()->user()->is_verified_phone == 0){
+            $email = $this->guard()->user()->email;
+            $user = Customer::where('email',$email)->first();
+            $phone = $user->phone;
+            $this->guard()->logout();
+            $otp = rand (1000,9999);
+            Customer::where('email',$user->email)->update([
+                'code'                  => $otp,
+                'code_exp_time'         => date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
+                'code_daily_counter'    => 1,
+                'code_send_date'        => date('Y-m-d'),
+            ]);
+            //need to send otp
+            return redirect()->route('frontend.otpverifiaction',['phone' => $phone])->withUser($user)->withInput();
+        }else{
+            $request->session()->regenerate();
+            $this->clearLoginAttempts($request);
+            if ($response = $this->authenticated($request, $this->guard()->user())) {
+                return $response;
+            }
 
-        if ($response = $this->authenticated($request, $this->guard()->user())) {
-            return $response;
+            storePlanInformation();
+            $this->loggedinNotification();
+
+            resetSessionWishlist();
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect()->intended($this->redirectPath());
         }
 
-        storePlanInformation();
-        $this->loggedinNotification();
 
-        resetSessionWishlist();
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect()->intended($this->redirectPath());
     }
 
     public function loggedinNotification()

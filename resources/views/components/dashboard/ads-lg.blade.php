@@ -17,7 +17,10 @@
         </div>
         <div class="card-edit__item product-price">
             <span class="text--body-4">
-                {{ changeCurrency($ad->price) }}
+                {{ changeCurrency($ad->price) }} <br>
+                @if($ad->category_id == 11)
+                    <span class="text-success"> ( Per Month )</span>
+                @endif
             </span>
         </div>
         @if (!request()->routeIs('frontend.favourites'))

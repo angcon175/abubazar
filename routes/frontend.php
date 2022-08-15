@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MessangerController;
+use App\Http\Controllers\Frontend\OtpController;
 use App\Http\Controllers\Frontend\AdPostController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Frontend\DashboardController;
@@ -44,6 +45,8 @@ Route::group(['as' => 'frontend.'], function () {
             Route::get('/step1/back/{slug?}', [AdPostController::class, 'postStep1Back'])->name('post.step1.back');
             Route::get('/category/ajax/{id}', [AdPostController::class, 'categoryAjax']);
             Route::get('/city-town/ajax/{id}', [AdPostController::class, 'cityTownAjax']);
+            Route::post('/sendotp', [OtpController::class, 'sendotp'])->name('post.sendotp');
+            Route::post('/verifyotp', [OtpController::class, 'verifyotp'])->name('post.verifyotp');
         });
         // Ad Edit
         Route::prefix('post')->group(function () {
@@ -76,7 +79,7 @@ Route::group(['as' => 'frontend.'], function () {
     });
 
     Route::post('/ads/report', [App\Http\Controllers\ReportAdsController::class, 'store'])->name('report.store');
-        
+
 });
 // Verification Routes
 Route::middleware('auth:customer', 'setlang')->group(function() {
@@ -84,4 +87,7 @@ Route::middleware('auth:customer', 'setlang')->group(function() {
     Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
     Route::post('/email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
+
+// set language
+Route::get('changelanguage/{lang}', [TranslationController::class, 'changeLanguage'])->name('changeLanguage');
 

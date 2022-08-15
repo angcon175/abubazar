@@ -1,5 +1,21 @@
 @extends('layouts.frontend.layout_one')
 
+@section('meta')
+
+@php
+    $setting = setting();
+@endphp
+<meta property="og:title" content="{{ $setting->og_title ?? 'ABUBAZAAR | Buy and sell everything' }}" />
+<meta property="og:description" content="{{ $setting->og_description ?? 'ABUBAZAAR | Buy and sell everything in UAE' }}" />
+<meta name="twitter:title" content="{{ $setting->og_title ?? 'ABUBAZAAR | Buy and sell everything' }}" />
+<meta name="twitter:description" content="{{ $setting->og_description ?? 'ABUBAZAAR | Buy and sell everything in UAE' }}" />
+<meta property="og:image" content="{{ checkFileExit1($setting->og_img) }}" />
+<meta name="twitter:image" content="{{ checkFileExit1($setting->og_img) }}" />
+
+
+@endsection
+
+
 @section('title', __('home'))
 
 @section('frontend_style')
@@ -295,7 +311,7 @@
 
 @section('frontend_script')
     <script type="module" src="{{ asset('frontend') }}/js/plugins/purecounter.js"></script>
-    <script type="module" src="https://adlisting.templatecookie.com/frontend/js/plugins/select2.min.js"></script>
+    <script src="https://adlisting.templatecookie.com/frontend/js/plugins/select2.min.js"></script>
     <script src="https://adminlte.io/themes/v3/plugins/select2/js/select2.full.min.js"></script>
     <script>
         $(document).ready(function() {

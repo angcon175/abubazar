@@ -25,6 +25,9 @@
                     </button>
                 </div>
             </form>
+            <div class="mobile_select_location" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i> Select Location</p>
+            </div>
         </div>
         <div class="mobile-menu__body">
             <ul>

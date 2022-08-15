@@ -13,6 +13,11 @@ use App\Http\Controllers\Auth\SocialLoginController;
 Route::get('/sign-up', [FrontendController::class, 'signUp'])->name('frontend.signup')->middleware('setlang');
 Route::post('customer/register', [FrontendController::class, 'register'])->name('customer.register');
 
+//phone verification
+Route::get('otpverifiaction', [FrontendController::class, 'otpVerifiaction'])->name('frontend.otpverifiaction')->middleware('setlang');
+Route::get('otpsend/again', [FrontendController::class, 'otpSendAgain'])->name('frontend.otpsendagain')->middleware('setlang');
+Route::post('customer/otpverify', [FrontendController::class, 'otpVerify'])->name('customer.otpverify')->middleware('setlang');
+
 // login proccess
 Route::post('/customer/login', [App\Http\Controllers\Auth\Customer\LoginController::class, 'login'])->name('frontend.login')->middleware('auth_logout');
 Route::post('/frontend/logout', [FrontendController::class, 'frontendLogout'])->name('frontend.logout');

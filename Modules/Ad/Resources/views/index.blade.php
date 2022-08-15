@@ -15,8 +15,10 @@
                         </h3>
                         @if (userCan('ad.create'))
                             <a href="{{ route('module.ad.create') }}"
-                                class="btn bg-primary float-right d-flex align-items-center justify-content-center"><i
-                                    class="fas fa-plus"></i>&nbsp; {{ __('add_ad') }}</a>
+                                class="btn bg-primary float-right d-flex align-items-center justify-content-center">
+                                <i class="fas fa-plus"></i>
+                                &nbsp; {{ __('add_ad') }}
+                            </a>
                         @endif
                     </div>
                     <div class="card-body table-responsive p-0">
@@ -84,14 +86,12 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-3 text-right mr-2">
-                                    <input type="text" value="{{ request('keyword') }}" class="form-control"
-                                        placeholder="{{ __('search') }}..." name="keyword"
-                                        aria-label="Search in website">
+                                    <input type="text" value="{{ request('keyword') }}" class="form-control" placeholder="{{ __('search') }}..." name="keyword" aria-label="Search in website">
                                 </div>
                             </div>
                         </form>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-12">
                                 <x-backend.ad-manage :ads="$ads" />
                             </div>
                         </div>
@@ -116,6 +116,5 @@
             border-color: #007bff;
             color: #fff;
         }
-
     </style>
 @endsection

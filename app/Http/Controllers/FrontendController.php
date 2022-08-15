@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use DateTime;
+use Exception;
 use App\Models\Cms;
 use App\Models\Theme;
 use App\Models\Setting;
+use Twilio\Rest\Client;
 use App\Models\Customer;
 use App\Models\BlogComment;
 use Modules\Ad\Entities\Ad;
 use Illuminate\Http\Request;
+use App\Http\Traits\SmsTrait;
 use Modules\Faq\Entities\Faq;
 use App\Models\PaymentSetting;
 use Modules\Blog\Entities\Post;
@@ -19,15 +24,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Modules\Faq\Entities\FaqCategory;
 use Modules\Ad\Transformers\AdResource;
+use Modules\Blog\Entities\PostCategory;
 use Modules\Category\Entities\Category;
 use App\Notifications\LogoutNotification;
-use Modules\Blog\Entities\PostCategory;
 use Modules\Testimonial\Entities\Testimonial;
 use Modules\Category\Transformers\CategoryResource;
-use DB;
 
 class FrontendController extends Controller
 {
+    use SmsTrait;
     /**
      * View Home page
      * @return \Illuminate\Http\Response
@@ -287,6 +292,11 @@ class FrontendController extends Controller
         return view('frontend.sign-up', compact('verified_users'));
     }
 
+    public function otpVerifiaction(Request $request){
+        $user = Customer::where('phone', $request->phone)->first();
+
+        return view('frontend.otpverifiaction', compact('user'));
+    }
     /**
      * Show the form for creating a new resource.
      * @param  Customer
@@ -301,34 +311,137 @@ class FrontendController extends Controller
             'name' => "required",
             'username' => "required|unique:customers,username",
             'email' => "required|email|unique:customers,email",
+            'phone' => "required|min:9|max:12|unique:customers,phone",
             'password' => "required|confirmed|min:8|max:50"
         ]);
+        $otp = rand (1000,9999);
 
-        $created = Customer::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+        $phone = (int)$request->phone;
+        $receiverNumber = '+971'.$phone;
+        $message = "Welcome to abubazar.com, you otp code is ".$otp;
+        $res = $this->sendSms($message,$receiverNumber);
+        if ($res) {
+            $created = Customer::create([
+                'name'                  => $request->name,
+                'username'              => $request->username,
+                'email'                 => $request->email,
+                'phone'                 => $request->phone,
+                'password'              => bcrypt($request->password),
+                'code'                  => $otp,
+                'code_exp_time'         =>  date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
+                'code_daily_counter'    => 1,
+                'code_send_date'        => date('Y-m-d'),
+                'is_verified_phone'     => 0,
+            ]);
 
-        if ($created) {
             Auth::guard('customer')->logout();
             Auth::guard('super_admin')->logout();
             flashSuccess('Registration Successful!');
-            Auth::guard('customer')->login($created);
+            // Auth::guard('customer')->login($created);
 
+            return redirect()->route('frontend.otpverifiaction',['phone' => $request->phone]);
+/*
             if ($setting->customer_email_verification) {
                 return redirect()->route('verification.notice');
             } else {
                 return redirect()->route('frontend.dashboard');
             }
+            */
+
 //            if (!$created->email_verified_at) {
 //                return redirect()->route('verification.notice');
 //            } else {
 //                return redirect()->route('frontend.dashboard');
 //            }
+        }else{
+            Auth::guard('customer')->logout();
+            Auth::guard('super_admin')->logout();
+            flashError('Your phone number may wrong');
+            return redirect()->back()->withInput();
         }
+
+
     }
+
+    public function otpVerify(Request $request){
+            $setting = setting();
+
+            if($request->submit == 'againotp'){
+                $request->validate([
+                    'phone' => "required|min:10|max:12",
+                ]);
+                $otp = rand (1000,9999);
+                $user = Customer::where('phone',$request->phone)->first();
+                $code_daily_counter = $user->code_daily_counter;
+                $todate = date('Y-m-d');
+                $totime = new DateTime("now");
+                $code_send_date = $user->code_send_date;
+
+                if( ($todate == $code_send_date ) && ($code_daily_counter > 5) ){
+                    flashError('Please try another day or contact with admin');
+                    return redirect()->back()->withUser($user)->withInput();
+                }else{
+                    $code_daily_counter = $user->code_daily_counter+1;
+                    $phone = (int)$user->phone;
+                    $receiverNumber = '+971'.$phone;
+                    $message = "Welcome to abubazar.com, you otp code is ".$otp;
+
+                    $res = $this->sendSms($message,$receiverNumber);
+                    if($res){
+                        $user = Customer::where('phone',$request->phone)->update([
+                            'code'                  => $otp,
+                            'code_exp_time'         => date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
+                            'code_daily_counter'    => $code_daily_counter,
+                            'code_send_date'        => date('Y-m-d'),
+                        ]);
+                        flashSuccess('Otp send again');
+                    }else{
+                        flashError('Your phone number may wrong');
+                    }
+                    return redirect()->back()->withUser($user)->withInput();
+                }
+
+
+            }else{
+                $request->validate([
+                    'otp' => "required|min:4|max:4",
+                    'phone' => "required|min:9|max:12",
+                ]);
+                $user = Customer::where('phone',$request->phone)->first();
+                if($user){
+                    $phone_number = $user->phone;
+                    $flag   = 'ok';
+                    $msg    = 'Otp verification success';
+                    $otp    = $user->code;
+                    $totime = new DateTime("now");
+                    $code_exp_time = new DateTime($user->code_exp_time);
+
+                    if($user->code == $request->otp){
+                        if( $totime > $code_exp_time){
+                            flashError('Otp is expired');
+                            return redirect()->back()->withUser($user)->withInput();
+                        }else{
+                            Auth::guard('customer')->logout();
+                            Auth::guard('super_admin')->logout();
+                            flashSuccess('Otp verification Successful!');
+                            Customer::where('phone',$request->phone)->update(['is_verified_phone' => 1]);
+                            $user = Customer::where('phone',$request->phone)->first();
+                            Auth::guard('customer')->login($user);
+                            return redirect()->route('frontend.dashboard');
+                        }
+                    }else{
+                        flashError('Otp wrong');
+                        return redirect()->back()->withUser($user)->withInput();
+                    }
+
+                }else{
+                    flashError('User information wrong');
+                    return redirect()->back()->withUser($user)->withInput();
+                }
+            }
+
+
+        }
 
     /**
      * Show the form for creating a new resource.

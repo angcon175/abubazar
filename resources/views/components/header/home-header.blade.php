@@ -27,11 +27,11 @@
                         <button type="submit" class="custom-search-icon"> <i class="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </form>
-                
+
                 <!-- Action Buttons -->
                 <div class="navigation-bar__buttons">
                     <a href="{{route('frontend.message')}}" class="chat-text"><i class="fa-solid fa-message"></i>
-                     
+
                 </a>
                     @if (auth('customer')->check())
                     <a href="{{ route('frontend.dashboard') }}" class="user">
@@ -90,7 +90,7 @@
                                 @if ($category->subcategories->count() > 0)
                                 <ul class="category-menu__subdropdown">
                                     @foreach ($category->subcategories as $subcategory)
-                                    
+
                                     <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm3" class="d-none">
                                         <input type="hidden" name="subcategory[]" value="" id="adFilterInput3">
                                     </form>
@@ -173,7 +173,7 @@
                         <img src="{{ asset('loading.gif') }}" alt="">
                     </div>
                     <div class="area_list" id="city_show">
-                        
+
                     </div>
                 </div>
             </div>

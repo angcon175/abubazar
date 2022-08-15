@@ -48,7 +48,7 @@
                     :verifiedseller="$verified_seller" :status="$ad->status" />
                     {{-- ad info --}}
                     <x-ad-details.ad-info :ad="$ad" />
-                    
+
                     {{-- ad gallery --}}
                     <x-ad-details.ad-gallery :galleries="$ad->galleries" :thumbnail="$ad->image_url" :slug="$ad->slug" />
                     {{-- ad description --}}
@@ -63,8 +63,48 @@
                             {{-- ad customer info --}}
                             <x-ad-details.ad-customer-info :customer="$ad->customer" :town="$ad->town" :city="$ad->city" :link="$ad->show_customer_info"/>
                             {{-- ad contact --}}
-                            <x-ad-details.ad-contact :phone="$ad->phone" :name="$ad->customer->username" />
-                            
+                            <div class="product-item__sidebar-item">
+                                @if($ad->show_customer_info == 1)
+                                    <div class="card-number">
+                                        <div class="number number--hide text--body-2">
+                                            <span class="icon">
+                                                <x-svg.phone-icon width="32" height="32" />
+                                            </span>
+
+                                            {{ Str::limit($ad->phone, 8,' XXXXXXXX') }}
+                                        </div>
+                                        <div class="number number--show text--body-2">
+                                            <span class="icon">
+                                                <x-svg.phone-icon width="32" height="32" />
+                                            </span>
+                                            {{ $ad->phone }}
+                                        </div>
+                                        <span class="text--body-4 message">{{ __('reveal_phone_number') }}.</span>
+                                    </div>
+                                @endif
+
+                                @if (auth('customer')->check() && auth('customer')->user()->id != $ad->customer_id )
+                                    <form action="{{ route('frontend.message.store', $ad->customer->username) }}" method="POST"
+                                        id="sendMessageForm">
+                                        @csrf
+                                        <input type="hidden" value="." name="body">
+                                        <button type="submit" class="btn w-100">
+                                            <span class="icon--left">
+                                                <x-svg.message-icon width="24" height="24" stroke="white" strokeWidth="1.6" />
+                                            </span>
+                                            {{ __('send_message') }}phone
+                                        </button>
+                                    </form>
+                                @endif
+                                @if(!auth('customer')->check())
+                                    <a href="{{ route('customer.login') }}" class="btn w-100 login_required">
+                                        <span class="icon--left">
+                                            <x-svg.message-icon width="24" height="24" stroke="white" strokeWidth="1.6" />
+                                        </span>
+                                        {{ __('send_message') }}
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                         <div class="product-item__sidebar-bottom">
                             <div class="product-item__sidebar-item overview">

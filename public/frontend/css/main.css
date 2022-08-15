@@ -29818,3 +29818,17 @@ a.btn.post_ads:hover {
 .ads_banner a {
     display: block;
 }
+.mobile_select_location {
+    color: #666;
+    width: inherit;
+    height: 48px;
+    padding: 12px 18px;
+    border-radius: 5px;
+    border: 1px solid #edeff5;
+    margin-top: 8px;
+}
+
+.mobile_select_location i {
+    color: #C02F2F;
+    font-size: 14px;
+}

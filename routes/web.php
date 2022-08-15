@@ -13,3 +13,14 @@ Route::middleware('setlang')->group(function(){
         abort(404);
     });
 });
+
+
+Route::get('cc', function () {
+    \Artisan::call('config:clear');
+    \Artisan::call('route:clear');
+    \Artisan::call('optimize:clear');
+    \Artisan::call('view:clear');
+    \Artisan::call('view:cache');
+    \Artisan::call('config:cache');
+    dd("configuration cleared again");
+});

@@ -26,7 +26,7 @@
                     @foreach($data['job_sub_cat'] as $key =>  $val )
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                         <ul>
-                            <li><a href="#">{{ $val->name }} <span>({{ $val->total_ad }})</span></a></li>
+                            <li><a href="{{ route('adlist.search') }}?category=overseas-jobs">{{ $val->name }} <span>({{ $val->total_ad }})</span></a></li>
                         </ul>
                     </div>
                     @endforeach

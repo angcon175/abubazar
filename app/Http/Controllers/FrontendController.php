@@ -568,7 +568,9 @@ class FrontendController extends Controller
 
     public function AllJobs()
     {
-         return view('frontend.all_jobs');
+        $data['job_sub_cat'] = DB::table('sub_categories')->where('category_id',11)->get();
+        // dd($data);
+        return view('frontend.all_jobs',compact('data'));
     }
 
     public function CountryToCity(Request $request, $id)

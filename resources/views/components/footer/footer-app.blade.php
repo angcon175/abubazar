@@ -26,7 +26,7 @@
 
     <div class="footer__mobile-app">
 
-        <!-- @if ($settings->android)
+         @if ($settings->android)
         <a target="_blank" href="{{ asset($settings->android) }}" class="app">
             <div class="app-logo">
                <x-svg.google-play-icon />
@@ -48,7 +48,7 @@
                 <h2 class="text--body-3-600">{{ __('app_store') }}</h2>
             </div>
         </a>
-        @endif -->
+        @endif 
     </div> 
    
 </div>

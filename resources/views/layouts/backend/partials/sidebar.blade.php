@@ -72,12 +72,12 @@
                             @endslot
                             @if (Module::collections()->has('Ad'))
                                 @if (userCan('ad.create'))
-                                    <ul class="nav nav-treeview">
+                                    <!-- <ul class="nav nav-treeview">
                                         <x-sidebar-list :linkActive="Route::is('module.ad.create') ? true : false"
                                             route="module.ad.create" icon="fas fa-circle">
                                             {{ __('create_ad') }}
                                         </x-sidebar-list>
-                                    </ul>
+                                    </ul> -->
                                 @endif
                                 @if (userCan('ad.view'))
                                     <ul class="nav nav-treeview">

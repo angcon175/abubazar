@@ -22,68 +22,18 @@
                      <h3>Browse Jobs</h3>
                 </div>
                 <div class="row g-0">
+                    @if(isset($data['job_sub_cat']) && count($data['job_sub_cat']) > 0 )
+                    @foreach($data['job_sub_cat'] as $key =>  $val )
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                         <ul>
-                            <li><a href="#">Sales Executive <span>(278)</span></a></li>
+                            <li><a href="{{ route('frontend.adlist.search') }}?category=overseas-jobs">{{ $val->name }} <span>({{ $val->total_ad }})</span></a></li>
                         </ul>
                     </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Government Jobs <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Customer Service Executive <span>(12)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Office Admin <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Delivery Rider <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Marketing Executive <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Operator <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Suppervisor <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Accountant <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Maid <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Driver <span>(278)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
-                        <ul>
-                            <li><a href="#">Designer <span>(278)</span></a></li>
-                        </ul>
-                    </div>
+                    @endforeach
+                    @endif
+
                 </div>
-                
+
             </div>
         </div>
     </section>

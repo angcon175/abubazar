@@ -239,6 +239,93 @@
         </div>
     </div>
 </section>
+
+
+<!-- quick links section -->
+<section class="section  quick_link_section">
+    <div class="container">
+        <h2 class="text--heading-1 section__title">
+        {{ __('Quick links') }}
+        </h2>
+        <div class="row">
+           <div class="col-sm-6 col-md-4 col-lg-3">
+               <div class="quick_link_wrap">
+                   <div class="quick_link_title">
+                       <h3>59,094 ads in Electronics</h3>
+                   </div>
+                   <div class="quick_link_cat">
+                       <ul>
+                           <li><a href="#">Desktop Computers</a></li>
+                           <li><a href="#">Laptops</a></li>
+                           <li><a href="#">TVs</a></li>
+                           <li><a href="#">Cameras</a></li>
+                           <li><a href="#">Camcorders & AccessoriesAudio</a></li>
+                           <li><a href="#">Audio & Sound Systems</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3">
+               <div class="quick_link_wrap">
+                   <div class="quick_link_title">
+                       <h3>59,094 ads in Electronics</h3>
+                   </div>
+                   <div class="quick_link_cat">
+                       <ul>
+                           <li><a href="#">Desktop Computers</a></li>
+                           <li><a href="#">Laptops</a></li>
+                           <li><a href="#">TVs</a></li>
+                           <li><a href="#">Cameras</a></li>
+                           <li><a href="#">Camcorders & AccessoriesAudio</a></li>
+                           <li><a href="#">Audio & Sound Systems</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3">
+               <div class="quick_link_wrap">
+                   <div class="quick_link_title">
+                       <h3>59,094 ads in Electronics</h3>
+                   </div>
+                   <div class="quick_link_cat">
+                       <ul>
+                           <li><a href="#">Desktop Computers</a></li>
+                           <li><a href="#">Laptops</a></li>
+                           <li><a href="#">TVs</a></li>
+                           <li><a href="#">Cameras</a></li>
+                           <li><a href="#">Camcorders & AccessoriesAudio</a></li>
+                           <li><a href="#">Audio & Sound Systems</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+           <div class="col-sm-6 col-md-4 col-lg-3">
+               <div class="quick_link_wrap">
+                   <div class="quick_link_title">
+                       <h3>59,094 ads in Electronics</h3>
+                   </div>
+                   <div class="quick_link_cat">
+                       <ul>
+                           <li><a href="#">Desktop Computers</a></li>
+                           <li><a href="#">Laptops</a></li>
+                           <li><a href="#">TVs</a></li>
+                           <li><a href="#">Cameras</a></li>
+                           <li><a href="#">Camcorders & AccessoriesAudio</a></li>
+                           <li><a href="#">Audio & Sound Systems</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
 <!-- popular-loc section end -->
 <section class="section footer_top_sec">
     <div class="container">
@@ -254,6 +341,8 @@
         </div>
     </div>
 </section>
+
+
 {{--<x-frontend.counter :totalAds="$totalAds" :verifiedUser="$verified_users" :proMember="$pro_members_count" :cityLocation="$city_count"></x-frontend.counter>--}}
 <!-- download section start  -->
 <!-- @if ($settings->android || $settings->ios)

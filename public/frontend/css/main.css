@@ -29487,6 +29487,7 @@ a.btn.post_ads:hover {
     width: 205px;
     margin-right: 10px;
 }
+
 .location_btn p {
     font-size: 14px;
     color: #777;
@@ -29656,7 +29657,7 @@ a.btn.post_ads:hover {
     box-shadow: none !important;
 }
 
-.banner_wrapper .explore_more{
+.banner_wrapper .explore_more {
     color: #fff !important;
 }
 
@@ -29689,7 +29690,7 @@ a.btn.post_ads:hover {
     color: #D32323;
 }
 
-.jobs_categories ul li a:hover span{
+.jobs_categories ul li a:hover span {
     color: #000;
 }
 
@@ -29699,6 +29700,7 @@ a.btn.post_ads:hover {
     font-weight: bold;
     transition: all 0.2s;
 }
+
 .jobs_categories ul li {
     border: 1px solid #efefef;
     padding: 14px 8px;
@@ -29732,6 +29734,7 @@ a.btn.post_ads:hover {
     height: 38px;
     line-height: 39px;
 }
+
 .report_form .form-check label {
     font-size: 14px;
     line-height: 20px;
@@ -29749,31 +29752,31 @@ a.btn.post_ads:hover {
 }
 
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
     a.btn.post_ads {
         padding: 0px 16px 0px 25px;
     }
 }
 
 
-@media screen and (max-width:1400px){
+@media screen and (max-width:1400px) {
     a.btn.post_ads {
         width: 40px;
-    height: 40px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    font-size: 0px;
-    margin: 0px;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-shadow: 0px 2px 5px 0px #0000004d;
-    box-shadow: 0px 2px 5px 0px #0000004d;
-    padding: 0px 0px 0px 7px;
+        height: 40px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        font-size: 0px;
+        margin: 0px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-shadow: 0px 2px 5px 0px #0000004d;
+        box-shadow: 0px 2px 5px 0px #0000004d;
+        padding: 0px 0px 0px 7px;
     }
 }
 
@@ -29793,6 +29796,7 @@ a.btn.post_ads:hover {
 .job_menu .menu__link {
     color: #ffffff;
 }
+
 .job_menu .menu__link {
     color: #ffffff;
 }
@@ -29818,6 +29822,7 @@ a.btn.post_ads:hover {
 .ads_banner a {
     display: block;
 }
+
 .mobile_select_location {
     color: #666;
     width: inherit;
@@ -29831,4 +29836,61 @@ a.btn.post_ads:hover {
 .mobile_select_location i {
     color: #C02F2F;
     font-size: 14px;
+}
+
+.quick_link_section {
+    padding-top: 0 !important;
+}
+
+.quick_link_wrap {
+    background: #f5f5f5;
+    padding: 20px 12px;
+    border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+}
+
+.quick_link_wrap:hover {
+    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 12%);
+}
+
+.quick_link_title {
+    margin-bottom: 11px;
+}
+
+.quick_link_title h3 {
+    font-size: 15px;
+    font-weight: 800;
+    margin: 0;
+}
+
+.quick_link_cat ul li {
+    display: inline-block;
+    padding: 0px 5px;
+    position: relative;
+}
+
+.quick_link_cat ul li:before {
+    position: absolute;
+    content: "";
+    top: 7px;
+    right: 0;
+    width: 2px;
+    height: 54%;
+    background: #bababa;
+}
+
+.quick_link_cat ul li:last-child:before {
+    display: none;
+}
+
+.quick_link_cat a {
+    color: #8f8f8f;
+    font-size: 13px;
+    display: inline-block;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.quick_link_cat a:hover {
+    color: #d32323;
 }

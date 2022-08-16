@@ -102,11 +102,13 @@ class SettingsController extends Controller
         switch ($page) {
             case 'website':
                 $this->validate($request, [
-                    'name' => "sometimes|required",
-                    'email' => "sometimes|required",
-                    'phone' => "sometimes|required",
-                    'address' => "sometimes|required",
-                    'map_address' => "sometimes|required",
+                    'name'          => "sometimes|required",
+                    'email'         => "sometimes|required",
+                    'phone'         => "sometimes|required",
+                    'address'       => "sometimes|required",
+                    'map_address'   => "sometimes|required",
+                    'android'       => "sometimes|required",
+                    'ios'           => "sometimes|required",
                 ]);
 
                 $this->websiteUpdate($request);
@@ -240,7 +242,7 @@ class SettingsController extends Controller
 
         switch ($request->section) {
             case 'basic':
-                $data = $request->only(['email', 'phone', 'address', 'map_address']);
+                $data = $request->only(['email', 'phone', 'address', 'map_address', 'android', 'ios']);
                 session(['website_setting_section' => 'basic']);
 
                 return $setting->update($data);

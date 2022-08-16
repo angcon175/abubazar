@@ -247,8 +247,8 @@
         <h2 class="text--heading-1 section__title">
         {{ __('Quick links') }}
         </h2>
-        <div class="row">
-           <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="row g-2">
+           <div class="col-md-6 col-lg-3">
                <div class="quick_link_wrap">
                    <div class="quick_link_title">
                        <h3>59,094 ads in Electronics</h3>
@@ -265,7 +265,7 @@
                    </div>
                </div>
            </div>
-           <div class="col-sm-6 col-md-4 col-lg-3">
+           <div class="col-md-6 col-lg-3">
                <div class="quick_link_wrap">
                    <div class="quick_link_title">
                        <h3>59,094 ads in Electronics</h3>
@@ -282,7 +282,7 @@
                    </div>
                </div>
            </div>
-           <div class="col-sm-6 col-md-4 col-lg-3">
+           <div class="col-md-6 col-lg-3">
                <div class="quick_link_wrap">
                    <div class="quick_link_title">
                        <h3>59,094 ads in Electronics</h3>
@@ -299,7 +299,7 @@
                    </div>
                </div>
            </div>
-           <div class="col-sm-6 col-md-4 col-lg-3">
+           <div class="col-md-6 col-lg-3">
                <div class="quick_link_wrap">
                    <div class="quick_link_title">
                        <h3>59,094 ads in Electronics</h3>

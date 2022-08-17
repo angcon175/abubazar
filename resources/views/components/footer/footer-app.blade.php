@@ -4,7 +4,7 @@
     @endif
 
     <div class="subscribe__right">
-        <form id="mailForm" action="" method="POST">
+        <form id="mailForm" action="{{ route('newsletter.subscribe') }}" method="POST">
             @csrf
             <!-- <div class="subscribe__input @error('email') is-invalid border-danger @enderror">
                 <span class="icon">

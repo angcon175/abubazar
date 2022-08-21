@@ -78,7 +78,7 @@
                 {{-- About Settings --}}
                 <div class="tab-pane fade " id="cms-about" role="tabpanel" aria-labelledby="about-tab">
                     <x-backend.setting.cms.about-setting :aboutcontent="$cms->about_body"
-                        :aboutVideoThumb="$cms->about_video_thumb_path" :aboutBackground="$cms->about_background_path" />
+                        :aboutVideoThumb="$cms->about_video_thumb_path" :aboutBackground="$cms->about_background" />
                 </div>
 
                 {{-- Terms Settings --}}

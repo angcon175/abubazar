@@ -282,11 +282,14 @@
         </h2>
         <div class="row g-2">
             <div class="col-md-12">
-                <p>
-                    @if($about)
-                        {!! $about->about_body !!}
-                    @endif
-                </p>
+                <div id="showHideAboutSection">
+                    {!! substr($about->about_body, 0,  400) !!}
+                </div>
+                <div style="display:none; overflow:hidden;" id="showAboutSection">
+                    {!! substr($about->about_body, 0,  9999999999) !!}
+                </div>
+                <a href="javascript:;" id="showMore">Show More</a>
+                <a href="javascript:;" id="showLess" style="display:none;">Show Less</a>
             </div>
         </div>
     </div>
@@ -379,6 +382,18 @@
             allowClear: Boolean($(this).data('allow-clear')),
             closeOnSelect: !$(this).attr('multiple'),
             });
+        });
+        $("#showMore").click(function() {
+            $("#showLess").show();
+            $("#showMore").hide();
+            $("#showHideAboutSection").hide();
+            $("#showAboutSection").show();
+        });
+        $("#showLess").click(function(){
+            $("#showMore").show();
+            $("#showLess").hide();
+            $("#showHideAboutSection").show();
+            $("#showAboutSection").hide();
         });
     </script>
     @stack('newslater_script')

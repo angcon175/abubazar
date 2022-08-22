@@ -11,8 +11,7 @@
             </li>
         </x-slot>
     </x-frontend.breedcrumb-component>
-    <!-- breedcrumb section end  -->
-
+    
     <x-frontend.adlist-search class="adlist-search" :categories="$categories" :towns="$towns" :dark="false" :total-ads="$adlistings->total()" />
 
     <section class="section ad-list">
@@ -38,11 +37,11 @@
                         <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm">
                             <div class="accordion list-sidebar__accordion" id="accordionGroup">
                                 <div class="accordion-item list-sidebar__accordion-item category">
-                                    <h2 class="accordion-header list-sidebar__accordion-header" id="category">
+                                    <h2 class="accordion-header list-sidebar__accordion-header">
                                         <button class="accordion-button list-sidebar__accordion-button" type="button"
                                             data-bs-toggle="collapse" data-bs-target="#categoryCollapse"
                                             aria-expanded="true" aria-controls="categoryCollapse">
-                                            {{ __('category') }}
+                                            {{ __('categories') }}
                                         </button>
                                     </h2>
                                     <div id="categoryCollapse" class="accordion-collapse collapse show"
@@ -61,7 +60,13 @@
                                                                 <span class="list-sidebar__accordion-inner-icon">
                                                                     <i class="{{ $category->icon }}"></i>
                                                                 </span>
-                                                                {{ $category->name }}
+                                                                @php
+                                                                     $cat_count = DB::table('ads')->where('category_id', $category->id)->count();
+                                                                @endphp
+                                                                <span>
+                                                                    {{ $category->name }}
+                                                                    <strong>({{ $cat_count }})</strong>
+                                                                </span>
                                                                 @if ($category->subcategories->count() > 1)
                                                                     <span class="icon icon--plus">
                                                                         <x-svg.plus-light-icon />
@@ -79,19 +84,22 @@
                                                             <div class="accordion-body list-sidebar__accordion-inner-body">
                                                                 @foreach ($category->subcategories as $subcategory)
                                                                     <div class="list-sidebar__accordion-inner-body--item">
-                                                                        <div class="form-check">
-                                                                            <input id="{{ $subcategory->slug }}"
-                                                                                type="checkbox" name="subcategory[]"
-                                                                                value="{{ $subcategory->slug }}"
-                                                                                class="form-check-input"
-                                                                                {{ request('subcategory') && in_array($subcategory->slug, request('subcategory')) ? 'checked' : '' }}
-                                                                                onchange="changeFilter()" />
+                                                                <div class="form-check">
+                                                                    @php
+                                                                        $subcat_count = DB::table('ads')->where('subcategory_id', $subcategory->id)->count();
+                                                                    @endphp
+                                                                    <input id="{{ $subcategory->slug }}"
+                                                                        type="checkbox" name="subcategory[]"
+                                                                        value="{{ $subcategory->slug }}"
+                                                                        class="form-check-input"
+                                                                        {{ request('subcategory') && in_array($subcategory->slug, request('subcategory')) ? 'checked' : '' }}
+                                                                        onchange="changeFilter()" />
 
-                                                                            <x-forms.label
-                                                                                name="{{ $subcategory->name }}"
-                                                                                for="{{ $subcategory->slug }}"
-                                                                                class="form-check-label" />
-                                                                        </div>
+                                                                    <x-forms.label
+                                                                        name="{!! $subcategory->name !!} ({{ $subcat_count }})"
+                                                                        for="{{ $subcategory->slug }}"
+                                                                        class="form-check-label" />
+                                                                </div>
                                                                     </div>
                                                                 @endforeach
                                                             </div>
@@ -107,7 +115,7 @@
                                         <button class="accordion-button list-sidebar__accordion-button collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#conditionCollapse"
                                             aria-expanded="false" aria-controls="conditionCollapse">
-                                            {{ __('conditions') }}
+                                            {{ __('condition') }}
                                         </button>
                                     </h2>
                                     <div id="conditionCollapse" class="accordion-collapse collapse show"
@@ -143,8 +151,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- <div class="accordion-item list-sidebar__accordion-item price">
+                                <div class="accordion-item list-sidebar__accordion-item price">
                                     <h2 class="accordion-header list-sidebar__accordion-header" id="priceTag">
                                         <button class="accordion-button list-sidebar__accordion-button collapsed"
                                             type="button" data-bs-toggle="collapse" data-bs-target="#priceCollapse"
@@ -162,7 +169,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -170,33 +177,33 @@
                 <div class="col-xl-9">
                     <div class="ad-list__content row">
                         @forelse ($adlistings as $ad)
-                            <x-frontend.ads-list-single-ad :ad="$ad" className="col-lg-4 col-md-6"></x-frontend.ads-list-single-ad>
+                            <x-frontend.single-ad :ad="$ad" className="col-lg-4 col-md-6"></x-frontend.single-ad>
                         @empty
                             <x-not-found2 message="No ads found" />
                         @endforelse
                     </div>
                     <div class="page-navigation">
-                        {{ $adlistings->links() }}
+                        {{ $adlistings->links("pagination::bootstrap-4") }}
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 @endsection
 
 @section('adlisting_style')
-    <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend') }}/css/nouislider.min.css">
     <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2-bootstrap-5-theme.css" />
+    <link rel="stylesheet" href="{{ asset('frontend') }}/css/nouislider.min.css">
+    <link rel="stylesheet" href="{{ asset('frontend/css') }}/select2.min.css" />
 @endsection
 
 @section('frontend_script')
-    <script src="{{ asset('frontend') }}/js/plugins/select2/js/select2.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/plugins/bvselect.js"></script>
+    {{-- <script src="{{ asset('frontend') }}/js/plugins/bvselect.js"></script> --}}
     <script src="{{ asset('frontend') }}/js/plugins/nouislider.min.js"></script>
     <script src="{{ asset('frontend') }}/js/plugins/wNumb.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/plugins/select2/js/select2.min.js"></script>
     <script>
+
         function changeFilter() {
             const slider = document.getElementById('priceRangeSlider')
             const value = slider.noUiSlider.get(true);
@@ -239,19 +246,28 @@
             slider.noUiSlider.on('change', function() {
                 changeFilter();
             });
-        });
-    </script>
-    <script>
-        // ===== Select2 ===== \\
-        $('#town').select2({
-            theme: 'bootstrap-5',
-            width: $(this).data('width') ?
-                $(this).data('width') : $(this).hasClass('w-100') ?
-                '100%' : 'style',
-            placeholder: 'Select Location',
-            allowClear: Boolean($(this).data('allow-clear')),
-            closeOnSelect: !$(this).attr('multiple'),
-        });
 
+            // ===== Select2 ===== \\
+            $('#country').select2({
+                theme: 'bootstrap-5',
+                width: $(this).data('width') ?
+                    $(this).data('width') : $(this).hasClass('w-100') ?
+                    '100%' : 'style',
+                placeholder: 'By Country',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+
+            // ===== Select2 ===== \\
+            $('#town').select2({
+                theme: 'bootstrap-5',
+                width: $(this).data('width') ?
+                    $(this).data('width') : $(this).hasClass('w-100') ?
+                    '100%' : 'style',
+                placeholder: 'By Region',
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+        });
     </script>
 @endsection

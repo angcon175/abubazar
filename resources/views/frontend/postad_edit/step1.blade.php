@@ -352,7 +352,7 @@
                         @else
                             <div class="col-md-6" id="brandShowHide" style="display:none;">
                                 <div class="input-select">
-                                    <x-forms.label name="brand" for="brand"/>
+                                    <label for="">Brand <span class="text-danger">*</span></label>
                                     <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
                                         <option value="" hidden>{{ __('select_brand') }}</option>
                                             @foreach ($brands as $brand)
@@ -363,7 +363,7 @@
                             </div>
                             <div class="col-md-6" id="modelShowHide" style="display:none;">
                                 <div class="input-field">
-                                    <x-forms.label name="model" for="modell"/>
+                                    <label for="">Model <span class="text-danger">*</span></label>
                                     <input value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                                 </div>
                             </div>

@@ -116,12 +116,16 @@ class AdPostController extends Controller
                     $request->session()->put('ad', $ad);
                 }else {
                     $ad['slug'] = Str::slug($request->title);    
+                    $ad['brand_id'] = $request->brand_id;
+                    $ad['model'] = $request->model;
                     $ad->fill($validatedData);
                     $request->session()->put('ad', $ad);
                 }
             } else {
                 $ad = session('ad');
                 $ad['slug'] = Str::slug($request->title);
+                $ad['brand_id'] = $request->brand_id;
+                $ad['model'] = $request->model;
                 $ad->fill($validatedData);
                 $request->session()->put('ad', $ad);
             }
@@ -173,10 +177,22 @@ class AdPostController extends Controller
             'description' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
-
+        
         $image_count = count($request->file('images'));
-        if (($image_count < 3) || ($image_count > 10)) {
-            return redirect()->back()->with('error', 'Please upload at least 3 to 10 images.');
+        $user_plans = DB::table('user_plans')->where('customer_id', auth('customer')->id())->first();
+        // return $user_plans;
+        if($user_plans->multiple_image == 1){
+            
+            if (($image_count < 0) || ($image_count > 10)) {
+                return redirect()->back()->with('error', 'Please upload at least 1 to 10 images');
+            }
+
+        }else {
+            
+            if ($image_count > 1) {
+                return redirect()->back()->with('error', 'You can not upload more then 1 image ');
+            }
+
         }
 
         $ad = session('ad');
@@ -195,9 +211,10 @@ class AdPostController extends Controller
                 $url = $image->move('uploads/addds_images',$image->hashName());
                 $ad->update(['thumbnail' => $url]);
             }
-            $waterMarkUrl = public_path('img/watermark.png');
-            // dd($waterMarkUrl);
 
+            $waterMarkUrl = public_path('img/watermark.png');
+
+            // dd($waterMarkUrl);
 
             if ($image && $image->isValid()) {
 

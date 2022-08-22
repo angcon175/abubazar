@@ -22,7 +22,8 @@ class NewsletterController extends Controller
         ]);
 
         Email::create(['email' => $request->email]);
-        return 'Your subscription added successfully!';
+        flashSuccess('You subscribe successfully ');
+        return back();
     }
 
     public function sendMail()

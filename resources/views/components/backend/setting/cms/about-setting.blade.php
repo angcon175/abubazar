@@ -3,7 +3,7 @@
     @method('PUT')
     @csrf
     <div class="row justify-content-between">
-        <div class="offset-1 col-md-6">
+        <div class="col-md-12">
             <!-- <div class="form-group">
                 <x-forms.label name="about_video_thumb" />
                 <div class="row">

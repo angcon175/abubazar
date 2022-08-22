@@ -47,23 +47,10 @@ class CmsSettingController extends Controller
         if (!userCan('setting.update')) {
             return abort(403);
         }
-
+        // return $request->about_summary_body;
         $cms =  Cms::first();
-        $rules = ['about_body'    =>  ['required']];
-        $data = $request->only('about_body');
-
-        if ($request->hasFile('about_video_thumb') && $request->file('about_video_thumb')->isValid()) {
-            deleteImage($cms->about_video_thumb);
-            $data['about_video_thumb'] =  $request->about_video_thumb->move('uploads/banners',$request->about_video_thumb->hashName());
-        }
-        if ($request->hasFile('about_background') && $request->file('about_background')->isValid()) {
-            deleteImage($cms->about_background);
-            $data['about_background'] =  $request->about_background->move('uploads/banners',$request->about_background->hashName());
-        }
-
-        $request->validate($rules);
-        $cms->update($data);
-
+        $cms->about_body = $request->about_body;
+        $cms->update();
         return redirect()->back()->with('success', 'About update successfully!');
     }
 

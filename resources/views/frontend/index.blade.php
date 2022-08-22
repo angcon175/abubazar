@@ -239,8 +239,10 @@
         </div>
     </div>
 </section>
-
-
+@php
+    $categories = DB::table('categories')->latest()->limit(4)->get();
+    $about = DB::table('cms')->latest()->first();
+@endphp
 <!-- quick links section -->
 <section class="section  quick_link_section">
     <div class="container">
@@ -248,83 +250,50 @@
         {{ __('Quick links') }}
         </h2>
         <div class="row g-2">
-           <div class="col-md-6 col-lg-3">
-               <div class="quick_link_wrap">
-                   <div class="quick_link_title">
-                       <h3>59,094 ads in Electronics</h3>
-                   </div>
-                   <div class="quick_link_cat">
-                       <ul>
-                           <li><a href="#">Desktop Computers</a></li>
-                           <li><a href="#">Laptops</a></li>
-                           <li><a href="#">TVs</a></li>
-                           <li><a href="#">Cameras</a></li>
-                           <li><a href="#">Camcorders & AccessoriesAudio</a></li>
-                           <li><a href="#">Audio & Sound Systems</a></li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
-           <div class="col-md-6 col-lg-3">
-               <div class="quick_link_wrap">
-                   <div class="quick_link_title">
-                       <h3>59,094 ads in Electronics</h3>
-                   </div>
-                   <div class="quick_link_cat">
-                       <ul>
-                           <li><a href="#">Desktop Computers</a></li>
-                           <li><a href="#">Laptops</a></li>
-                           <li><a href="#">TVs</a></li>
-                           <li><a href="#">Cameras</a></li>
-                           <li><a href="#">Camcorders & AccessoriesAudio</a></li>
-                           <li><a href="#">Audio & Sound Systems</a></li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
-           <div class="col-md-6 col-lg-3">
-               <div class="quick_link_wrap">
-                   <div class="quick_link_title">
-                       <h3>59,094 ads in Electronics</h3>
-                   </div>
-                   <div class="quick_link_cat">
-                       <ul>
-                           <li><a href="#">Desktop Computers</a></li>
-                           <li><a href="#">Laptops</a></li>
-                           <li><a href="#">TVs</a></li>
-                           <li><a href="#">Cameras</a></li>
-                           <li><a href="#">Camcorders & AccessoriesAudio</a></li>
-                           <li><a href="#">Audio & Sound Systems</a></li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
-           <div class="col-md-6 col-lg-3">
-               <div class="quick_link_wrap">
-                   <div class="quick_link_title">
-                       <h3>59,094 ads in Electronics</h3>
-                   </div>
-                   <div class="quick_link_cat">
-                       <ul>
-                           <li><a href="#">Desktop Computers</a></li>
-                           <li><a href="#">Laptops</a></li>
-                           <li><a href="#">TVs</a></li>
-                           <li><a href="#">Cameras</a></li>
-                           <li><a href="#">Camcorders & AccessoriesAudio</a></li>
-                           <li><a href="#">Audio & Sound Systems</a></li>
-                       </ul>
-                   </div>
-               </div>
-           </div>
+            @foreach($categories as $categorie)
+                @php
+                    $catAds = DB::table('ads')->where('category_id', $categorie->id)->get();
+                    $subcate = DB::table('sub_categories')->where('category_id', $categorie->id)->latest()->limit(6)->get();
+                @endphp
+                <div class="col-md-6 col-lg-3">
+                    <div class="quick_link_wrap">
+                        <div class="quick_link_title">
+                            <h3><a onclick="adFilterFunction('{{ $categorie->slug }}')" href="javascript:;">{{ $catAds->count() }} {{$categorie->name}}</a></h3>
+                        </div>
+                        <div class="quick_link_cat">
+                            <ul>
+                                @foreach($subcate as $sub)
+                                    <li><a href="javascript:;" onclick="adFilterFunction('{{ $sub->slug }}')">{{ $sub->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
 
-
-
-
-
-
+<!-- About section -->
+<section class="section  quick_link_section">
+    <div class="container">
+        <h2 class="text--heading-1 section__title">
+        {{ __('About Abubazar.com') }}  The Largest Marketplace !
+        </h2>
+        <div class="row g-2">
+            <div class="col-md-12">
+                <div id="showHideAboutSection">
+                    {!! substr($about->about_body, 0,  400) !!}
+                </div>
+                <div style="display:none; overflow:hidden;" id="showAboutSection">
+                    {!! substr($about->about_body, 0,  9999999999) !!}
+                </div>
+                <a href="javascript:;" id="showMore">Show More</a>
+                <a href="javascript:;" id="showLess" style="display:none;">Show Less</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- popular-loc section end -->
 <section class="section footer_top_sec">
@@ -341,7 +310,6 @@
         </div>
     </div>
 </section>
-
 
 {{--<x-frontend.counter :totalAds="$totalAds" :verifiedUser="$verified_users" :proMember="$pro_members_count" :cityLocation="$city_count"></x-frontend.counter>--}}
 <!-- download section start  -->
@@ -414,6 +382,18 @@
             allowClear: Boolean($(this).data('allow-clear')),
             closeOnSelect: !$(this).attr('multiple'),
             });
+        });
+        $("#showMore").click(function() {
+            $("#showLess").show();
+            $("#showMore").hide();
+            $("#showHideAboutSection").hide();
+            $("#showAboutSection").show();
+        });
+        $("#showLess").click(function(){
+            $("#showMore").show();
+            $("#showLess").hide();
+            $("#showHideAboutSection").show();
+            $("#showAboutSection").hide();
         });
     </script>
     @stack('newslater_script')

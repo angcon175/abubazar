@@ -315,51 +315,51 @@ class FrontendController extends Controller
             'phone' => "required|min:9|max:12|unique:customers,phone",
             'password' => "required|confirmed|min:8|max:50"
         ]);
-        $otp = rand (1000,9999);
+
+        // $otp = rand (1000,9999);
 
         $phone = (int)$request->phone;
-        $receiverNumber = '+971'.$phone;
-        $message = "Welcome to abubazar.com, you otp code is ".$otp;
-        $res = $this->sendSms($message,$receiverNumber);
-        if ($res) {
+        // $receiverNumber = '+971'.$phone;
+        // $message = "Welcome to abubazar.com, you otp code is ".$otp;
+        // $res = $this->sendSms($message,$receiverNumber);
+        // if ($res) {
             $created = Customer::create([
                 'name'                  => $request->name,
                 'username'              => $request->username,
                 'email'                 => $request->email,
                 'phone'                 => $request->phone,
                 'password'              => bcrypt($request->password),
-                'code'                  => $otp,
+                // 'code'                  => $otp,
                 'code_exp_time'         =>  date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")." +5 minutes")),
                 'code_daily_counter'    => 1,
                 'code_send_date'        => date('Y-m-d'),
-                'is_verified_phone'     => 0,
+                'is_verified_phone'     => 1,
             ]);
 
             Auth::guard('customer')->logout();
             Auth::guard('super_admin')->logout();
             flashSuccess('Registration Successful!');
-            // Auth::guard('customer')->login($created);
+            Auth::guard('customer')->login($created);
+            return redirect()->route('frontend.index');
+            // return redirect()->route('frontend.otpverifiaction',['phone' => $request->phone]);
 
-            return redirect()->route('frontend.otpverifiaction',['phone' => $request->phone]);
-/*
-            if ($setting->customer_email_verification) {
-                return redirect()->route('verification.notice');
-            } else {
-                return redirect()->route('frontend.dashboard');
-            }
-            */
+            // if ($setting->customer_email_verification) {
+            //     return redirect()->route('verification.notice');
+            // } else {
+            //     return redirect()->route('frontend.dashboard');
+            // }
 
-//            if (!$created->email_verified_at) {
-//                return redirect()->route('verification.notice');
-//            } else {
-//                return redirect()->route('frontend.dashboard');
-//            }
-        }else{
-            Auth::guard('customer')->logout();
-            Auth::guard('super_admin')->logout();
-            flashError('Your phone number may wrong');
-            return redirect()->back()->withInput();
-        }
+        //    if (!$created->email_verified_at) {
+        //        return redirect()->route('verification.notice');
+        //    } else {
+        //        return redirect()->route('frontend.dashboard');
+        //    }
+        // }else{
+        //     Auth::guard('customer')->logout();
+        //     Auth::guard('super_admin')->logout();
+        //     flashError('Your phone number may wrong');
+        //     return redirect()->back()->withInput();
+        // }
 
 
     }

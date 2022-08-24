@@ -19288,8 +19288,9 @@ h2.footer__title {
 .plan-card {
     position: relative;
     border-radius: 12px;
-    background-color: #fff;
+    background-color: #ffffff;
     overflow: hidden;
+    border: 1px solid #EEE;
 }
 
 @media -sass-debug-info {
@@ -19396,8 +19397,8 @@ h2.footer__title {
 
 .plan-card__top {
     padding: 13px 0px;
-    border: 1px solid #ebeef7;
-    background: #0000000f;
+/*    border: 1px solid #ebeef7;
+    background: #0000000f;*/
 }
 
 .plan-card__package {
@@ -19406,7 +19407,6 @@ h2.footer__title {
 
 .plan-card__bottom {
     padding: 10px 30px 26px 30px;
-    border: 1px solid #ebeef7;
 }
 
 @media -sass-debug-info {

@@ -1,3 +1,4 @@
+@if($status || $featured || hasMemberBadge($customerid) || $verifiedseller)
 <div class="product-item__badge">
     @if ($status == 'pending')
     <div class="badge badge--warning">
@@ -8,13 +9,13 @@
     </div>
     @endif
     @if ($featured)
-    <div class="badge badge--warning">
+    <!-- <div class="badge badge--warning">
         {{ __('featured') }}
         {{-- <x-svg.check-icon width="16" height="16" stroke="#d32323" />
         <div>
             {{ __('featured') }}
         </div> --}}
-    </div>
+    </div> -->
     @endif
     @if (hasMemberBadge($customerid))
         <div class="badge badge--danger">
@@ -33,3 +34,4 @@
         </div>
     @endif
 </div>
+@endif

@@ -63,7 +63,8 @@
     <!-- loader end  -->
 
     @if (request()->route()->getName() === 'frontend.index')
-        <x-header.home-header />
+        {{-- <x-header.home-header /> --}}
+         <x-header.main-header />
     @else
         <x-header.main-header />
     @endif

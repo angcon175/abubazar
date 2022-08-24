@@ -278,7 +278,7 @@
 <section class="section  quick_link_section">
     <div class="container">
         <h2 class="text--heading-1 section__title">
-        {{ __('About Abubazar.com') }}  The Largest Marketplace !
+        {{ __('About Abubazaar.com') }}  The Largest Marketplace !
         </h2>
         <div class="row g-2">
             <div class="col-md-12">

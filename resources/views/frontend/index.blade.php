@@ -143,9 +143,9 @@ $setting = setting();
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 center-block text-center">
-                <a href="{{ $admin_ads_slider->ads_link ?? '' }}" target="_blank">
-                <img src="{{ asset($admin_ads_slider->ads_img) }}" width="img-fluid" alt="{{$admin_ads_slider->ads_name}}">
-            </a>
+                <a class="banner_ads_img" href="{{ $admin_ads_slider->ads_link ?? '' }}" target="_blank">
+                    <img src="{{ asset($admin_ads_slider->ads_img) }}" width="img-fluid" alt="{{$admin_ads_slider->ads_name}}">
+                </a>
             </div>
         </div>
     </div>
@@ -217,7 +217,7 @@ $setting = setting();
     <div class="container">
     <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 center-block text-center">
-        <a href="{{ $admin_ads_category->ads_link ?? '' }}" target="_blank">
+        <a class="banner_ads_img" href="{{ $admin_ads_category->ads_link ?? '' }}" target="_blank">
             <img src="{{ asset($admin_ads_category->ads_img) }}" width="img-fluid" alt="{{$admin_ads_category->ads_name}}">
         </a>
        </div>

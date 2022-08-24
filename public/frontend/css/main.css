@@ -29901,6 +29901,9 @@ a.btn.post_ads:hover {
 .ads_banner img {
     max-width: 100%;
     border-radius: 10px;
+    display: block !important;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .email_verify {
@@ -29913,7 +29916,7 @@ a.btn.post_ads:hover {
     color: #0a980a;
 }
 
-.ads_banner a {
+.ads_banner .banner_ads_img {
     display: block;
 }
 
@@ -29969,6 +29972,8 @@ a.btn.post_ads:hover {
 
 .about_abubazaar h2 {
     color: #707676;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 .about_abubazaar p {

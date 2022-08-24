@@ -10,11 +10,12 @@
 
 <style>
     select {
-        height: 48px;
+        width: inherit;
+        height: 42px;
         padding: 12px 18px;
-        border-radius: 5px;
         border: 1px solid #edeff5;
-        outline: none !important;
+        border-radius: 4px;
+         outline: none;
         box-shadow: none !important;
     }
     select:focus {
@@ -264,9 +265,10 @@
                     </div>
                 </div>
                 <div class="dashboard-post__action-btns">
-                    <a href="{{ route('frontend.post.rules') }}" class="btn btn--lg btn--outline">
+                    {{--  <a href="{{ route('frontend.post.rules') }}" class="btn btn--lg btn--outline">
                         {{ __('view_posting_rules') }}
                     </a>
+                    --}}
                     <button type="submit" class="btn btn--lg">
                         {{ __('next_steps') }}
                         <span class="icon--right">

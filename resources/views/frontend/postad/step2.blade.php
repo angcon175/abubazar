@@ -4,14 +4,15 @@
 
 @section('post-ad-content')
     <style>
-        select {
-            height: 48px;
-            padding: 12px 18px;
-            border-radius: 5px;
-            border: 1px solid #edeff5;
-            outline: none !important;
-            box-shadow: none !important;
-        }
+       select {
+        width: inherit;
+        height: 42px;
+        padding: 12px 18px;
+        border: 1px solid #edeff5;
+        border-radius: 4px;
+        outline: none;
+        box-shadow: none !important;
+    }
         select:focus {
             border-color: #d32323 !important;
         }

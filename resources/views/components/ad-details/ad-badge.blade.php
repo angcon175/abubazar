@@ -9,10 +9,11 @@
     @endif
     @if ($featured)
     <div class="badge badge--warning">
-        <x-svg.check-icon width="16" height="16" stroke="#d32323" />
-        <div class="badge badge--warning">
+        {{ __('featured') }}
+        {{-- <x-svg.check-icon width="16" height="16" stroke="#d32323" />
+        <div>
             {{ __('featured') }}
-        </div>
+        </div> --}}
     </div>
     @endif
     @if (hasMemberBadge($customerid))

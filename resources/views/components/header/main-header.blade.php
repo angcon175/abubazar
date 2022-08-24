@@ -45,7 +45,7 @@
                     {{ __('post_ads') }}
                 </a>
             @else
-                <a href="{{ route('customer.login') }}" class="btn btn--bg">{{ __('sign_in') }}</a>
+                <a href="{{ route('customer.login') }}" class="btn btn--bg"><i class="fa-solid fa-user-large"></i> {{ __('sign_in') }}</a>
                 <a href="{{ route('customer.login') }}" class="btn post_btn login_required">
                     <span class="icon--left">
                         <x-svg.image-select-icon />

@@ -1,5 +1,5 @@
-<div class="{{ $className }}">
-    <div class="cards cards--one {{ $ad->featured ? 'cards--highlight' : '' }}">
+<div class="{{ $className }} ">
+    <div class="cards cards--one col {{ $ad->featured ? 'cards--highlight' : '' }}">
         @if($ad->featured)
          <div class="featured_tag">
             <span>Featured</span>
@@ -21,7 +21,7 @@
                     {{ $ad->category->name }}
                 </h6>
                 <a href="{{ route('frontend.addetails', $ad->slug) }}" class="text--body-3-600 cards__caption-title">
-                    {{ \Illuminate\Support\Str::limit($ad->title, 30, $end = '...') }}
+                    {{ \Illuminate\Support\Str::limit($ad->title, 25, $end = '...') }}
                 </a>
             </div>
             <div class="cards__info-bottom">

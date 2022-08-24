@@ -147,7 +147,7 @@
         padding-left: 1px;
     }
     .card_footer-bg {
-        background-color: #e8f7ff;
+        background-color: #d3232317 ;
         color: #D32323;
         width: 100%;
     }

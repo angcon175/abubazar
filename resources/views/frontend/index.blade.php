@@ -141,9 +141,13 @@ $setting = setting();
 <!-- Ads Banner -->
 <div class="ads_banner mt-2">
     <div class="container">
-        <a href="{{ $admin_ads_slider->ads_link ?? '' }}" target="_blank">
-            <img src="{{ asset($admin_ads_slider->ads_img) }}" width="img-fluid" alt="{{$admin_ads_slider->ads_name}}">
-        </a>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 center-block text-center">
+                <a href="{{ $admin_ads_slider->ads_link ?? '' }}" target="_blank">
+                <img src="{{ asset($admin_ads_slider->ads_img) }}" width="img-fluid" alt="{{$admin_ads_slider->ads_name}}">
+            </a>
+            </div>
+        </div>
     </div>
 </div>
 @endif
@@ -211,9 +215,12 @@ $setting = setting();
 <!-- Ads Banner -->
 <div class="ads_banner mt-2">
     <div class="container">
+    <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 center-block text-center">
         <a href="{{ $admin_ads_category->ads_link ?? '' }}" target="_blank">
             <img src="{{ asset($admin_ads_category->ads_img) }}" width="img-fluid" alt="{{$admin_ads_category->ads_name}}">
         </a>
+       </div>
     </div>
 </div>
 @endif

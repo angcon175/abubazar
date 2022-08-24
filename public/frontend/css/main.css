@@ -29899,7 +29899,7 @@ a.btn.post_ads:hover {
 }
 
 .ads_banner img {
-    width: 100% !important;
+    max-width: 100%;
     border-radius: 10px;
 }
 

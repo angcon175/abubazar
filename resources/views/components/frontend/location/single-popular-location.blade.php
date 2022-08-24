@@ -1,7 +1,7 @@
 <div class="location-card">
-    <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}" class="location-card__img-wrapper">
-        <img class="rounded" src="{{ $city->image }}" alt="location">
-    </a>
+    {{-- <a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}" class="location-card__img-wrapper">
+                        <img class="rounded" src="{{ $city->image }}" alt="location">
+                    </a> --}}
     <div class="location-card__info">
         <h2 class="location-card__loc-title text--body-2-600"><a href="{{ route('frontend.adlist.search',['city'=>$city->name]) }}">{{ $city->name }}</a>
         <div class="location-card__view">

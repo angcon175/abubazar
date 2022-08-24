@@ -64,7 +64,9 @@
 
     @if (request()->route()->getName() === 'frontend.index')
         {{-- <x-header.home-header /> --}}
-         <x-header.main-header />
+         <div class="home_header">
+             <x-header.main-header />
+         </div>
     @else
         <x-header.main-header />
     @endif

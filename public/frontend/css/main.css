@@ -29220,11 +29220,18 @@ h2.footer__title {
 
 .search-field-wrap {
     position: relative;
+    background: #fff;
+    border: 1px solid #EEE;
+    border-radius: 7px;
 }
 
 .mobile-search-filed {
     padding-top: 30px;
     display: none;
+}
+
+.mobile_search{
+    padding-top: 0px !important;
 }
 
 @media (max-width: 1199px) {
@@ -30008,4 +30015,10 @@ a.btn.post_ads:hover {
     border: none;
     padding: 0;
     border-radius: 0;
+}
+
+.left_side .product-item__badge div {
+    border-radius: 2px !important;
+    padding: 5px 10px;
+    font-size: 13px;
 }

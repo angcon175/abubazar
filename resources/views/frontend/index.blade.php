@@ -108,7 +108,7 @@ $setting = setting();
                 </div>
             </div>
             {{-- Mobile Search --}}
-            <div class="mobile-search-filed">
+            <div class="mobile-search-filed home_search">
                 <div class="container">
                     <div class="search-field-wrap">
                         <div class="input-field">

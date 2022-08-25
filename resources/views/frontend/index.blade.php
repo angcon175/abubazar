@@ -280,7 +280,7 @@ $setting = setting();
                             <img src="{{ asset('frontend/images/job.png') }}" class="w-100" class="flex-shrink-0 me-3" alt="">
                         </div>
                         <div class="banner_content">
-                            <h3>AbuBazar Jobs</h3>
+                            <h3>Abubazaar Jobs</h3>
                             <p>Are you looking suitable jobs ? Thousands of jobs on our Platform !</p>
                             <a href="{{ route('frontend.all.jobs') }}" target="_blank" class="btn btn-danger explore_more">Explore More</a>
                         </div>

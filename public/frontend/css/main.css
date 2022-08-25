@@ -29531,6 +29531,19 @@ section.testimonial.section {
     line-height: 42px;
 }
 
+
+header.header.header--home-three.header--four.job_menu .post_btn{
+    border: 1px solid #59AE28 !important; 
+    color: #D32325 !important;
+}
+header.header.header--home-three.header--four.job_menu .post_btn:hover{
+    border: 1px solid #59AE28 !important; 
+    color: #D32325 !important;
+}
+header.header.header--home-three.header--four.job_menu {
+    border: 1px solid #59AE28 !important; 
+    color: #D32325 !important;
+}
 .header .navigation-bar__buttons .post_btn:hover {
     color: #fff;
     background: #D32325;

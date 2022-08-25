@@ -29541,7 +29541,7 @@ header.header.header--home-three.header--four.job_menu .post_btn:hover{
     color: #D32325 !important;
 }
 header.header.header--home-three.header--four.job_menu {
-    border: 1px solid #59AE28 !important; 
+    border: 1px solid #0074ba !important; 
     color: #D32325 !important;
 }
 .header .navigation-bar__buttons .post_btn:hover {
@@ -29887,7 +29887,7 @@ a.btn.post_ads:hover {
 }
 
 .job_menu {
-    background: #9da528;
+    background: #0074ba;
     color: #000 !important;
 }
 

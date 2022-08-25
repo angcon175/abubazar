@@ -29901,6 +29901,9 @@ a.btn.post_ads:hover {
 .ads_banner img {
     max-width: 100%;
     border-radius: 10px;
+    display: block !important;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .email_verify {
@@ -29913,7 +29916,7 @@ a.btn.post_ads:hover {
     color: #0a980a;
 }
 
-.ads_banner a {
+.ads_banner .banner_ads_img {
     display: block;
 }
 
@@ -29969,6 +29972,8 @@ a.btn.post_ads:hover {
 
 .about_abubazaar h2 {
     color: #707676;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 .about_abubazaar p {
@@ -30035,4 +30040,33 @@ a.btn.post_ads:hover {
     border-radius: 2px !important;
     padding: 5px 10px;
     font-size: 13px;
+}
+
+.left_side .feature_tag {
+    position: absolute;
+    top: 11px;
+    right: 53px;
+    z-index: 5;
+}
+.left_side .feature_tag span {
+    background: #d32323;
+    color: #fff;
+    padding: 5px 15px;
+    display: inline-block;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #d32323;
+    box-shadow: rgb(99 99 99 / 14%) 0px 2px 8px 0px;
+}
+
+
+.left_side .btn--fav {
+    position: absolute;
+    top: 10px;
+    right: 9px;
+    z-index: 5;
+    padding: 0px 0px !important;
+    width: 39px !important;
+    height: 35px !important;
 }

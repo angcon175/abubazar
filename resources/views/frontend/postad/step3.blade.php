@@ -37,9 +37,13 @@
                      </div>
                 </div>
             </div>
-            <div class="upload-wrapper">
+            {{-- <div class="upload-wrapper">
                 <x-forms.label name="upload_photos" required="true" for="upload_photos" />
                 <input id="file-1" required type="file" name="images[]" multiple class="file" data-overwrite-initial="false" accept="image/png, image/jpg, image/jpeg">
+            </div> --}}
+            <div class="input-field">
+                <label class="active">{{ __('upload_photos') }}</label>
+                <div id="multiple_image_upload" class="input_image" style="padding-top: .5rem;" ></div>
             </div>
             <div class="dashboard-post__ads-bottom">
                 <div class="form-check">
@@ -62,17 +66,27 @@
 @endsection
 
 @section('frontend_style')
-<link href="{{ asset('backend/plugins/bootstrap-fileinput/css/fileinput.min.css') }}" rel="stylesheet">
+{{-- <link href="{{ asset('backend/plugins/bootstrap-fileinput/css/fileinput.min.css') }}" rel="stylesheet"> --}}
+<link rel="stylesheet" href="{{ asset('image_uploader/image-uploader.css') }}">
 @endsection
 
 @section('frontend_script')
-<script src="{{ asset('backend/plugins/bootstrap-fileinput/js/plugins/sortable.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('image_uploader/image-uploader.min.js') }}"></script>
+<script>
+    $('.input_image').imageUploader({
+        maxSize: 2 * 1024 * 1024,
+        maxFiles: 10,
+        multiple: true,
+    });
+
+</script>
+{{-- <script src="{{ asset('backend/plugins/bootstrap-fileinput/js/plugins/sortable.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backend/plugins/bootstrap-fileinput/js/fileinput.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('backend/plugins/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backend/plugins/bootstrap-fileinput/themes/fas/theme.js') }}" type="text/javascript"></script> --}}
 
 <script type="text/javascript">
     // ads post
-    $("#file-1").fileinput({
+   /* $("#file-1").fileinput({
         theme: 'fas',
         showUpload: false,
         allowedFileExtensions: ['jpg', 'png', 'gif','jpeg'],
@@ -92,7 +106,7 @@
         validateInitialCount: true,
 		initialPreviewAsData: true,
     });
-
+*/
     // feature field
     function add_features_field() {
         $("#multiple_feature_part").append(`

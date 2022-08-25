@@ -2130,16 +2130,16 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v5.5.4",
+            "version": "v5.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "3eec261bf83690dd85812587457f093e3156dca6"
+                "reference": "ce8b2f967eead5a6bae74449e207be6f8046edc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/3eec261bf83690dd85812587457f093e3156dca6",
-                "reference": "3eec261bf83690dd85812587457f093e3156dca6",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/ce8b2f967eead5a6bae74449e207be6f8046edc3",
+                "reference": "ce8b2f967eead5a6bae74449e207be6f8046edc3",
                 "shasum": ""
             },
             "require": {
@@ -2195,7 +2195,7 @@
                 "issues": "https://github.com/laravel/socialite/issues",
                 "source": "https://github.com/laravel/socialite"
             },
-            "time": "2022-08-08T13:27:06+00:00"
+            "time": "2022-08-20T21:32:07+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -7305,16 +7305,16 @@
         },
         {
             "name": "twilio/sdk",
-            "version": "6.40.1",
+            "version": "6.41.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:twilio/twilio-php.git",
-                "reference": "94aa139df0bea5aadddb59353ed0ea220fa65c78"
+                "reference": "3e6b81216052aac086efd6334a0fc358c38c2e20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/94aa139df0bea5aadddb59353ed0ea220fa65c78",
-                "reference": "94aa139df0bea5aadddb59353ed0ea220fa65c78",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/3e6b81216052aac086efd6334a0fc358c38c2e20",
+                "reference": "3e6b81216052aac086efd6334a0fc358c38c2e20",
                 "shasum": ""
             },
             "require": {
@@ -7350,7 +7350,7 @@
                 "sms",
                 "twilio"
             ],
-            "time": "2022-08-10T19:10:40+00:00"
+            "time": "2022-08-24T20:39:42+00:00"
         },
         {
             "name": "tymon/jwt-auth",

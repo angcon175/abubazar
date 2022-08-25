@@ -50,7 +50,7 @@ Route::group(['as' => 'frontend.'], function () {
         });
         // Ad Edit
         Route::prefix('post')->group(function () {
-            Route::post('/gallery/images/{ad_gallery}', [AdPostController::class, 'adGalleryDelete'])->name('ad.gallery.delete');
+            Route::get('/images/{id}/delete', [AdPostController::class, 'adGalleryDelete'])->name('ad.gallery.delete');
             Route::get('/{ad:slug}', [AdPostController::class, 'editPostStep1'])->name('post.edit');
             Route::put('/{ad:slug}/update', [AdPostController::class, 'UpdatePostStep1'])->name('post.update');
             Route::get('/{ad:slug}/step2', [AdPostController::class, 'editPostStep2'])->name('post.edit.step2');

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use File;
+use \File;
 use App\Models\Customer;
 use Illuminate\Support\Str;
 use Modules\Ad\Entities\Ad;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+use Image;
 use Modules\Brand\Entities\Brand;
 use App\Http\Traits\AdCreateTrait;
 use Illuminate\Support\Facades\DB;
@@ -97,8 +97,8 @@ class AdPostController extends Controller
             if (empty(session('ad'))) {
                 $ad = new Ad();
                 if($request->category_id  == 11) {
-                    $ad['slug'] = Str::slug($request->title); 
-                    $ad['subcategory_id'] = $request->subcategory_id;   
+                    $ad['slug'] = Str::slug($request->title);
+                    $ad['subcategory_id'] = $request->subcategory_id;
                     $ad['businessfunction_id'] = $request->businessfunction_id;
                     $ad['role_designation'] = $request->role_designation;
                     $ad['receive_response'] = $request->receive_response;
@@ -115,7 +115,7 @@ class AdPostController extends Controller
                     $ad->fill($validatedData);
                     $request->session()->put('ad', $ad);
                 }else {
-                    $ad['slug'] = Str::slug($request->title);    
+                    $ad['slug'] = Str::slug($request->title);
                     $ad['brand_id'] = $request->brand_id;
                     $ad['model'] = $request->model;
                     $ad->fill($validatedData);
@@ -175,20 +175,20 @@ class AdPostController extends Controller
     {
         $validatedData = $request->validate([
             'description' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            // 'images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
-        
+
         $image_count = count($request->file('images'));
         $user_plans = DB::table('user_plans')->where('customer_id', auth('customer')->id())->first();
         // return $user_plans;
         if($user_plans->multiple_image == 1){
-            
+
             if (($image_count < 0) || ($image_count > 10)) {
                 return redirect()->back()->with('error', 'Please upload at least 1 to 10 images');
             }
 
         }else {
-            
+
             if ($image_count > 1) {
                 return redirect()->back()->with('error', 'You can not upload more then 1 image ');
             }
@@ -208,11 +208,16 @@ class AdPostController extends Controller
 
         foreach ($images as $key => $image) {
             if ($key == 0 && $image && $image->isValid()) {
-                $url = $image->move('uploads/addds_images',$image->hashName());
+                $name = $image->hashName();
+                $thumb_img = Image::make($image->getRealPath());
+                $destinationPath2 = public_path('uploads/addds_images/');
+                $thumb_img->resize(850,450);
+                $thumb_img->save($destinationPath2 . '/' . $name);
+                $url = 'uploads/addds_images/'.$name;
                 $ad->update(['thumbnail' => $url]);
             }
 
-            $waterMarkUrl = public_path('img/watermark.png');
+            // $waterMarkUrl = public_path('img/watermark.png');
 
             // dd($waterMarkUrl);
 
@@ -221,11 +226,10 @@ class AdPostController extends Controller
                 $name = $image->hashName();
                 $thumb_img = Image::make($image->getRealPath());
                 $destinationPath2 = public_path('uploads/adds_multiple/');
-                $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
+                $thumb_img->resize(850,450);
+                // $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
                 $thumb_img->save($destinationPath2 . '/' . $name);
                 $gallery_url = 'uploads/adds_multiple/'.$name;
-
-                $gallery_url = $image->move('uploads/adds_multiple',$image->hashName());
                 $ad->galleries()->create(['image' => $gallery_url]);
             }
         }
@@ -233,11 +237,13 @@ class AdPostController extends Controller
         // feature inserting
         $features = $request->features;
         foreach ($features as $feature) {
-            $ad->adFeatures()->create(['name' => $feature]);
+            if ($feature) {
+                $ad->adFeatures()->create(['name' => $feature]);
+            }
         }
 
         $this->forgetStepSession();
-        $this->adNotification($ad);
+        // $this->adNotification($ad);
         !setting('ads_admin_approval') ? $this->userPlanInfoUpdate($ad->featured) : '';
 
         return view('frontend.postad.postsuccess', [
@@ -433,7 +439,12 @@ class AdPostController extends Controller
 
         if( $request->file('thumbnail')){
             $thumbnail = $request->file('thumbnail');
-            $thumbnail_url = $thumbnail->move('uploads/adds_multiple',$thumbnail->hashName());
+            $name = $thumbnail->hashName();
+            $thumb_img = Image::make($thumbnail->getRealPath());
+            $destinationPath2 = public_path('uploads/addds_images/');
+            $thumb_img->resize(850,450);
+            $thumb_img->save($destinationPath2 . '/' . $name);
+            $thumbnail_url = 'uploads/addds_images/'.$thumbnail->hashName();
             $updateData['thumbnail'] = $thumbnail_url;
 
         }
@@ -448,7 +459,7 @@ class AdPostController extends Controller
             }
         }
 
-        $waterMarkUrl = public_path('img/watermark.png');
+        // $waterMarkUrl = public_path('img/watermark.png');
         // image uploading
         $images = $request->file('images');
         if ($images) {
@@ -458,7 +469,8 @@ class AdPostController extends Controller
                     $name = $image->hashName();
                     $thumb_img = Image::make($image->getRealPath());
                     $destinationPath2 = public_path('uploads/adds_multiple/');
-                    $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
+                    $thumb_img->resize(850,450);
+                    // $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
                     $thumb_img->save($destinationPath2 . '/' . $name);
                     $gallery_url = 'uploads/adds_multiple/'.$name;
 
@@ -470,7 +482,7 @@ class AdPostController extends Controller
         }
 
         $this->forgetStepSession();
-        $this->adNotification($ad, 'update');
+        // $this->adNotification($ad, 'update');
 
         return view('frontend.postad.postsuccess', [
             'ad_slug' => $ad->slug,
@@ -488,13 +500,19 @@ class AdPostController extends Controller
         return redirect()->route('frontend.dashboard');
     }
 
-    public function adGalleryDelete($ad_gallery){
-        $ad_gallery = AdGallery::find($ad_gallery);
-        if($ad_gallery){
-            $ad_gallery->delete();
+    public function adGalleryDelete($id){
+        $data = AdGallery::find($id);
+        $res = $data->delete();
+        $res = true;
+        if($res){
+            @unlink($data->image);
+            $result['status'] = 'success';
+            $result['message'] = 'Image deleted successfully';
+        }else{
+            $result['status'] = 'failed';
+            $result['message'] = 'Image not deleted successfully';
         }
-
-        // return redirect()->back();
+        return response()->json($result);
     }
 
     public function categoryAjax($id)

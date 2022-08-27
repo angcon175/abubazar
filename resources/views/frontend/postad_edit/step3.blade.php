@@ -52,10 +52,17 @@
                     @endforeach
                 </div>
             </div>
-            <div class="input-field--textarea">
-                <img src="{{ asset($ad->thumbnail ?? '') }}" alt="product" style="width: 200px;" />
-                <x-forms.label name="thumbnail" for="thumbnail" />
-                <input value="" name="thumbnail" type="file" id="thumbnail" class="form-control @error('thumbnail') border-danger @enderror"/>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 upload-wrapper">
+                    <h3>{{ __('Thumbnail Image') }} <span class="text-danger">*</span></h3>
+                    <div class="input-field">
+                        <input type="file" name="thumbnail" class="form-control @error('title') border-danger @enderror" onchange="readURL(this);">
+                        <input type="hidden" name="old_thumbnail" value="{{ $ad->thumbnail ?? '' }}">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <img src="{{ asset($ad->thumbnail ?? '') }}" id="thumbnail" style="height: 100px;width: 80px;float: right;margin-right: 46%;">
+                </div>
             </div>
 
             {{-- <div class="upload-wrapper">
@@ -216,5 +223,17 @@
             });
         }
     })
+    function readURL(input){
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#thumbnail')
+                .attr('src', e.target.result)
+                .width(80)
+                .height(100)
+            };
+            reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 @endsection

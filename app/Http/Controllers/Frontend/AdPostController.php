@@ -436,6 +436,7 @@ class AdPostController extends Controller
 
         $updateData['description'] = $request->description;
 
+        $old_thumb = $request->old_thumbnail;
         if( $request->file('thumbnail')){
             $thumbnail = $request->file('thumbnail');
             $name = $thumbnail->hashName();
@@ -445,6 +446,9 @@ class AdPostController extends Controller
             $thumb_img->save($destinationPath2 . '/' . $name);
             $thumbnail_url = 'uploads/addds_images/'.$thumbnail->hashName();
             $updateData['thumbnail'] = $thumbnail_url;
+            if ($old_thumb) {
+                @unlink($old_thumb);
+             }
 
         }
 

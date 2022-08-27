@@ -175,7 +175,6 @@ class AdPostController extends Controller
     {
         $validatedData = $request->validate([
             'description' => 'required',
-            // 'images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         $image_count = count($request->file('images'));
@@ -217,7 +216,7 @@ class AdPostController extends Controller
                 $ad->update(['thumbnail' => $url]);
             }
 
-            // $waterMarkUrl = public_path('img/watermark.png');
+            $waterMarkUrl = public_path('img/watermark.png');
 
             // dd($waterMarkUrl);
 
@@ -227,7 +226,7 @@ class AdPostController extends Controller
                 $thumb_img = Image::make($image->getRealPath());
                 $destinationPath2 = public_path('uploads/adds_multiple/');
                 $thumb_img->resize(850,450);
-                // $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
+                $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
                 $thumb_img->save($destinationPath2 . '/' . $name);
                 $gallery_url = 'uploads/adds_multiple/'.$name;
                 $ad->galleries()->create(['image' => $gallery_url]);
@@ -243,7 +242,7 @@ class AdPostController extends Controller
         }
 
         $this->forgetStepSession();
-        // $this->adNotification($ad);
+        $this->adNotification($ad);
         !setting('ads_admin_approval') ? $this->userPlanInfoUpdate($ad->featured) : '';
 
         return view('frontend.postad.postsuccess', [
@@ -459,7 +458,7 @@ class AdPostController extends Controller
             }
         }
 
-        // $waterMarkUrl = public_path('img/watermark.png');
+        $waterMarkUrl = public_path('img/watermark.png');
         // image uploading
         $images = $request->file('images');
         if ($images) {
@@ -470,7 +469,7 @@ class AdPostController extends Controller
                     $thumb_img = Image::make($image->getRealPath());
                     $destinationPath2 = public_path('uploads/adds_multiple/');
                     $thumb_img->resize(850,450);
-                    // $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
+                    $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
                     $thumb_img->save($destinationPath2 . '/' . $name);
                     $gallery_url = 'uploads/adds_multiple/'.$name;
 

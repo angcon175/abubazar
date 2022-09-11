@@ -89,7 +89,7 @@ class AdPostController extends Controller
             // 'negotiable' => 'required',
             'featured' => 'sometimes',
             'category_id' => 'required',
-            // 'subcategory_id' => 'sometimes',
+            'subcategory_id' => 'sometimes',
             // 'brand_id' => 'required',
         ]);
 
@@ -210,7 +210,7 @@ class AdPostController extends Controller
                 $name = $image->hashName();
                 $thumb_img = Image::make($image->getRealPath());
                 $destinationPath2 = public_path('uploads/addds_images/');
-                $thumb_img->resize(850,450);
+                $thumb_img->resize(850, null, function ($constraint) { $constraint->aspectRatio(); });
                 $thumb_img->save($destinationPath2 . '/' . $name);
                 $url = 'uploads/addds_images/'.$name;
                 $ad->update(['thumbnail' => $url]);
@@ -225,7 +225,7 @@ class AdPostController extends Controller
                 $name = $image->hashName();
                 $thumb_img = Image::make($image->getRealPath());
                 $destinationPath2 = public_path('uploads/adds_multiple/');
-                $thumb_img->resize(850,450);
+                $thumb_img->resize(850, null, function ($constraint) { $constraint->aspectRatio(); });
                 $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
                 $thumb_img->save($destinationPath2 . '/' . $name);
                 $gallery_url = 'uploads/adds_multiple/'.$name;
@@ -442,7 +442,7 @@ class AdPostController extends Controller
             $name = $thumbnail->hashName();
             $thumb_img = Image::make($thumbnail->getRealPath());
             $destinationPath2 = public_path('uploads/addds_images/');
-            $thumb_img->resize(850,450);
+            $thumb_img->resize(850, null, function ($constraint) { $constraint->aspectRatio(); });
             $thumb_img->save($destinationPath2 . '/' . $name);
             $thumbnail_url = 'uploads/addds_images/'.$thumbnail->hashName();
             $updateData['thumbnail'] = $thumbnail_url;
@@ -472,7 +472,7 @@ class AdPostController extends Controller
                     $name = $image->hashName();
                     $thumb_img = Image::make($image->getRealPath());
                     $destinationPath2 = public_path('uploads/adds_multiple/');
-                    $thumb_img->resize(850,450);
+                    $thumb_img->resize(850, null, function ($constraint) { $constraint->aspectRatio(); });
                     $thumb_img->insert($waterMarkUrl, 'bottom-left', 5, 5);
                     $thumb_img->save($destinationPath2 . '/' . $name);
                     $gallery_url = 'uploads/adds_multiple/'.$name;

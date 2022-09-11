@@ -1,4 +1,4 @@
-<div class="col-xl-2 col-sm-6">
+<div class="col-xl-2  col-6">
     <h2 class="footer__title text--body-2-600">{{ __('quick_links') }}</h2>
 
     <ul class="footer-menu">
@@ -8,14 +8,9 @@
         <li class="footer-menu__item">
             <a href="{{ route('frontend.about') }}" class="footer-menu__link text--body-3">{{ __('about') }}</a>
         </li>
-        @if ($blog_enable)
+        @if ($contact_enable)
             <li class="footer-menu__item">
-                <a href="{{ route('frontend.blog') }}" class="footer-menu__link text--body-3">{{ __('blog') }}</a>
-            </li>
-        @endif
-        @if ($priceplan_enable)
-            <li class="footer-menu__item">
-                <a href="{{ route('frontend.priceplan') }}" class="footer-menu__link text--body-3">{{ __('pricing_plan') }}</a>
+                <a href="{{ route('frontend.contact') }}" class="footer-menu__link text--body-3">{{ __('contact') }}</a>
             </li>
         @endif
     </ul>

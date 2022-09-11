@@ -25,7 +25,7 @@
         }
 
         .navigation-bar__buttons .user {
-            margin: 0px 24px;
+            margin: 0px 14px 0px 0px;
         }
 
         a.categories__link.active {

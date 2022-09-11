@@ -47,7 +47,7 @@
                                     @endif
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('brand') }}</th>
-                                        <td width="80%">{{ $ad->brand->name }}</td>
+                                        <td width="80%">{{ $ad->brand->name ?? 'Brand not provided'}}</td>
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('location') }}</th>
@@ -55,7 +55,7 @@
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('model') }}</th>
-                                        <td width="80%">{{ $ad->model }}</td>
+                                        <td width="80%">{{ $ad->model ?? 'Model not given'}}</td>
                                     </tr>
                                     <tr class="mb-5">
                                         <th width="20%">{{ __('condition') }}</th>

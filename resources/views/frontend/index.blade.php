@@ -19,7 +19,7 @@ $setting = setting();
 <!--  style="background: url('{{ $cms->index1_main_banner_path }}') center center/cover no-repeat;" -->
 <!-- banner section start  -->
 {{--
-<div class="banner banner--two">
+<div class="banner banner--two" style="background: url('{{ $cms->index1_main_banner_path }}') center center/cover no-repeat;">
     <div class="container">
         <div class="row text-center">
             <div class="col-12">
@@ -36,7 +36,10 @@ $setting = setting();
     </div>
 </div>
 --}}
+
+
 <!-- search form -->
+{{--
 <div class="banner banner--two">
     <div class="container">
         <form action="{{ route('frontend.adlist.search') }}" method="GET">
@@ -107,7 +110,6 @@ $setting = setting();
                     </div>
                 </div>
             </div>
-            {{-- Mobile Search --}}
             <div class="mobile-search-filed home_search">
                 <div class="container">
                     <div class="search-field-wrap">
@@ -136,10 +138,86 @@ $setting = setting();
         </form>
     </div>
 </div>
+--}}
+
+<div class="navigation-bar__bottom-wrap d-none d-lg-block">
+        <div class="container navigation-bar__bottom justify-content-between">
+            <div class="d-flex align-items-center">
+                <!-- category menu -->
+                <ul class="category-menu">
+                    <li class="category-menu__item">
+                        <a href="#" class="category-menu__link">
+                            {{ __('All Categories') }}
+                            <span class="icon">
+                                <x-svg.category-arrow-icon />
+                            </span>
+                        </a>
+                        <ul class="category-menu__dropdown">
+                            @foreach ($categories as $category)
+
+                                {{-- Filter Form-2 --}}
+                                <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm2" class="d-none">
+                                    <input type="hidden" name="category" value="" id="adFilterInput2">
+                                </form>
+
+                                <li class="category-menu__dropdown__item">
+                                    <a href="javascript:void(0)" onclick="adFilterFunctionTwo('{{ $category->slug }}')" class="category-menu__dropdown__link">
+                                        <i class="category-icon {{ $category->icon }}" style="color: #D32323"></i>
+                                        {{ $category->name }}
+                                        @if (isset($category->subcategories) ?? $category->subcategories->count() > 0)
+                                        <span class="drop-icon">
+                                            <x-svg.category-right-icon />
+                                        </span>
+                                        @endif
+                                    </a>
+                                    @if (isset($category->subcategories) ?? $category->subcategories->count() > 0)
+                                        <ul class="category-menu__subdropdown">
+                                            @foreach ($category->subcategories as $subcategory)
+
+                                                {{-- Filter Form-3 --}}
+                                                <form method="GET" action="{{ route('frontend.adlist.search') }}" id="adFilterForm3" class="d-none">
+                                                    <input type="hidden" name="subcategory[]" value="" id="adFilterInput3">
+                                                </form>
+
+                                                <li class="category-menu__subdropdown__item">
+                                                    <a href="javascript:void(0)" onclick="adFilterFunctionThree('{{ $subcategory->slug }}')" class="category-menu__subdropdown__link">
+                                                        {{ $subcategory->name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Category Item -->
+                <ul class="categories">
+                    <li><strong>Top Categories:</strong></li>
+                      @foreach ($top_categories as $category)
+                        <li class="categories__item">
+                            <a href="javascript:void(0)" onclick="adFilterFunctionTwo('{{ $category->slug }}')" class="categories__link {{ request()->routeIs('frontend.index') ? 'active' : '' }} ">
+                                {{ $category->name }}
+                            </a>
+                        </li>
+                     @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="header_top_ads d-none d-lg-block"> 
+        <img src="{{ $cms->index1_main_banner_path }}" height="170" alt="">
+    </div>
+
+
+
+
 <!-- search form -->
 @if($admin_ads_slider)
 <!-- Ads Banner -->
-<div class="ads_banner mt-2">
+<!-- <div class="ads_banner mt-2">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 center-block text-center">
@@ -149,11 +227,11 @@ $setting = setting();
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endif
 <!-- banner section end   -->
 <!-- top-category section start  -->
-<section class="section top-category bgcolor--gray-10">
+<section class="section top-category bgcolor--gray-10 top_category_list">
     <div class="container">
         <h2 class="text--heading-1 section__title">
         {{ __('top_category') }}

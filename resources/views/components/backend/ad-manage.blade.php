@@ -1,4 +1,4 @@
-<table class="table table-hover text-nowrap table-bordered">
+<table class="">
     <thead>
         <tr class="text-center">
             <th width="2%">{{ __('sl') }}</th>

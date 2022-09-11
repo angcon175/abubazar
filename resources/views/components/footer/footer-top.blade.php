@@ -1,7 +1,7 @@
 <footer  class="footer {{ $bg }}">
     <div class="footer__top">
         <div class="container">
-            <div class="row">
+            <div class="row g-3">
                 @php
                     $logotype = $bg == 'footer--dark' ? 'dark':'white';
                 @endphp

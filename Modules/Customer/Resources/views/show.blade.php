@@ -54,7 +54,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title" style="line-height: 36px;">{{ __('customer') }} {{ __('ads') }}</h3>
-                        <a href="{{ route('module.category.index') }}"
+                        <a href="{{ route('module.customer.index') }}"
                             class="btn bg-primary float-right d-flex align-items-center justify-content-center"><i
                                 class="fas fa-arrow-left"></i>&nbsp; {{ __('back') }}</a>
                     </div>

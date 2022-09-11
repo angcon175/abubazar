@@ -188,7 +188,7 @@
                         <div class="col-md-6" id="brandShowHide">
                             <div class="input-select">
                                 <label for="">Brand <span class="text-danger">*</span></label>
-                                <select required name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
+                                <select name="brand_id" id="brandd" class="form-control select-bg @error('brand_id') border-danger @enderror">
                                     <option value="" hidden>{{ __('select_brand') }}</option>
                                     @isset($ad->brand_id)
                                         @foreach ($brands as $brand)
@@ -205,7 +205,7 @@
                         <div class="col-md-6" id="modelShowHide">
                             <div class="input-field">
                                 <label for="">Model <span class="text-danger">*</span></label>
-                                <input required value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
+                                <input value="{{ $ad->model ?? '' }}" name="model" type="text" placeholder="{{ __('model') }}" id="modell" class="@error('model') border-danger @enderror" />
                             </div>
                         </div>
                         <div class="col-md-6" id="conditionShowHide">
@@ -311,8 +311,10 @@
                 $("#featuredShowHide").show();
                 $("#showAlInfo").hide();
                 $("#negotiableShowHide").show();
-                $('#brandd').attr('required', 'required');
-                $('#modell').attr('required', 'required');
+                // $('#brandd').attr('required', 'required');
+                // $('#modell').attr('required', 'required');
+                $('#brandd').show();
+                $('#modell').show();
             }
         });
 
